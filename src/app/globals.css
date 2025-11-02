@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ChefFlow Design System - Light Mode Only */
+
+@theme {
+  /* Brand Colors */
+  --color-background: oklch(100% 0 0); /* White */
+  --color-foreground: oklch(28% 0.05 40); /* Dark brown #3D2817 */
+
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(28% 0.05 40);
+
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(28% 0.05 40);
+
+  --color-primary: oklch(72% 0.19 30); /* Orange/coral #FF6B4A */
+  --color-primary-foreground: oklch(100% 0 0);
+
+  --color-secondary: oklch(94% 0.03 70); /* Cream/beige #F5EBD5 */
+  --color-secondary-foreground: oklch(28% 0.05 40);
+
+  --color-muted: oklch(94% 0.03 70);
+  --color-muted-foreground: oklch(50% 0.03 40);
+
+  --color-accent: oklch(72% 0.19 30);
+  --color-accent-foreground: oklch(100% 0 0);
+
+  --color-destructive: oklch(62% 0.22 25);
+  --color-destructive-foreground: oklch(100% 0 0);
+
+  --color-border: oklch(88% 0.01 40);
+  --color-input: oklch(88% 0.01 40);
+  --color-ring: oklch(72% 0.19 30);
+
+  /* Sidebar */
+  --color-sidebar-background: oklch(98% 0 0);
+  --color-sidebar-foreground: oklch(40% 0.01 240);
+  --color-sidebar-primary: oklch(20% 0.01 240);
+  --color-sidebar-primary-foreground: oklch(98% 0 0);
+  --color-sidebar-accent: oklch(96% 0.005 240);
+  --color-sidebar-accent-foreground: oklch(20% 0.01 240);
+  --color-sidebar-border: oklch(92% 0.01 220);
+  --color-sidebar-ring: oklch(65% 0.22 240);
+
+  /* Spacing */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-card: 0 2px 8px 0 rgb(0 0 0 / 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--color-border);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
