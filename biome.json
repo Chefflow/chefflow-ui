@@ -9,6 +9,11 @@
     "ignoreUnknown": true,
     "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
   },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
@@ -20,6 +25,12 @@
       "recommended": true,
       "suspicious": {
         "noUnknownAtRules": "off"
+      },
+      "style": {
+        "useFilenamingConvention": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off"
       }
     },
     "domains": {

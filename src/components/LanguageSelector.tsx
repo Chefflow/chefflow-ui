@@ -1,9 +1,9 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "@/i18n/routing";
-import { locales, localeNames, localeFlags, type Locale } from "@/i18n/config";
 import { useTransition } from "react";
+import { type Locale, localeFlags, localeNames, locales } from "@/i18n/config";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 export default function LanguageSelector() {
   const locale = useLocale();
