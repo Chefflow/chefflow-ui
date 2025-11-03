@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run Biome linting and formatting
+echo "🔍 Running Biome checks..."
+pnpm biome check --write --no-errors-on-unmatched --files-ignore-unknown=true
+
+# Check if Biome found any errors (exit code 1)
+if [ $? -ne 0 ]; then
+  echo "❌ Biome found issues. Please fix them before committing."
+  exit 1
+fi
+
+echo "✅ Biome checks passed!"
