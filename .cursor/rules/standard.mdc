@@ -1,0 +1,121 @@
+---
+alwaysApply: true
+---
+
+You are an expert in TypeScript, Next.js App Router, React, and Tailwind CSS.
+
+## Code Style and Structure
+
+- Write concise, technical TypeScript code with accurate examples
+- Use functional and declarative programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`)
+- Structure files: exported component, subcomponents, helpers, static content, types
+
+## Naming Conventions
+
+- Use lowercase with dashes for all directories (e.g., `components/auth-wizard`, `utils/date-helpers`)
+- Favor named exports for components
+- Use PascalCase for component files (e.g., `UserProfile.tsx`)
+- Use camelCase for utility files (e.g., `formatDate.ts`)
+
+## TypeScript Usage
+
+- Use TypeScript for all code; prefer interfaces over types
+- Enable strict mode in `tsconfig.json`
+- Avoid `any`; use `unknown` if type is uncertain
+- Use `const` assertions for literal types
+- Define explicit return types for functions
+- Use template literal types for string unions when appropriate
+
+## Next.js App Router
+
+- Use App Router for all new routes
+- Prefer Server Components by default
+- Use `'use client'` directive only when absolutely necessary:
+  - User interactions (onClick, onChange, etc.)
+  - Browser APIs (localStorage, window, etc.)
+  - React hooks (useState, useEffect, etc.)
+  - Third-party libraries that require client-side rendering
+- Componentize to minimize client boundary surface area
+- Keep client components small and focused; extract server logic to parent components
+- Use loading.tsx, error.tsx, and not-found.tsx conventions
+- Implement proper metadata using `generateMetadata` for SEO
+
+## Server-Side Rendering
+
+- Maximize use of Server Components for better performance
+- Fetch data in Server Components when possible
+- Use React Server Actions for mutations
+- Implement proper caching strategies with `fetch` options
+- Use `unstable_cache` for expensive computations
+- Leverage streaming with Suspense boundaries
+
+## UI and Styling
+
+- Use shadcn/ui as the default component library
+- Use Tailwind CSS for styling; follow utility-first approach
+- Import shadcn components from `@/components/ui`
+- Customize shadcn theme in `tailwind.config.ts`
+- Use CSS variables for theme colors defined in `globals.css`
+- Implement responsive design with Tailwind breakpoints
+- Use `cn()` utility for conditional classes
+
+## Component Structure
+
+- Break down complex components into smaller, reusable parts
+- Use composition pattern with children props
+- Implement proper component hierarchy (Server wrapping Client when needed)
+- Co-locate related components, utilities, and types
+- Use barrel exports (`index.ts`) for cleaner imports
+
+## Performance Optimization
+
+- Minimize 'use client' usage; prefer server-side rendering
+- Use dynamic imports for code splitting with `next/dynamic`
+- Implement proper image optimization with `next/image`
+- Use Suspense for async components and loading states
+- Optimize fonts with `next/font`
+- Implement proper caching headers
+
+## Data Fetching
+
+- Use async/await in Server Components for data fetching
+- Implement error boundaries for data fetching failures
+- Use React Server Actions for form submissions
+- Implement optimistic updates when appropriate
+- Use `revalidatePath` or `revalidateTag` for cache invalidation
+
+## Error Handling
+
+- Implement error boundaries with error.tsx
+- Use try-catch blocks for async operations
+- Provide user-friendly error messages
+- Log errors appropriately for debugging
+- Use Zod or similar for runtime validation
+
+## Testing
+
+- Write unit tests for utilities and helpers
+- Implement integration tests for critical user flows
+- Use React Testing Library for component tests
+- Mock external dependencies appropriately
+
+## Clean Code Principles
+
+- Follow Single Responsibility Principle: one function/component = one purpose
+- Keep functions small and focused (ideally < 20 lines)
+- DRY: Extract repeated logic into utilities
+- Use early returns to avoid nested conditionals
+- Write self-documenting code; comments explain _why_, not _what_
+- Avoid magic numbers; use named constants
+- Prefer pure functions without side effects when possible
+
+## Key Conventions
+
+- Use `function` keyword for Server Components and Server Actions
+- Use `const` arrow functions for Client Components and utilities
+- Wrap client components in Suspense boundaries when needed
+- Use proper TypeScript discriminated unions for variants
+- Implement proper loading and error states
+- Use environment variables for configuration (prefixed with `NEXT_PUBLIC_` for client-side)
