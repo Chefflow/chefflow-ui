@@ -19,6 +19,9 @@ pnpm run format           # Format code (Biome)
 
 # shadcn/ui component management
 pnpm dlx shadcn@latest add [component-name]  # Add shadcn component
+
+# Git hooks (Husky)
+# Pre-commit hook automatically runs Biome checks before each commit
 ```
 
 ## Tech Stack
@@ -31,6 +34,7 @@ pnpm dlx shadcn@latest add [component-name]  # Add shadcn component
 - **Icons**: lucide-react
 - **Fonts**: Inter (sans) and Crimson Pro (serif headings)
 - **Code Quality**: Biome 2.2.0 (replaces ESLint + Prettier)
+- **Git Hooks**: Husky v9.1.7 (pre-commit checks)
 - **Build Tool**: Turbopack
 - **Package Manager**: pnpm
 
@@ -42,7 +46,10 @@ The app uses **next-intl** with a locale-based routing strategy:
 
 - **Supported locales**: `en` (default), `es`, `fr`, `de`
 - **Routing pattern**: `/{locale}/path` (e.g., `/en/recipes`, `/es/recetas`)
-- **Middleware**: `src/middleware.ts` handles locale detection and routing
+- **Locale prefix**: Always required (`localePrefix: "always"`)
+- **Middleware**: `src/middleware.ts` handles locale detection and automatic redirection
+  - Routes without locale (e.g., `/login`) are automatically redirected to `/en/login` (default locale)
+  - Detects user's preferred language from Accept-Language header
 - **Configuration files**:
   - `src/i18n/config.ts` - Locale definitions, names, and flags
   - `src/i18n/routing.ts` - Routing configuration and navigation helpers
@@ -151,6 +158,18 @@ All shadcn components automatically use these CSS variables via Tailwind utiliti
   - `noUnknownAtRules` - Tailwind v4 uses custom at-rules
 
 **Important**: Always run `pnpm run format` after adding shadcn components to ensure consistent formatting.
+
+### Git Hooks (Husky)
+
+The project uses Husky to enforce code quality through pre-commit hooks:
+
+- **Pre-commit hook** (`.husky/pre-commit`):
+  - Automatically runs `pnpm biome check --write` before each commit
+  - Fixes formatting issues automatically
+  - Prevents commits if linting errors are found
+  - Ensures all committed code follows Biome rules
+
+**Note**: The pre-commit hook runs automatically. To bypass it (not recommended), use `git commit --no-verify`.
 
 ## File Structure
 
