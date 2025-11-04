@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
