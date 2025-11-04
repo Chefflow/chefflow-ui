@@ -2,6 +2,7 @@ import { Crimson_Pro, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import Navbar from "@/components/Navbar";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -41,7 +42,8 @@ export default async function LocaleLayout({
         className={`${inter.variable} ${crimsonPro.variable} font-sans antialiased bg-background text-foreground min-h-full`}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Navbar />
+          <main className="flex-1">{children}</main>
         </NextIntlClientProvider>
       </body>
     </html>
