@@ -36,9 +36,9 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className="h-full">
       <body
-        className={`${inter.variable} ${crimsonPro.variable} font-sans antialiased`}
+        className={`${inter.variable} ${crimsonPro.variable} font-sans antialiased bg-background text-foreground min-h-full`}
       >
         <NextIntlClientProvider messages={messages}>
           {children}

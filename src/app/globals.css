@@ -4,7 +4,7 @@
 
 @theme {
   /* Brand Colors */
-  --color-background: oklch(100% 0 0); /* White */
+  --color-background: oklch(98% 0.015 70); /* Warm off-white with slight cream tone */
   --color-foreground: oklch(28% 0.05 40); /* Dark brown #3D2817 */
 
   --color-card: oklch(100% 0 0);
