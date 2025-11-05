@@ -33,13 +33,13 @@ export default function LanguageSelector() {
         disabled={isPending}
       >
         <SelectTrigger
-          className="w-[180px] bg-secondary border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+          className="w-[180px] bg-secondary border-2 border-primary hover:bg-primary hover:text-primary transition-all duration-200"
           aria-label="Select language"
         >
           <SelectValue>
             <span className="flex items-center gap-2">
               <span>{localeFlags[locale as Locale]}</span>
-              <span>{localeNames[locale as Locale]}</span>
+              <span className="font-bold">{localeNames[locale as Locale]}</span>
             </span>
           </SelectValue>
         </SelectTrigger>
@@ -48,7 +48,7 @@ export default function LanguageSelector() {
             <SelectItem key={loc} value={loc}>
               <span className="flex items-center gap-2">
                 <span>{localeFlags[loc]}</span>
-                <span>{localeNames[loc]}</span>
+                <span className="font-bold">{localeNames[loc]}</span>
               </span>
             </SelectItem>
           ))}
