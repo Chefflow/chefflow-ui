@@ -13,5 +13,31 @@
     "continueWithGoogle": "Continue with Google",
     "noAccount": "Don't have an account?",
     "signUp": "Sign up"
+  },
+  "signup": {
+    "title": "Create your account",
+    "subtitle": "Get started with ChefFlow today",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 8 characters with uppercase, lowercase, and numbers",
+    "confirmPassword": "Confirm Password",
+    "acceptThe": "I accept the",
+    "termsAndConditions": "Terms & Conditions",
+    "createAccount": "Create Account",
+    "or": "OR",
+    "continueWithGoogle": "Continue with Google",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "errors": {
+      "usernameNoSpaces": "Username cannot contain spaces",
+      "usernameMinLength": "Username must be at least 3 characters",
+      "passwordMinLength": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain an uppercase letter",
+      "passwordLowercase": "Password must contain a lowercase letter",
+      "passwordNumber": "Password must contain a number",
+      "passwordMismatch": "Passwords do not match"
+    }
   }
 }
