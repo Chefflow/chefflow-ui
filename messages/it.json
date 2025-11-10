@@ -1,0 +1,103 @@
+{
+  "navbar": {
+    "login": "Accedi"
+  },
+  "home": {
+    "hero": {
+      "badge": "Inizia Gratis",
+      "title": "Organizza le tue ricette, pianifica i tuoi pasti",
+      "subtitle": "Il modo semplice e intelligente per gestire la tua routine in cucina.",
+      "getStarted": "Inizia",
+      "signIn": "Accedi",
+      "feature1": "Nessuna carta di credito richiesta",
+      "feature2": "Inizia a cucinare oggi",
+      "feature3": "Facile da usare"
+    },
+    "features": {
+      "title": "Tutto ciò di cui hai bisogno per cucinare con facilità",
+      "subtitle": "Funzionalità potenti per aiutarti a organizzare e pianificare i tuoi pasti senza sforzo.",
+      "saveRecipes": {
+        "title": "Salva le tue ricette",
+        "description": "Mantieni le tue ricette organizzate in un unico posto. Aggiungi le tue, importa dal web o scansiona dai libri di cucina."
+      },
+      "weeklyPlanning": {
+        "title": "Pianificazione settimanale",
+        "description": "Pianifica i tuoi pasti per la settimana con un'interfaccia calendario intuitiva drag-and-drop."
+      },
+      "shoppingList": {
+        "title": "Lista della spesa intelligente",
+        "description": "Genera liste della spesa organizzate dai tuoi piani pasto. Non dimenticare mai un ingrediente."
+      },
+      "aiAnalysis": {
+        "title": "Analisi AI",
+        "description": "Ottieni suggerimenti intelligenti, informazioni nutrizionali e raccomandazioni personalizzate sui pasti."
+      }
+    },
+    "howItWorks": {
+      "title": "Come funziona",
+      "subtitle": "Inizia a organizzare la tua cucina in tre semplici passaggi",
+      "step1": {
+        "title": "Crea il tuo account",
+        "description": "Registrati in pochi secondi. Nessuna carta di credito richiesta per iniziare."
+      },
+      "step2": {
+        "title": "Aggiungi le tue ricette",
+        "description": "Importa da siti web, aggiungi manualmente o scansiona dai libri di cucina. Costruisci la tua collezione personale."
+      },
+      "step3": {
+        "title": "Pianifica e cucina",
+        "description": "Pianifica i tuoi pasti settimanali, genera liste della spesa e inizia a cucinare con fiducia."
+      }
+    },
+    "cta": {
+      "badge": "Unisciti a migliaia di cuochi casalinghi",
+      "title": "Pronto a semplificare la tua cucina?",
+      "subtitle": "Unisciti a ChefFlow oggi e elimina lo stress dalla pianificazione dei pasti.",
+      "getStarted": "Inizia ora",
+      "noCredit": "Nessuna carta di credito richiesta"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Termini",
+      "copyright": "© 2025 ChefFlow. Tutti i diritti riservati."
+    }
+  },
+  "login": {
+    "title": "Bentornato",
+    "subtitle": "Accedi al tuo account ChefFlow",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Password dimenticata?",
+    "signIn": "Accedi",
+    "or": "OPPURE",
+    "continueWithGoogle": "Continua con Google",
+    "noAccount": "Non hai un account?",
+    "signUp": "Registrati"
+  },
+  "signup": {
+    "title": "Crea il tuo account",
+    "subtitle": "Inizia con ChefFlow oggi",
+    "name": "Nome",
+    "namePlaceholder": "Il tuo nome",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "Almeno 8 caratteri con maiuscole, minuscole e numeri",
+    "confirmPassword": "Conferma Password",
+    "acceptThe": "Accetto i",
+    "termsAndConditions": "Termini e Condizioni",
+    "createAccount": "Crea Account",
+    "or": "OPPURE",
+    "continueWithGoogle": "Continua con Google",
+    "haveAccount": "Hai già un account?",
+    "signIn": "Accedi",
+    "errors": {
+      "usernameNoSpaces": "Il nome utente non può contenere spazi",
+      "usernameMinLength": "Il nome utente deve contenere almeno 3 caratteri",
+      "passwordMinLength": "La password deve contenere almeno 8 caratteri",
+      "passwordUppercase": "La password deve contenere una lettera maiuscola",
+      "passwordLowercase": "La password deve contenere una lettera minuscola",
+      "passwordNumber": "La password deve contenere un numero",
+      "passwordMismatch": "Le password non corrispondono"
+    }
+  }
+}
