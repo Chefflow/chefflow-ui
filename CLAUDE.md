@@ -30,7 +30,7 @@ pnpm dlx shadcn@latest add [component-name]  # Add shadcn component
 - **React**: 19.1.0
 - **TypeScript**: Strict mode enabled
 - **Styling**: Tailwind CSS v4 (PostCSS-based) + shadcn/ui (new-york style)
-- **Internationalization**: next-intl v4.4.0 (English, Spanish, French, German)
+- **Internationalization**: next-intl v4.4.0 (English, Spanish, French, German, Italian)
 - **Icons**: lucide-react
 - **Fonts**: Inter (sans) and Crimson Pro (serif headings)
 - **Code Quality**: Biome 2.2.0 (replaces ESLint + Prettier)
@@ -44,7 +44,7 @@ pnpm dlx shadcn@latest add [component-name]  # Add shadcn component
 
 The app uses **next-intl** with a locale-based routing strategy:
 
-- **Supported locales**: `en` (default), `es`, `fr`, `de`
+- **Supported locales**: `en` (default), `es`, `fr`, `de`, `it`
 - **Routing pattern**: `/{locale}/path` (e.g., `/en/recipes`, `/es/recetas`)
 - **Locale prefix**: Always required (`localePrefix: "always"`)
 - **Middleware**: `src/middleware.ts` handles locale detection and automatic redirection
@@ -54,7 +54,7 @@ The app uses **next-intl** with a locale-based routing strategy:
   - `src/i18n/config.ts` - Locale definitions, names, and flags
   - `src/i18n/routing.ts` - Routing configuration and navigation helpers
   - `src/i18n/request.ts` - Request config for loading locale messages
-- **Translation files**: `messages/{locale}.json` (en.json, es.json, fr.json, de.json)
+- **Translation files**: `messages/{locale}.json` (en.json, es.json, fr.json, de.json, it.json)
 - **Layout structure**:
   - `src/app/[locale]/layout.tsx` - Locale-specific layout with NextIntlClientProvider
   - Generates static params for all locales
@@ -96,7 +96,7 @@ ChefFlow uses a custom light-mode-only design system defined in `src/app/globals
 - **Primary**: `oklch(72% 0.19 30)` - Orange/coral (#FF6B4A) for CTAs and accents
 - **Secondary**: `oklch(94% 0.03 70)` - Cream/beige (#F5EBD5) for warm backgrounds
 - **Foreground**: `oklch(28% 0.05 40)` - Dark brown (#3D2817) for text
-- **Background**: `oklch(100% 0 0)` - White for clean canvas
+- **Background**: `oklch(98% 0.015 70)` - Warm off-white with slight cream tone
 - **Destructive**: `oklch(62% 0.22 25)` - Red for errors
 - **Muted**: Uses secondary color for subtle backgrounds
 
@@ -190,7 +190,7 @@ src/
   lib/
     utils.ts               # cn() utility for className merging
   middleware.ts            # Locale routing middleware
-messages/                  # Translation JSON files (en, es, fr, de)
+messages/                  # Translation JSON files (en, es, fr, de, it)
 components.json            # shadcn/ui configuration
 biome.json                 # Linter/formatter config
 next.config.ts             # Next.js config with next-intl plugin
