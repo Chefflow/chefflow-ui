@@ -52,67 +52,80 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <div className="bg-background">
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-background to-secondary/20">
+      <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-6">
-          <div className="flex gap-8 border-b border-border">
+          <div className="flex gap-8">
             <button
               type="button"
               onClick={() => setActiveTab("recipes")}
-              className={`pb-3 pt-4 text-sm font-medium transition-colors ${
+              className={`relative pb-4 pt-5 text-sm font-medium transition-all ${
                 activeTab === "recipes"
-                  ? "border-b-2 border-primary text-foreground"
+                  ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {t("tabs.recipes")}
+              {activeTab === "recipes" && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
+              )}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("planning")}
-              className={`pb-3 pt-4 text-sm font-medium transition-colors ${
+              className={`relative pb-4 pt-5 text-sm font-medium transition-all ${
                 activeTab === "planning"
-                  ? "border-b-2 border-primary text-foreground"
+                  ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {t("tabs.planning")}
+              {activeTab === "planning" && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto flex-1 px-6 py-8">
-        <div className="mb-6 flex items-center justify-between">
-          <h1 className="font-serif text-3xl font-bold text-foreground">
-            {t("myRecipes")}
-          </h1>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="mb-1 font-serif text-3xl font-bold text-foreground sm:text-4xl">
+              {t("myRecipes")}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {t("myRecipesSubtitle")}
+            </p>
+          </div>
           <Button
-            className="bg-primary hover:bg-primary/90"
+            className="bg-primary shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
             onClick={() => setIsModalOpen(true)}
+            size="lg"
           >
-            <Plus className="mr-2 h-4 w-4" />
+            <Plus className="mr-2 h-5 w-5" />
             {t("newRecipe")}
           </Button>
         </div>
 
         {!hasRecipes ? (
-          <div className="flex min-h-[400px] items-center justify-center">
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
-                <ChefHat className="h-10 w-10 text-muted-foreground" />
+          <div className="flex min-h-[500px] items-center justify-center">
+            <div className="flex max-w-md flex-col items-center text-center">
+              <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-secondary to-secondary/50 shadow-lg">
+                <ChefHat className="h-12 w-12 text-primary" />
               </div>
-              <h2 className="mb-2 text-xl font-semibold text-foreground">
+              <h2 className="mb-3 font-serif text-2xl font-bold text-foreground">
                 {t("empty.title")}
               </h2>
-              <p className="mb-6 text-sm text-muted-foreground">
+              <p className="mb-8 text-base leading-relaxed text-muted-foreground">
                 {t("empty.description")}
               </p>
               <Button
-                className="bg-primary hover:bg-primary/90"
+                className="bg-primary shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
                 onClick={() => setIsModalOpen(true)}
+                size="lg"
               >
-                <Plus className="mr-2 h-4 w-4" />
+                <Plus className="mr-2 h-5 w-5" />
                 {t("empty.createFirst")}
               </Button>
             </div>
