@@ -2,6 +2,34 @@
   "navbar": {
     "login": "Login"
   },
+  "dashboard": {
+    "tabs": {
+      "recipes": "Recipes",
+      "planning": "Planning"
+    },
+    "myRecipes": "My Recipes",
+    "newRecipe": "New Recipe",
+    "empty": {
+      "title": "No recipes yet",
+      "description": "Start building your recipe collection today",
+      "createFirst": "Create Your First Recipe"
+    },
+    "modal": {
+      "title": "Create New Recipe",
+      "description": "Add a new recipe to your collection",
+      "recipeName": "Recipe Name",
+      "recipeNamePlaceholder": "e.g., Chocolate Chip Cookies",
+      "servings": "Servings",
+      "prepTime": "Prep Time (min)",
+      "cookTime": "Cook Time (min)",
+      "ingredients": "Ingredients",
+      "ingredientsPlaceholder": "Enter ingredients, one per line...",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "Enter instructions, step by step...",
+      "cancel": "Cancel",
+      "save": "Save Recipe"
+    }
+  },
   "home": {
     "hero": {
       "badge": "Start for Free",

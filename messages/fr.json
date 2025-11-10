@@ -2,6 +2,34 @@
   "navbar": {
     "login": "Se connecter"
   },
+  "dashboard": {
+    "tabs": {
+      "recipes": "Recettes",
+      "planning": "Planification"
+    },
+    "myRecipes": "Mes Recettes",
+    "newRecipe": "Nouvelle Recette",
+    "empty": {
+      "title": "Aucune recette pour le moment",
+      "description": "Commencez à construire votre collection de recettes aujourd'hui",
+      "createFirst": "Créez Votre Première Recette"
+    },
+    "modal": {
+      "title": "Créer une Nouvelle Recette",
+      "description": "Ajoutez une nouvelle recette à votre collection",
+      "recipeName": "Nom de la Recette",
+      "recipeNamePlaceholder": "ex., Cookies au Chocolat",
+      "servings": "Portions",
+      "prepTime": "Temps Prép (min)",
+      "cookTime": "Temps Cuisson (min)",
+      "ingredients": "Ingrédients",
+      "ingredientsPlaceholder": "Entrez les ingrédients, un par ligne...",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "Entrez les instructions, étape par étape...",
+      "cancel": "Annuler",
+      "save": "Enregistrer la Recette"
+    }
+  },
   "home": {
     "hero": {
       "badge": "Commencez Gratuitement",

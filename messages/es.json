@@ -2,6 +2,34 @@
   "navbar": {
     "login": "Iniciar sesión"
   },
+  "dashboard": {
+    "tabs": {
+      "recipes": "Recetas",
+      "planning": "Planificación"
+    },
+    "myRecipes": "Mis Recetas",
+    "newRecipe": "Nueva Receta",
+    "empty": {
+      "title": "Aún no hay recetas",
+      "description": "Comienza a construir tu colección de recetas hoy",
+      "createFirst": "Crea Tu Primera Receta"
+    },
+    "modal": {
+      "title": "Crear Nueva Receta",
+      "description": "Añade una nueva receta a tu colección",
+      "recipeName": "Nombre de la Receta",
+      "recipeNamePlaceholder": "ej., Galletas de Chocolate",
+      "servings": "Porciones",
+      "prepTime": "Tiempo Prep (min)",
+      "cookTime": "Tiempo Cocción (min)",
+      "ingredients": "Ingredientes",
+      "ingredientsPlaceholder": "Ingresa los ingredientes, uno por línea...",
+      "instructions": "Instrucciones",
+      "instructionsPlaceholder": "Ingresa las instrucciones, paso a paso...",
+      "cancel": "Cancelar",
+      "save": "Guardar Receta"
+    }
+  },
   "home": {
     "hero": {
       "badge": "Comienza Gratis",

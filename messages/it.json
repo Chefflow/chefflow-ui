@@ -2,6 +2,34 @@
   "navbar": {
     "login": "Accedi"
   },
+  "dashboard": {
+    "tabs": {
+      "recipes": "Ricette",
+      "planning": "Pianificazione"
+    },
+    "myRecipes": "Le Mie Ricette",
+    "newRecipe": "Nuova Ricetta",
+    "empty": {
+      "title": "Nessuna ricetta ancora",
+      "description": "Inizia a costruire la tua collezione di ricette oggi",
+      "createFirst": "Crea la Tua Prima Ricetta"
+    },
+    "modal": {
+      "title": "Crea Nuova Ricetta",
+      "description": "Aggiungi una nuova ricetta alla tua collezione",
+      "recipeName": "Nome della Ricetta",
+      "recipeNamePlaceholder": "es., Biscotti al Cioccolato",
+      "servings": "Porzioni",
+      "prepTime": "Tempo Prep (min)",
+      "cookTime": "Tempo Cottura (min)",
+      "ingredients": "Ingredienti",
+      "ingredientsPlaceholder": "Inserisci gli ingredienti, uno per riga...",
+      "instructions": "Istruzioni",
+      "instructionsPlaceholder": "Inserisci le istruzioni, passo dopo passo...",
+      "cancel": "Annulla",
+      "save": "Salva Ricetta"
+    }
+  },
   "home": {
     "hero": {
       "badge": "Inizia Gratis",

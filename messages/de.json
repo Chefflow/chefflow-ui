@@ -2,6 +2,34 @@
   "navbar": {
     "login": "Anmelden"
   },
+  "dashboard": {
+    "tabs": {
+      "recipes": "Rezepte",
+      "planning": "Planung"
+    },
+    "myRecipes": "Meine Rezepte",
+    "newRecipe": "Neues Rezept",
+    "empty": {
+      "title": "Noch keine Rezepte",
+      "description": "Beginnen Sie heute Ihre Rezeptsammlung aufzubauen",
+      "createFirst": "Erstellen Sie Ihr Erstes Rezept"
+    },
+    "modal": {
+      "title": "Neues Rezept Erstellen",
+      "description": "Fügen Sie ein neues Rezept zu Ihrer Sammlung hinzu",
+      "recipeName": "Rezeptname",
+      "recipeNamePlaceholder": "z.B., Schokoladenkekse",
+      "servings": "Portionen",
+      "prepTime": "Vorbereitungszeit (min)",
+      "cookTime": "Kochzeit (min)",
+      "ingredients": "Zutaten",
+      "ingredientsPlaceholder": "Geben Sie die Zutaten ein, eine pro Zeile...",
+      "instructions": "Anweisungen",
+      "instructionsPlaceholder": "Geben Sie die Anweisungen ein, Schritt für Schritt...",
+      "cancel": "Abbrechen",
+      "save": "Rezept Speichern"
+    }
+  },
   "home": {
     "hero": {
       "badge": "Kostenlos Beginnen",
