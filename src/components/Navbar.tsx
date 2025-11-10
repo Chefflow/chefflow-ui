@@ -3,8 +3,8 @@
 import { ChefHat } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
 import LanguageSelector from "@/components/LanguageSelector";
+import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 
 export default function Navbar() {

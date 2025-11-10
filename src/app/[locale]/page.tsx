@@ -1,13 +1,13 @@
 import {
+  ArrowRight,
   BookOpen,
   Calendar,
+  Check,
   ShoppingCart,
   Sparkles,
-  Check,
-  ArrowRight,
 } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@/i18n/routing";
