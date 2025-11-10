@@ -1,5 +1,17 @@
 {
   "HomePage": {
     "title": "Welcome to ChefFlow!"
+  },
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to your ChefFlow account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign In",
+    "or": "OR",
+    "continueWithGoogle": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up"
   }
 }

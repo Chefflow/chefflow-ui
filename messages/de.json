@@ -1,5 +1,17 @@
 {
   "HomePage": {
     "title": "Willkommen bei ChefFlow!"
+  },
+  "login": {
+    "title": "Willkommen zurück",
+    "subtitle": "Melden Sie sich bei Ihrem ChefFlow-Konto an",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "signIn": "Anmelden",
+    "or": "ODER",
+    "continueWithGoogle": "Mit Google fortfahren",
+    "noAccount": "Sie haben noch kein Konto?",
+    "signUp": "Registrieren"
   }
 }
