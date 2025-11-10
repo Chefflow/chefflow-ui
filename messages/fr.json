@@ -1,6 +1,66 @@
 {
-  "HomePage": {
-    "title": "Bienvenue sur ChefFlow!"
+  "navbar": {
+    "login": "Se connecter"
+  },
+  "home": {
+    "hero": {
+      "badge": "Commencez Gratuitement",
+      "title": "Organisez vos recettes, planifiez vos repas",
+      "subtitle": "La manière simple et intelligente de gérer votre routine culinaire.",
+      "getStarted": "Commencer",
+      "signIn": "Se connecter",
+      "feature1": "Aucune carte bancaire requise",
+      "feature2": "Cuisinez dès aujourd'hui",
+      "feature3": "Facile à utiliser"
+    },
+    "features": {
+      "title": "Tout ce dont vous avez besoin pour cuisiner facilement",
+      "subtitle": "Des fonctionnalités puissantes pour vous aider à organiser et planifier vos repas sans effort.",
+      "saveRecipes": {
+        "title": "Enregistrez vos recettes",
+        "description": "Gardez vos recettes organisées en un seul endroit. Ajoutez les vôtres, importez depuis le web ou scannez depuis des livres de cuisine."
+      },
+      "weeklyPlanning": {
+        "title": "Planification hebdomadaire",
+        "description": "Planifiez vos repas de la semaine avec une interface de calendrier intuitive par glisser-déposer."
+      },
+      "shoppingList": {
+        "title": "Liste de courses intelligente",
+        "description": "Générez des listes de courses organisées à partir de vos plans de repas. Ne manquez jamais un ingrédient."
+      },
+      "aiAnalysis": {
+        "title": "Analyse IA",
+        "description": "Obtenez des suggestions intelligentes, des informations nutritionnelles et des recommandations de repas personnalisées."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "subtitle": "Commencez à organiser votre cuisine en trois étapes simples",
+      "step1": {
+        "title": "Créez votre compte",
+        "description": "Inscrivez-vous en quelques secondes. Aucune carte bancaire requise pour commencer."
+      },
+      "step2": {
+        "title": "Ajoutez vos recettes",
+        "description": "Importez depuis des sites web, ajoutez manuellement ou scannez depuis des livres de cuisine. Construisez votre collection personnelle."
+      },
+      "step3": {
+        "title": "Planifiez et cuisinez",
+        "description": "Planifiez vos repas hebdomadaires, générez des listes de courses et commencez à cuisiner en toute confiance."
+      }
+    },
+    "cta": {
+      "badge": "Rejoignez des milliers de cuisiniers à domicile",
+      "title": "Prêt à simplifier votre cuisine?",
+      "subtitle": "Rejoignez ChefFlow aujourd'hui et éliminez le stress de la planification des repas.",
+      "getStarted": "Commencer maintenant",
+      "noCredit": "Aucune carte bancaire requise"
+    },
+    "footer": {
+      "privacy": "Confidentialité",
+      "terms": "Conditions",
+      "copyright": "© 2025 ChefFlow. Tous droits réservés."
+    }
   },
   "login": {
     "title": "Content de vous revoir",

@@ -1,6 +1,66 @@
 {
-  "HomePage": {
-    "title": "Willkommen bei ChefFlow!"
+  "navbar": {
+    "login": "Anmelden"
+  },
+  "home": {
+    "hero": {
+      "badge": "Kostenlos Beginnen",
+      "title": "Organisieren Sie Ihre Rezepte, planen Sie Ihre Mahlzeiten",
+      "subtitle": "Der einfache, intelligente Weg, Ihre Kochroutine zu verwalten.",
+      "getStarted": "Loslegen",
+      "signIn": "Anmelden",
+      "feature1": "Keine Kreditkarte erforderlich",
+      "feature2": "Heute mit dem Kochen beginnen",
+      "feature3": "Einfach zu bedienen"
+    },
+    "features": {
+      "title": "Alles, was Sie zum einfachen Kochen brauchen",
+      "subtitle": "Leistungsstarke Funktionen, um Ihre Mahlzeiten mühelos zu organisieren und zu planen.",
+      "saveRecipes": {
+        "title": "Speichern Sie Ihre Rezepte",
+        "description": "Halten Sie Ihre Rezepte an einem Ort organisiert. Fügen Sie eigene hinzu, importieren Sie aus dem Web oder scannen Sie aus Kochbüchern."
+      },
+      "weeklyPlanning": {
+        "title": "Wochenplanung",
+        "description": "Planen Sie Ihre Mahlzeiten für die Woche mit einer intuitiven Drag-and-Drop-Kalenderoberfläche."
+      },
+      "shoppingList": {
+        "title": "Intelligente Einkaufsliste",
+        "description": "Generieren Sie organisierte Einkaufslisten aus Ihren Speiseplänen. Verpassen Sie nie eine Zutat."
+      },
+      "aiAnalysis": {
+        "title": "KI-Analyse",
+        "description": "Erhalten Sie intelligente Vorschläge, Nährwertinformationen und personalisierte Mahlzeitenempfehlungen."
+      }
+    },
+    "howItWorks": {
+      "title": "So funktioniert es",
+      "subtitle": "Beginnen Sie mit der Organisation Ihrer Küche in drei einfachen Schritten",
+      "step1": {
+        "title": "Erstellen Sie Ihr Konto",
+        "description": "Registrieren Sie sich in Sekunden. Keine Kreditkarte erforderlich, um zu beginnen."
+      },
+      "step2": {
+        "title": "Fügen Sie Ihre Rezepte hinzu",
+        "description": "Importieren Sie von Websites, fügen Sie manuell hinzu oder scannen Sie aus Kochbüchern. Bauen Sie Ihre persönliche Sammlung auf."
+      },
+      "step3": {
+        "title": "Planen & kochen",
+        "description": "Planen Sie Ihre wöchentlichen Mahlzeiten, erstellen Sie Einkaufslisten und beginnen Sie mit Zuversicht zu kochen."
+      }
+    },
+    "cta": {
+      "badge": "Schließen Sie sich Tausenden von Hobbyköchen an",
+      "title": "Bereit, Ihr Kochen zu vereinfachen?",
+      "subtitle": "Treten Sie ChefFlow heute bei und nehmen Sie den Stress aus der Mahlzeitenplanung.",
+      "getStarted": "Jetzt starten",
+      "noCredit": "Keine Kreditkarte erforderlich"
+    },
+    "footer": {
+      "privacy": "Datenschutz",
+      "terms": "Bedingungen",
+      "copyright": "© 2025 ChefFlow. Alle Rechte vorbehalten."
+    }
   },
   "login": {
     "title": "Willkommen zurück",

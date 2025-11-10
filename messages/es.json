@@ -1,6 +1,66 @@
 {
-  "HomePage": {
-    "title": "¡Bienvenido a ChefFlow!"
+  "navbar": {
+    "login": "Iniciar sesión"
+  },
+  "home": {
+    "hero": {
+      "badge": "Comienza Gratis",
+      "title": "Organiza tus recetas, planifica tus comidas",
+      "subtitle": "La forma simple e inteligente de gestionar tu rutina de cocina.",
+      "getStarted": "Comenzar",
+      "signIn": "Iniciar sesión",
+      "feature1": "Sin tarjeta de crédito",
+      "feature2": "Empieza a cocinar hoy",
+      "feature3": "Fácil de usar"
+    },
+    "features": {
+      "title": "Todo lo que necesitas para cocinar con facilidad",
+      "subtitle": "Funciones potentes para ayudarte a organizar y planificar tus comidas sin esfuerzo.",
+      "saveRecipes": {
+        "title": "Guarda tus recetas",
+        "description": "Mantén tus recetas organizadas en un solo lugar. Añade las tuyas, importa desde la web o escanea de libros de cocina."
+      },
+      "weeklyPlanning": {
+        "title": "Planificación semanal",
+        "description": "Planifica tus comidas de la semana con una interfaz de calendario intuitiva de arrastrar y soltar."
+      },
+      "shoppingList": {
+        "title": "Lista de compra inteligente",
+        "description": "Genera listas de compra organizadas desde tus planes de comida. Nunca olvides un ingrediente."
+      },
+      "aiAnalysis": {
+        "title": "Análisis con IA",
+        "description": "Obtén sugerencias inteligentes, información nutricional y recomendaciones de comidas personalizadas."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "subtitle": "Comienza a organizar tu cocina en tres simples pasos",
+      "step1": {
+        "title": "Crea tu cuenta",
+        "description": "Regístrate en segundos. Sin tarjeta de crédito para comenzar."
+      },
+      "step2": {
+        "title": "Añade tus recetas",
+        "description": "Importa desde sitios web, añade manualmente o escanea de libros de cocina. Construye tu colección personal."
+      },
+      "step3": {
+        "title": "Planifica y cocina",
+        "description": "Planifica tus comidas semanales, genera listas de compra y comienza a cocinar con confianza."
+      }
+    },
+    "cta": {
+      "badge": "Únete a miles de cocineros caseros",
+      "title": "¿Listo para simplificar tu cocina?",
+      "subtitle": "Únete a ChefFlow hoy y elimina el estrés de la planificación de comidas.",
+      "getStarted": "Comenzar ahora",
+      "noCredit": "Sin tarjeta de crédito"
+    },
+    "footer": {
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "copyright": "© 2025 ChefFlow. Todos los derechos reservados."
+    }
   },
   "login": {
     "title": "Bienvenido de nuevo",

@@ -1,6 +1,66 @@
 {
-  "HomePage": {
-    "title": "Welcome to ChefFlow!"
+  "navbar": {
+    "login": "Login"
+  },
+  "home": {
+    "hero": {
+      "badge": "Start for Free",
+      "title": "Organize your recipes, plan your meals",
+      "subtitle": "The simple, smart way to manage your cooking routine.",
+      "getStarted": "Get Started",
+      "signIn": "Sign In",
+      "feature1": "No credit card required",
+      "feature2": "Start cooking today",
+      "feature3": "Easy to use"
+    },
+    "features": {
+      "title": "Everything you need to cook with ease",
+      "subtitle": "Powerful features to help you organize and plan your meals effortlessly.",
+      "saveRecipes": {
+        "title": "Save Your Recipes",
+        "description": "Keep your recipes organized in one place. Add your own, import from the web, or scan from cookbooks."
+      },
+      "weeklyPlanning": {
+        "title": "Weekly Planning",
+        "description": "Plan your meals for the week with an intuitive drag-and-drop calendar interface."
+      },
+      "shoppingList": {
+        "title": "Smart Shopping List",
+        "description": "Generate organized shopping lists from your meal plans. Never forget an ingredient."
+      },
+      "aiAnalysis": {
+        "title": "AI Analysis",
+        "description": "Get intelligent suggestions, nutrition insights, and personalized meal recommendations."
+      }
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "Start organizing your cooking in three simple steps",
+      "step1": {
+        "title": "Create your account",
+        "description": "Sign up in seconds. No credit card required to get started."
+      },
+      "step2": {
+        "title": "Add your recipes",
+        "description": "Import from websites, add manually, or scan from cookbooks. Build your personal collection."
+      },
+      "step3": {
+        "title": "Plan & cook",
+        "description": "Plan your weekly meals, generate shopping lists, and start cooking with confidence."
+      }
+    },
+    "cta": {
+      "badge": "Join thousands of home cooks",
+      "title": "Ready to simplify your cooking?",
+      "subtitle": "Join ChefFlow today and take the stress out of meal planning.",
+      "getStarted": "Start Now",
+      "noCredit": "No credit card required"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "copyright": "© 2025 ChefFlow. All rights reserved."
+    }
   },
   "login": {
     "title": "Welcome back",
