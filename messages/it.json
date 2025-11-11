@@ -128,5 +128,11 @@
       "passwordNumber": "La password deve contenere un numero",
       "passwordMismatch": "Le password non corrispondono"
     }
+  },
+  "planning": {
+    "title": "Pianificazione Settimanale",
+    "generateShoppingList": "Genera Lista della Spesa",
+    "analyzePlanning": "Analizza Pianificazione",
+    "addRecipe": "Aggiungi ricetta"
   }
 }

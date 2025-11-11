@@ -128,5 +128,11 @@
       "passwordNumber": "Das Passwort muss eine Zahl enthalten",
       "passwordMismatch": "Die Passwörter stimmen nicht überein"
     }
+  },
+  "planning": {
+    "title": "Wochenplanung",
+    "generateShoppingList": "Einkaufsliste Erstellen",
+    "analyzePlanning": "Planung Analysieren",
+    "addRecipe": "Rezept Hinzufügen"
   }
 }

@@ -128,5 +128,11 @@
       "passwordNumber": "Password must contain a number",
       "passwordMismatch": "Passwords do not match"
     }
+  },
+  "planning": {
+    "title": "Weekly Planning",
+    "generateShoppingList": "Generate Shopping List",
+    "analyzePlanning": "Analyze Planning",
+    "addRecipe": "Add recipe"
   }
 }

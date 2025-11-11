@@ -128,5 +128,11 @@
       "passwordNumber": "Le mot de passe doit contenir un chiffre",
       "passwordMismatch": "Les mots de passe ne correspondent pas"
     }
+  },
+  "planning": {
+    "title": "Planification Hebdomadaire",
+    "generateShoppingList": "Générer Liste de Courses",
+    "analyzePlanning": "Analyser Planification",
+    "addRecipe": "Ajouter recette"
   }
 }
