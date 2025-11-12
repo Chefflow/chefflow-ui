@@ -32,16 +32,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader className="space-y-2 text-center">
-          <h1 className="font-serif text-3xl font-bold text-foreground">
+    <div className="flex min-h-screen items-center justify-center bg-secondary/30 px-4 py-12">
+      <Card className="w-full max-w-md border-border bg-background shadow-sm">
+        <CardHeader className="space-y-1 pb-6 pt-8 text-center">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             {t("title")}
           </h1>
           <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </CardHeader>
 
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-5 pb-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <TextInputField
               id="email"
@@ -80,7 +80,7 @@ export default function LoginPage() {
             {t("noAccount")}{" "}
             <Link
               href="/signup"
-              className="font-medium text-primary hover:underline"
+              className="font-medium text-primary transition-colors hover:text-primary/80"
             >
               {t("signUp")}
             </Link>
