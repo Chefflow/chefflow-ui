@@ -1,55 +1,62 @@
 @import "tailwindcss";
 
-/* ChefFlow Design System - Light Mode Only */
+/* ChefFlow Design System - Modern Minimalist */
 
 @theme {
-  /* Brand Colors */
-  --color-background: oklch(98% 0.015 70); /* Warm off-white with slight cream tone */
-  --color-foreground: oklch(28% 0.05 40); /* Dark brown #3D2817 */
+  /* Modern Color Palette - Vercel/Notion inspired */
+  --color-background: oklch(100% 0 0); /* Pure white for clean canvas */
+  --color-foreground: oklch(15% 0.005 285); /* Near black for sharp contrast */
 
   --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(28% 0.05 40);
+  --color-card-foreground: oklch(15% 0.005 285);
 
   --color-popover: oklch(100% 0 0);
-  --color-popover-foreground: oklch(28% 0.05 40);
+  --color-popover-foreground: oklch(15% 0.005 285);
 
-  --color-primary: oklch(72% 0.19 30); /* Orange/coral #FF6B4A */
+  /* Primary - Vibrant Orange (Vercel-style) */
+  --color-primary: oklch(68% 0.22 35); /* Brighter, more saturated orange #FF5733 */
   --color-primary-foreground: oklch(100% 0 0);
 
-  --color-secondary: oklch(94% 0.03 70); /* Cream/beige #F5EBD5 */
-  --color-secondary-foreground: oklch(28% 0.05 40);
+  /* Secondary - Subtle Gray for backgrounds */
+  --color-secondary: oklch(97% 0 0); /* Very light gray #F7F7F7 */
+  --color-secondary-foreground: oklch(15% 0.005 285);
 
-  --color-muted: oklch(94% 0.03 70);
-  --color-muted-foreground: oklch(50% 0.03 40);
+  /* Muted - Notion-style grays */
+  --color-muted: oklch(96% 0 0); /* Light gray for subtle UI elements */
+  --color-muted-foreground: oklch(55% 0.01 285); /* Medium gray for secondary text */
 
-  --color-accent: oklch(72% 0.19 30);
+  --color-accent: oklch(68% 0.22 35); /* Same as primary for consistency */
   --color-accent-foreground: oklch(100% 0 0);
 
-  --color-destructive: oklch(62% 0.22 25);
+  /* Destructive - Clean red */
+  --color-destructive: oklch(58% 0.24 25); /* Vivid red */
   --color-destructive-foreground: oklch(100% 0 0);
 
-  --color-border: oklch(88% 0.01 40);
-  --color-input: oklch(88% 0.01 40);
-  --color-ring: oklch(72% 0.19 30);
+  /* Borders - Subtle and refined */
+  --color-border: oklch(92% 0 0); /* Very light gray border #EAEAEA */
+  --color-input: oklch(92% 0 0);
+  --color-ring: oklch(68% 0.22 35); /* Orange focus ring */
 
-  /* Sidebar */
-  --color-sidebar-background: oklch(98% 0 0);
-  --color-sidebar-foreground: oklch(40% 0.01 240);
-  --color-sidebar-primary: oklch(20% 0.01 240);
-  --color-sidebar-primary-foreground: oklch(98% 0 0);
-  --color-sidebar-accent: oklch(96% 0.005 240);
-  --color-sidebar-accent-foreground: oklch(20% 0.01 240);
-  --color-sidebar-border: oklch(92% 0.01 220);
-  --color-sidebar-ring: oklch(65% 0.22 240);
+  /* Sidebar - Clean neutral palette */
+  --color-sidebar-background: oklch(99% 0 0);
+  --color-sidebar-foreground: oklch(20% 0.005 285);
+  --color-sidebar-primary: oklch(15% 0.005 285);
+  --color-sidebar-primary-foreground: oklch(99% 0 0);
+  --color-sidebar-accent: oklch(97% 0 0);
+  --color-sidebar-accent-foreground: oklch(15% 0.005 285);
+  --color-sidebar-border: oklch(94% 0 0);
+  --color-sidebar-ring: oklch(68% 0.22 35);
 
-  /* Spacing */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
+  /* Modern Spacing - Sharper corners like Vercel */
+  --radius-sm: 0.375rem; /* 6px - Slightly sharper */
+  --radius-md: 0.5rem; /* 8px - Modern standard */
+  --radius-lg: 0.75rem; /* 12px - Not too rounded */
 
-  /* Shadows */
-  --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-  --shadow-card: 0 2px 8px 0 rgb(0 0 0 / 0.08);
+  /* Subtle Shadows - Vercel/Notion style */
+  --shadow-subtle: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 @layer base {
@@ -63,5 +70,24 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Modern focus styles */
+  *:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
