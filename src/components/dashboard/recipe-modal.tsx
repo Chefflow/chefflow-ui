@@ -34,9 +34,9 @@ export const RecipeModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onCancel()}>
-      <DialogContent className="max-w-lg">
-        <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader className="space-y-1">
+          <DialogTitle className="text-xl font-semibold tracking-tight">
             {t("title")}
           </DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
@@ -44,7 +44,7 @@ export const RecipeModal = ({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4">
+        <div className="space-y-5 pt-2">
           <div className="space-y-2">
             <Label htmlFor="recipeName" className="text-sm font-medium">
               {t("recipeName")} <span className="text-destructive">*</span>
@@ -54,11 +54,10 @@ export const RecipeModal = ({
               value={formData.recipeName}
               onChange={(e) => onUpdateField("recipeName", e.target.value)}
               placeholder={t("recipeNamePlaceholder")}
-              className="border-primary/20 focus:border-primary"
             />
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             <div className="space-y-2">
               <Label htmlFor="servings" className="text-sm font-medium">
                 {t("servings")}
@@ -68,7 +67,6 @@ export const RecipeModal = ({
                 type="number"
                 value={formData.servings}
                 onChange={(e) => onUpdateField("servings", e.target.value)}
-                className="border-primary/20"
               />
             </div>
             <div className="space-y-2">
@@ -80,7 +78,6 @@ export const RecipeModal = ({
                 type="number"
                 value={formData.prepTime}
                 onChange={(e) => onUpdateField("prepTime", e.target.value)}
-                className="border-primary/20"
               />
             </div>
             <div className="space-y-2">
@@ -92,7 +89,6 @@ export const RecipeModal = ({
                 type="number"
                 value={formData.cookTime}
                 onChange={(e) => onUpdateField("cookTime", e.target.value)}
-                className="border-primary/20"
               />
             </div>
           </div>
@@ -106,7 +102,7 @@ export const RecipeModal = ({
               value={formData.ingredients}
               onChange={(e) => onUpdateField("ingredients", e.target.value)}
               placeholder={t("ingredientsPlaceholder")}
-              className="min-h-[100px] border-primary/20"
+              className="min-h-[120px] resize-none"
             />
           </div>
 
@@ -119,15 +115,15 @@ export const RecipeModal = ({
               value={formData.instructions}
               onChange={(e) => onUpdateField("instructions", e.target.value)}
               placeholder={t("instructionsPlaceholder")}
-              className="min-h-[120px] border-primary/20"
+              className="min-h-[140px] resize-none"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4">
-            <Button variant="outline" onClick={onCancel}>
+          <div className="flex justify-end gap-3 pt-4 border-t">
+            <Button variant="outline" onClick={onCancel} size="sm">
               {t("cancel")}
             </Button>
-            <Button className="bg-primary hover:bg-primary/90" onClick={onSave}>
+            <Button onClick={onSave} size="sm">
               {t("save")}
             </Button>
           </div>

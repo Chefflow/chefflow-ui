@@ -10,9 +10,9 @@ export const AddRecipeButton = ({ onClick, label }: AddRecipeButtonProps) => {
     <button
       type="button"
       onClick={onClick}
-      className="flex h-16 w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-background text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:bg-secondary/50 hover:text-primary"
+      className="group flex h-20 w-full items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-background text-sm text-muted-foreground transition-all hover:border-primary hover:bg-secondary/50 hover:text-primary"
     >
-      <Plus className="h-4 w-4" />
+      <Plus className="h-4 w-4 transition-transform group-hover:scale-110" />
       <span>{label}</span>
     </button>
   );

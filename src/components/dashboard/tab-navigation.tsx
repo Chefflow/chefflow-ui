@@ -12,13 +12,13 @@ export const TabNavigation = ({
   const t = useTranslations("dashboard.tabs");
 
   return (
-    <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto px-6">
-        <div className="flex gap-8">
+    <div className="bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex gap-8 pt-6">
           <button
             type="button"
             onClick={() => onTabChange("recipes")}
-            className={`relative pb-4 pt-5 text-sm font-medium transition-all ${
+            className={`relative pb-3 text-sm font-medium transition-colors ${
               activeTab === "recipes"
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -26,13 +26,13 @@ export const TabNavigation = ({
           >
             {t("recipes")}
             {activeTab === "recipes" && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
+              <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-foreground" />
             )}
           </button>
           <button
             type="button"
             onClick={() => onTabChange("planning")}
-            className={`relative pb-4 pt-5 text-sm font-medium transition-all ${
+            className={`relative pb-3 text-sm font-medium transition-colors ${
               activeTab === "planning"
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -40,7 +40,7 @@ export const TabNavigation = ({
           >
             {t("planning")}
             {activeTab === "planning" && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
+              <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-foreground" />
             )}
           </button>
         </div>

@@ -32,7 +32,7 @@ export const PlanningTab = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <PlanningHeader
         title={t("title")}
         generateShoppingListLabel={t("generateShoppingList")}
@@ -41,11 +41,13 @@ export const PlanningTab = () => {
         onAnalyzePlanning={handleAnalyzePlanning}
       />
 
-      <WeekNavigation
-        weekRange={weekRangeText}
-        onPreviousWeek={goToPreviousWeek}
-        onNextWeek={goToNextWeek}
-      />
+      <div className="flex items-center justify-center">
+        <WeekNavigation
+          weekRange={weekRangeText}
+          onPreviousWeek={goToPreviousWeek}
+          onNextWeek={goToNextWeek}
+        />
+      </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
         {weekDays.map((day) => (

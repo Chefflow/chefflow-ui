@@ -9,7 +9,7 @@ interface DayColumnProps {
 export const DayColumn = ({ dayName, date, children }: DayColumnProps) => {
   return (
     <div className="flex flex-col space-y-3">
-      <div className="rounded-lg bg-secondary/50 px-4 py-3 text-center">
+      <div className="rounded-lg border border-border bg-background px-4 py-3 text-center">
         <h3 className="text-sm font-semibold capitalize text-foreground">
           {dayName}
         </h3>

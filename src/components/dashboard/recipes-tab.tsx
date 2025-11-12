@@ -12,43 +12,35 @@ export const RecipesTab = ({ hasRecipes, onCreateRecipe }: RecipesTabProps) => {
 
   return (
     <>
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="mb-1 font-serif text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="mb-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {t("myRecipes")}
           </h1>
           <p className="text-sm text-muted-foreground">
             {t("myRecipesSubtitle")}
           </p>
         </div>
-        <Button
-          className="bg-primary shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
-          onClick={onCreateRecipe}
-          size="lg"
-        >
-          <Plus className="mr-2 h-5 w-5" />
+        <Button onClick={onCreateRecipe} size="lg" className="gap-2">
+          <Plus className="h-4 w-4" />
           {t("newRecipe")}
         </Button>
       </div>
 
       {!hasRecipes ? (
-        <div className="flex min-h-[500px] items-center justify-center">
+        <div className="flex min-h-[400px] items-center justify-center">
           <div className="flex max-w-md flex-col items-center text-center">
-            <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-secondary to-secondary/50 shadow-lg">
-              <ChefHat className="h-12 w-12 text-primary" />
+            <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
+              <ChefHat className="h-10 w-10 text-primary" />
             </div>
-            <h2 className="mb-3 font-serif text-2xl font-bold text-foreground">
+            <h2 className="mb-2 text-xl font-semibold text-foreground">
               {t("empty.title")}
             </h2>
-            <p className="mb-8 text-base leading-relaxed text-muted-foreground">
+            <p className="mb-6 text-sm text-muted-foreground">
               {t("empty.description")}
             </p>
-            <Button
-              className="bg-primary shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
-              onClick={onCreateRecipe}
-              size="lg"
-            >
-              <Plus className="mr-2 h-5 w-5" />
+            <Button onClick={onCreateRecipe} size="lg" className="gap-2">
+              <Plus className="h-4 w-4" />
               {t("empty.createFirst")}
             </Button>
           </div>

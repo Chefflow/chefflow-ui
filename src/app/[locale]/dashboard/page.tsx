@@ -15,15 +15,17 @@ export default function DashboardPage() {
     useRecipeModal();
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-background to-secondary/20">
+    <div className="flex min-h-screen flex-col">
       <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <div className="container mx-auto flex-1 px-6 py-8">
-        {activeTab === "recipes" ? (
-          <RecipesTab hasRecipes={hasRecipes} onCreateRecipe={openModal} />
-        ) : (
-          <PlanningTab />
-        )}
+      <div className="flex-1 bg-background">
+        <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+          {activeTab === "recipes" ? (
+            <RecipesTab hasRecipes={hasRecipes} onCreateRecipe={openModal} />
+          ) : (
+            <PlanningTab />
+          )}
+        </div>
       </div>
 
       <RecipeModal
