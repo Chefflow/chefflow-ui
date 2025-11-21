@@ -17,7 +17,7 @@ export function useLoginForm() {
 
   const updateField = <K extends keyof LoginFormData>(
     field: K,
-    value: LoginFormData[K]
+    value: LoginFormData[K],
   ): void => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };

@@ -11,8 +11,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLoginForm } from "@/hooks/use-login-form";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link } from "@/i18n/routing";
-import { hashPassword } from "@/lib/crypto/hash-password";
 import { apiClient } from "@/lib/api/client";
+import { hashPassword } from "@/lib/crypto/hash-password";
 
 export default function LoginPage() {
   const t = useTranslations("login");
