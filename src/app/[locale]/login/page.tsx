@@ -11,6 +11,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLoginForm } from "@/hooks/use-login-form";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link } from "@/i18n/routing";
+import { hashPassword } from "@/lib/crypto/hash-password";
+import { apiClient } from "@/lib/api/client";
 
 export default function LoginPage() {
   const t = useTranslations("login");
@@ -18,12 +20,20 @@ export default function LoginPage() {
   const { formData, updateField, isFormValid } = useLoginForm();
   const passwordVisibility = usePasswordVisibility();
 
-  const handleSubmit = (e: React.FormEvent): void => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    // TODO: Implement login logic
-    console.log("Login attempt:", formData);
+    try {
+      const hashedPassword = await hashPassword(formData.password);
+      const repsonse = await apiClient("/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          username: formData.username,
+          password: hashedPassword,
+        }),
+      });
+    } catch (error) {}
   };
 
   const handleGoogleLogin = (): void => {
@@ -44,13 +54,13 @@ export default function LoginPage() {
         <CardContent className="space-y-5 pb-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <TextInputField
-              id="email"
-              label={t("email")}
+              id="username"
+              label={t("username")}
               icon={Mail}
-              type="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={(e) => updateField("email", e.target.value)}
+              type="username"
+              placeholder="username"
+              value={formData.username}
+              onChange={(e) => updateField("username", e.target.value)}
               required
             />
 

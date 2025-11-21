@@ -94,6 +94,7 @@
   "login": {
     "title": "Welcome back",
     "subtitle": "Sign in to your ChefFlow account",
+    "username": "Username",
     "email": "Email",
     "password": "Password",
     "forgotPassword": "Forgot password?",

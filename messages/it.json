@@ -94,6 +94,7 @@
   "login": {
     "title": "Bentornato",
     "subtitle": "Accedi al tuo account ChefFlow",
+    "username": "Nome utente",
     "email": "Email",
     "password": "Password",
     "forgotPassword": "Password dimenticata?",

@@ -94,6 +94,7 @@
   "login": {
     "title": "Willkommen zurück",
     "subtitle": "Melden Sie sich bei Ihrem ChefFlow-Konto an",
+    "username": "Benutzername",
     "email": "E-Mail",
     "password": "Passwort",
     "forgotPassword": "Passwort vergessen?",

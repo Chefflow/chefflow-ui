@@ -1,23 +1,23 @@
 import { useMemo, useState } from "react";
 
 export interface LoginFormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 export function useLoginForm() {
   const [formData, setFormData] = useState<LoginFormData>({
-    email: "",
+    username: "",
     password: "",
   });
 
   const isFormValid = useMemo(() => {
-    return formData.email.trim() !== "" && formData.password !== "";
-  }, [formData.email, formData.password]);
+    return formData.username.trim() !== "" && formData.password !== "";
+  }, [formData.username, formData.password]);
 
   const updateField = <K extends keyof LoginFormData>(
     field: K,
-    value: LoginFormData[K],
+    value: LoginFormData[K]
   ): void => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
