@@ -128,7 +128,7 @@ export function useSignupForm(messages: ValidationMessages) {
 
   const updateField = <K extends keyof SignupFormData>(
     field: K,
-    value: SignupFormData[K]
+    value: SignupFormData[K],
   ): void => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
