@@ -12,6 +12,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useSignupForm } from "@/hooks/use-signup-form";
 import { Link } from "@/i18n/routing";
+import { apiClient } from "@/lib/api/client";
+import { hashPassword } from "@/lib/crypto/hash-password";
 
 export default function SignupPage() {
   const t = useTranslations("signup");
@@ -20,6 +22,7 @@ export default function SignupPage() {
     useSignupForm({
       usernameNoSpaces: t("errors.usernameNoSpaces"),
       usernameMinLength: t("errors.usernameMinLength"),
+      nameInvalid: t("errors.nameInvalid"),
       passwordMinLength: t("errors.passwordMinLength"),
       passwordUppercase: t("errors.passwordUppercase"),
       passwordLowercase: t("errors.passwordLowercase"),
@@ -30,12 +33,29 @@ export default function SignupPage() {
   const passwordVisibility = usePasswordVisibility();
   const confirmPasswordVisibility = usePasswordVisibility();
 
-  const handleSubmit = (e: React.FormEvent): void => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    // TODO: Implement signup logic
-    console.log("Signup attempt:", formData);
+    try {
+      const hashedPassword = await hashPassword(formData.password);
+
+      const response = await apiClient("/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: hashedPassword,
+          name: formData.name,
+        }),
+      });
+
+      console.log("Signup successful:", response);
+      // TODO: Redirect to dashboard or login page
+    } catch (error) {
+      console.error("Signup error:", error);
+      // TODO: Show error message to user
+    }
   };
 
   const handleGoogleSignup = (): void => {
@@ -56,6 +76,19 @@ export default function SignupPage() {
         <CardContent className="space-y-5 pb-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <TextInputField
+              id="username"
+              label={t("username")}
+              icon={User}
+              type="text"
+              placeholder={t("usernamePlaceholder")}
+              value={formData.username}
+              onChange={(e) => updateField("username", e.target.value)}
+              onBlur={() => markFieldAsTouched("username")}
+              error={errors.username}
+              required
+            />
+
+            <TextInputField
               id="name"
               label={t("name")}
               icon={User}
@@ -64,7 +97,7 @@ export default function SignupPage() {
               value={formData.name}
               onChange={(e) => updateField("name", e.target.value)}
               onBlur={() => markFieldAsTouched("name")}
-              error={errors.username}
+              error={errors.name}
               required
             />
 

@@ -106,8 +106,10 @@
   "signup": {
     "title": "Crea tu cuenta",
     "subtitle": "Comienza con ChefFlow hoy",
-    "name": "Nombre",
-    "namePlaceholder": "Tu nombre",
+    "username": "Nombre de usuario",
+    "usernamePlaceholder": "Elige un nombre de usuario",
+    "name": "Nombre completo",
+    "namePlaceholder": "Juan Pérez",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "passwordHint": "Al menos 8 caracteres con mayúsculas, minúsculas y números",
@@ -122,6 +124,7 @@
     "errors": {
       "usernameNoSpaces": "El nombre de usuario no puede contener espacios",
       "usernameMinLength": "El nombre de usuario debe tener al menos 3 caracteres",
+      "nameInvalid": "Por favor ingresa un nombre completo válido",
       "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
       "passwordUppercase": "La contraseña debe contener una letra mayúscula",
       "passwordLowercase": "La contraseña debe contener una letra minúscula",

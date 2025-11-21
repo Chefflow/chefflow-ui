@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 
 export interface SignupFormData {
+  username: string;
   name: string;
   email: string;
   password: string;
@@ -9,6 +10,7 @@ export interface SignupFormData {
 }
 
 interface TouchedFields {
+  username: boolean;
   name: boolean;
   email: boolean;
   password: boolean;
@@ -18,6 +20,7 @@ interface TouchedFields {
 interface ValidationMessages {
   usernameNoSpaces: string;
   usernameMinLength: string;
+  nameInvalid: string;
   passwordMinLength: string;
   passwordUppercase: string;
   passwordLowercase: string;
@@ -27,6 +30,7 @@ interface ValidationMessages {
 
 export function useSignupForm(messages: ValidationMessages) {
   const [formData, setFormData] = useState<SignupFormData>({
+    username: "",
     name: "",
     email: "",
     password: "",
@@ -35,6 +39,7 @@ export function useSignupForm(messages: ValidationMessages) {
   });
 
   const [touched, setTouched] = useState<TouchedFields>({
+    username: false,
     name: false,
     email: false,
     password: false,
@@ -42,12 +47,25 @@ export function useSignupForm(messages: ValidationMessages) {
   });
 
   const usernameError = useMemo(() => {
-    if (!touched.name || !formData.name) return null;
-    if (/\s/.test(formData.name)) {
+    if (!touched.username || !formData.username) return null;
+    if (/\s/.test(formData.username)) {
       return messages.usernameNoSpaces;
     }
-    if (formData.name.length < 3) {
+    if (formData.username.length < 3) {
       return messages.usernameMinLength;
+    }
+    return null;
+  }, [formData.username, touched.username, messages]);
+
+  const nameError = useMemo(() => {
+    if (!touched.name || !formData.name) return null;
+    const nameRegex =
+      /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+([\s'-][a-zA-ZÀ-ÿ\u00f1\u00d1]+)*$/;
+    if (
+      !nameRegex.test(formData.name.trim()) ||
+      formData.name.trim().length < 2
+    ) {
+      return messages.nameInvalid;
     }
     return null;
   }, [formData.name, touched.name, messages]);
@@ -84,8 +102,10 @@ export function useSignupForm(messages: ValidationMessages) {
 
   const isFormValid = useMemo(() => {
     return (
-      formData.name.trim() !== "" &&
+      formData.username.trim() !== "" &&
       !usernameError &&
+      formData.name.trim() !== "" &&
+      !nameError &&
       formData.email.trim() !== "" &&
       formData.password !== "" &&
       !passwordError &&
@@ -94,19 +114,21 @@ export function useSignupForm(messages: ValidationMessages) {
       formData.acceptTerms
     );
   }, [
+    formData.username,
     formData.name,
     formData.email,
     formData.password,
     formData.confirmPassword,
     formData.acceptTerms,
     usernameError,
+    nameError,
     passwordError,
     confirmPasswordError,
   ]);
 
   const updateField = <K extends keyof SignupFormData>(
     field: K,
-    value: SignupFormData[K],
+    value: SignupFormData[K]
   ): void => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
@@ -122,6 +144,7 @@ export function useSignupForm(messages: ValidationMessages) {
     markFieldAsTouched,
     errors: {
       username: usernameError,
+      name: nameError,
       password: passwordError,
       confirmPassword: confirmPasswordError,
     },
