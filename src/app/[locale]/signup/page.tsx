@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useSignupForm } from "@/hooks/use-signup-form";
 import { Link } from "@/i18n/routing";
-import { apiClient } from "@/lib/api/client";
+import api from "@/lib/api/axiosClient";
 import { hashPassword } from "@/lib/crypto/hash-password";
 
 export default function SignupPage() {
@@ -40,14 +40,11 @@ export default function SignupPage() {
     try {
       const hashedPassword = await hashPassword(formData.password);
 
-      const response = await apiClient("/auth/register", {
-        method: "POST",
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: hashedPassword,
-          name: formData.name,
-        }),
+      const response = await api.post("/auth/register", {
+        username: formData.username,
+        email: formData.email,
+        password: hashedPassword,
+        name: formData.name,
       });
 
       console.log("Signup successful:", response);
