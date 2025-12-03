@@ -12,9 +12,12 @@ interface CustomAxiosHeaders {
   "X-CSRF-Token"?: string;
 }
 
+interface ErrorResponse {
+  message?: string;
+  statusCode?: number;
+}
+
 // ---- In-memory state ----
-// CSRF token stored in memory for the session
-let csrfToken: string | null = null;
 // Flag to prevent multiple simultaneous token refresh attempts
 let isRefreshing = false;
 // Queue to store failed requests while token is being refreshed
@@ -27,18 +30,34 @@ let failedQueue: {
 // ---- Helper functions ----
 
 /**
+ * Get CSRF token from cookie
+ * The backend automatically sets this cookie on first request
+ */
+function getCsrfTokenFromCookie(): string | null {
+  if (typeof document === "undefined") return null;
+
+  const name = "CSRF-TOKEN=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(";");
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i].trim();
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null;
+}
+
+/**
  * Process all queued requests after token refresh completes
  * @param error - Error to reject all requests with, or null if successful
- * @param token - New CSRF token to apply to requests
  */
-function processQueue(error: Error | null, token: string | null = null) {
+function processQueue(error: Error | null) {
   failedQueue.forEach(({ resolve, reject, config }) => {
     if (error) {
       reject(error);
     } else {
-      if (token) {
-        config.headers["X-CSRF-Token"] = token;
-      }
       resolve(api.request(config));
     }
   });
@@ -46,25 +65,26 @@ function processQueue(error: Error | null, token: string | null = null) {
 }
 
 /**
- * Fetch a new CSRF token from the server
- * @returns The CSRF token string
+ * Refresh the access token using the refresh token cookie
  */
-async function fetchCsrfToken(): Promise<string> {
-  const res = await api.get("/auth/csrf");
-  const token = res.data?.csrfToken;
-  csrfToken = token;
-  return token;
+async function refreshAccessToken(): Promise<void> {
+  // Refresh endpoint is a GET request, CSRF not validated for GET
+  await api.get("/auth/refresh");
 }
 
 /**
- * Refresh the access token using the refresh token cookie
- * Requires a valid CSRF token to be present
+ * Clear authentication state and redirect to login
  */
-async function refreshAccessToken(): Promise<void> {
-  const headers: Record<string, string> = {};
-  if (csrfToken) headers["X-CSRF-Token"] = csrfToken;
+function handleAuthFailure(): void {
+  isRefreshing = false;
+  failedQueue = [];
 
-  await api.get("/auth/refresh", { headers });
+  // Clear any auth-related cookies if needed
+  if (typeof window !== "undefined") {
+    console.warn("Authentication failed. Redirecting to login...");
+    // Clear state and redirect to login
+    window.location.href = "/login";
+  }
 }
 
 // ---- Axios instance configuration ----
@@ -76,25 +96,20 @@ const api: AxiosInstance = axios.create({
   },
 });
 
-// Paths that don't require CSRF token or authentication
-const PUBLIC_PATHS = [
-  "/auth/login",
-  "/auth/register",
-  "/auth/csrf",
-  "/auth/refresh",
-  "/auth/google",
-  "/auth/google/callback",
-];
-
 // ---- Request interceptor ----
-// Automatically attach CSRF token to protected endpoints
+// Automatically attach CSRF token from cookie to non-safe requests
 api.interceptors.request.use((config) => {
-  const url = config.url || "";
-  if (!PUBLIC_PATHS.some((p) => url.endsWith(p))) {
+  const method = config.method?.toUpperCase() || "";
+  const safeMethods = ["GET", "HEAD", "OPTIONS"];
+
+  // Only add CSRF token to non-safe methods
+  if (!safeMethods.includes(method)) {
+    const csrfToken = getCsrfTokenFromCookie();
     if (csrfToken) {
       config.headers["X-CSRF-Token"] = csrfToken;
     }
   }
+
   return config;
 });
 
@@ -102,50 +117,36 @@ api.interceptors.request.use((config) => {
 // Handle 403 (invalid CSRF) and 401 (expired access token) errors
 api.interceptors.response.use(
   (resp) => resp,
-  async (error: AxiosError) => {
+  async (error: AxiosError<ErrorResponse>) => {
     const originalConfig = (error.config as InternalAxiosRequestConfig) || {};
     if (!originalConfig || !originalConfig.url) return Promise.reject(error);
 
     const status = error.response?.status;
-    const url = originalConfig.url;
-
-    // Don't retry public paths
-    if (PUBLIC_PATHS.some((p) => url.endsWith(p))) {
-      return Promise.reject(error);
-    }
-
+    const errorMessage = error.response?.data?.message || "";
     const headers = originalConfig.headers as CustomAxiosHeaders;
 
-    // Handle 403 Forbidden - CSRF token is invalid or expired
-    if (status === 403 && !headers._retry_csrf) {
-      headers._retry_csrf = true; // Prevent infinite retry loop
-
-      // Queue this request if another refresh is already in progress
-      if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject, config: originalConfig });
-        });
+    // Handle 403 Forbidden - Check if it's CSRF related
+    if (status === 403 && errorMessage.includes("Invalid CSRF token")) {
+      if (headers._retry_csrf) {
+        // Already retried once, give up
+        return Promise.reject(error);
       }
 
-      isRefreshing = true;
-      try {
-        const newToken = await fetchCsrfToken();
-        processQueue(null, newToken);
-        isRefreshing = false;
+      headers._retry_csrf = true;
 
-        // Retry the original request with new CSRF token
-        originalConfig.headers["X-CSRF-Token"] = newToken;
-        return api.request(originalConfig);
-      } catch (err) {
-        isRefreshing = false;
-        processQueue(err as Error, null);
-        return Promise.reject(err);
-      }
+      // The backend will set a new CSRF token cookie automatically
+      // Just retry the request, the interceptor will read the new token
+      console.warn("CSRF token invalid, retrying request...");
+
+      // Small delay to ensure cookie is set
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      return api.request(originalConfig);
     }
 
     // Handle 401 Unauthorized - Access token expired, try to refresh
     if (status === 401 && !headers._retry_jwt) {
-      headers._retry_jwt = true; // Prevent infinite retry loop
+      headers._retry_jwt = true;
 
       // Queue this request if another refresh is already in progress
       if (isRefreshing) {
@@ -155,27 +156,47 @@ api.interceptors.response.use(
       }
 
       isRefreshing = true;
-      try {
-        // Ensure we have a CSRF token before attempting refresh
-        if (!csrfToken) await fetchCsrfToken();
-        await refreshAccessToken();
 
+      try {
+        await refreshAccessToken();
         isRefreshing = false;
-        processQueue(null, csrfToken);
+        processQueue(null);
 
         // Retry the original request
         return api.request(originalConfig);
-      } catch (err) {
-        isRefreshing = false;
-        processQueue(err as Error, null);
+      } catch (refreshError) {
+        // Refresh failed - this means refresh token is invalid/expired
+        const refreshStatus = (refreshError as AxiosError)?.response?.status;
+        const refreshMessage =
+          (refreshError as AxiosError<ErrorResponse>)?.response?.data
+            ?.message || "";
 
-        console.error("Refresh failed. Please login again.", err);
-        // Optional: redirect to login page on refresh failure
-        // if (typeof window !== 'undefined') {
-        //   window.location.href = '/login';
-        // }
-        return Promise.reject(err);
+        if (
+          refreshStatus === 403 &&
+          refreshMessage.includes("Access Denied")
+        ) {
+          // Refresh token is invalid - logout user
+          console.error("Refresh token invalid. Logging out user.");
+          handleAuthFailure();
+        } else {
+          // Some other error during refresh
+          isRefreshing = false;
+          processQueue(refreshError as Error);
+        }
+
+        return Promise.reject(refreshError);
       }
+    }
+
+    // Handle 403 from refresh endpoint specifically (expired refresh token)
+    if (
+      status === 403 &&
+      originalConfig.url?.includes("/auth/refresh") &&
+      errorMessage.includes("Access Denied")
+    ) {
+      console.error("Refresh token expired. Logging out user.");
+      handleAuthFailure();
+      return Promise.reject(error);
     }
 
     return Promise.reject(error);
@@ -185,24 +206,29 @@ api.interceptors.response.use(
 // ---- Public API ----
 
 /**
- * Initialize CSRF token at application startup
- * Call this at app initialization to avoid the first request failing
- * due to missing CSRF token
+ * Clear authentication state (useful for logout)
+ * Resets refresh state and failed request queue
  */
-export async function initializeCsrf(): Promise<void> {
-  if (!csrfToken) {
-    await fetchCsrfToken();
-  }
+export function clearAuthState(): void {
+  isRefreshing = false;
+  failedQueue = [];
 }
 
 /**
- * Clear authentication state (useful for logout)
- * Resets CSRF token, refresh state, and failed request queue
+ * Logout user and clear auth state
+ * Call this when user explicitly logs out
  */
-export function clearAuthState(): void {
-  csrfToken = null;
-  isRefreshing = false;
-  failedQueue = [];
+export async function logout(): Promise<void> {
+  try {
+    await api.post("/auth/logout");
+  } catch (error) {
+    console.error("Logout request failed:", error);
+  } finally {
+    clearAuthState();
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
+  }
 }
 
 // ---- Development logging ----
@@ -212,6 +238,9 @@ if (process.env.NODE_ENV === "development") {
     console.log(
       `[API Request] ${config.method?.toUpperCase()} ${config.url}`,
       config.data ? { data: config.data } : "",
+      config.headers["X-CSRF-Token"]
+        ? { "X-CSRF-Token": "***" + config.headers["X-CSRF-Token"].slice(-8) }
+        : "",
     );
     return config;
   });
@@ -226,7 +255,9 @@ if (process.env.NODE_ENV === "development") {
     },
     (error) => {
       console.error(
-        `[API Error] ${error.response?.status || "Network"} ${error.config?.url}`,
+        `[API Error] ${error.response?.status || "Network"} ${
+          error.config?.url
+        }`,
         error.response?.data || error.message,
       );
       return Promise.reject(error);

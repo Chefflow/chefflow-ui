@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLoginForm } from "@/hooks/use-login-form";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link } from "@/i18n/routing";
-import { apiClient } from "@/lib/api/client";
+import api from "@/lib/api/axiosClient";
 import { hashPassword } from "@/lib/crypto/hash-password";
 
 export default function LoginPage() {
@@ -26,14 +26,18 @@ export default function LoginPage() {
 
     try {
       const hashedPassword = await hashPassword(formData.password);
-      const repsonse = await apiClient("/auth/login", {
-        method: "POST",
-        body: JSON.stringify({
-          username: formData.username,
-          password: hashedPassword,
-        }),
+      const response = await api.post("/auth/login", {
+        username: formData.username,
+        password: hashedPassword,
       });
-    } catch (error) {}
+
+      // Handle successful login
+      console.log("Login successful:", response.data);
+      // TODO: Redirect to dashboard or home page
+    } catch (error) {
+      console.error("Login failed:", error);
+      // TODO: Show error message to user
+    }
   };
 
   const handleGoogleLogin = (): void => {
