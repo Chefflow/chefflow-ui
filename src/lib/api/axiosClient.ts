@@ -6,9 +6,7 @@ import axios, {
 import { API_URL } from "@/config/environment";
 
 interface CustomAxiosHeaders {
-  _retry_csrf?: boolean;
   _retry_jwt?: boolean;
-  "X-CSRF-Token"?: string;
 }
 
 interface ErrorResponse {
@@ -22,22 +20,6 @@ let failedQueue: {
   reject: (err: unknown) => void;
   config: InternalAxiosRequestConfig;
 }[] = [];
-
-function getCsrfTokenFromCookie(): string | null {
-  if (typeof document === "undefined") return null;
-
-  const name = "CSRF-TOKEN=";
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(";");
-
-  for (let i = 0; i < cookieArray.length; i++) {
-    const cookie = cookieArray[i].trim();
-    if (cookie.indexOf(name) === 0) {
-      return cookie.substring(name.length, cookie.length);
-    }
-  }
-  return null;
-}
 
 function processQueue(error: Error | null) {
   failedQueue.forEach(({ resolve, reject, config }) => {
@@ -73,16 +55,6 @@ const api: AxiosInstance = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const method = config.method?.toUpperCase() || "";
-  const safeMethods = ["GET", "HEAD", "OPTIONS"];
-
-  if (!safeMethods.includes(method)) {
-    const csrfToken = getCsrfTokenFromCookie();
-    if (csrfToken) {
-      config.headers["X-CSRF-Token"] = csrfToken;
-    }
-  }
-
   return config;
 });
 
@@ -95,19 +67,6 @@ api.interceptors.response.use(
     const status = error.response?.status;
     const errorMessage = error.response?.data?.message || "";
     const headers = originalConfig.headers as CustomAxiosHeaders;
-
-    if (status === 403 && errorMessage.includes("Invalid CSRF token")) {
-      if (headers._retry_csrf) {
-        return Promise.reject(error);
-      }
-
-      headers._retry_csrf = true;
-      console.warn("CSRF token invalid, retrying request...");
-
-      await new Promise((resolve) => setTimeout(resolve, 100));
-
-      return api.request(originalConfig);
-    }
 
     if (status === 401 && !headers._retry_jwt) {
       headers._retry_jwt = true;
@@ -181,9 +140,6 @@ if (process.env.NODE_ENV === "development") {
     console.log(
       `[API Request] ${config.method?.toUpperCase()} ${config.url}`,
       config.data ? { data: config.data } : "",
-      config.headers["X-CSRF-Token"]
-        ? { "X-CSRF-Token": "***" + config.headers["X-CSRF-Token"].slice(-8) }
-        : "",
     );
     return config;
   });
