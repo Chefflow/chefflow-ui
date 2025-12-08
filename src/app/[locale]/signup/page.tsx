@@ -2,6 +2,8 @@
 
 import { Mail, User } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Divider } from "@/components/auth/divider";
 import { GoogleButton } from "@/components/auth/google-button";
 import { PasswordInputField } from "@/components/auth/password-input-field";
@@ -11,12 +13,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useSignupForm } from "@/hooks/use-signup-form";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import api from "@/lib/api/axiosClient";
 import { hashPassword } from "@/lib/crypto/hash-password";
+import { useAuthStore, type User as AuthUser } from "@/store/auth-store";
 
 export default function SignupPage() {
   const t = useTranslations("signup");
+  const router = useRouter();
+  const setUser = useAuthStore((state) => state.setUser);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { formData, updateField, markFieldAsTouched, errors, isFormValid } =
     useSignupForm({
@@ -35,29 +41,43 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-    if (!isFormValid) return;
+    if (!isFormValid || isLoading) return;
 
+    setIsLoading(true);
     try {
       const hashedPassword = await hashPassword(formData.password);
 
-      const response = await api.post("/auth/register", {
+      const response = await api.post<{ user: AuthUser }>("/auth/register", {
         username: formData.username,
         email: formData.email,
         password: hashedPassword,
         name: formData.name,
       });
 
-      console.log("Signup successful:", response);
-      // TODO: Redirect to dashboard or login page
-    } catch (error) {
+      setUser(response.data.user);
+      toast.success("Account created successfully!");
+      router.push("/dashboard");
+    } catch (error: unknown) {
       console.error("Signup error:", error);
-      // TODO: Show error message to user
+      if (error && typeof error === "object" && "response" in error) {
+        const axiosError = error as {
+          response?: { data?: { message?: string } };
+        };
+        const message =
+          axiosError.response?.data?.message ||
+          "Signup failed. Please try again.";
+        toast.error(message);
+      } else {
+        toast.error("Signup failed. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleSignup = (): void => {
-    // TODO: Implement Google OAuth
-    console.log("Google signup");
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+    window.location.href = `${apiUrl}/auth/google`;
   };
 
   return (
@@ -155,9 +175,9 @@ export default function SignupPage() {
               type="submit"
               className="w-full"
               size="lg"
-              disabled={!isFormValid}
+              disabled={!isFormValid || isLoading}
             >
-              {t("createAccount")}
+              {isLoading ? "Creating account..." : t("createAccount")}
             </Button>
           </form>
 

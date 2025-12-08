@@ -2,6 +2,8 @@
 
 import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Divider } from "@/components/auth/divider";
 import { GoogleButton } from "@/components/auth/google-button";
 import { PasswordInputField } from "@/components/auth/password-input-field";
@@ -10,39 +12,56 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLoginForm } from "@/hooks/use-login-form";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import api from "@/lib/api/axiosClient";
 import { hashPassword } from "@/lib/crypto/hash-password";
+import { useAuthStore, type User } from "@/store/auth-store";
 
 export default function LoginPage() {
   const t = useTranslations("login");
+  const router = useRouter();
+  const setUser = useAuthStore((state) => state.setUser);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { formData, updateField, isFormValid } = useLoginForm();
   const passwordVisibility = usePasswordVisibility();
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-    if (!isFormValid) return;
+    if (!isFormValid || isLoading) return;
 
+    setIsLoading(true);
     try {
       const hashedPassword = await hashPassword(formData.password);
-      const response = await api.post("/auth/login", {
+      const response = await api.post<{ user: User }>("/auth/login", {
         username: formData.username,
         password: hashedPassword,
       });
 
-      // Handle successful login
-      console.log("Login successful:", response.data);
-      // TODO: Redirect to dashboard or home page
-    } catch (error) {
+      setUser(response.data.user);
+      toast.success("Welcome back!");
+      router.push("/dashboard");
+    } catch (error: unknown) {
       console.error("Login failed:", error);
-      // TODO: Show error message to user
+      if (error && typeof error === "object" && "response" in error) {
+        const axiosError = error as {
+          response?: { data?: { message?: string } };
+        };
+        const message =
+          axiosError.response?.data?.message ||
+          "Login failed. Please try again.";
+        toast.error(message);
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = (): void => {
-    // TODO: Implement Google OAuth
-    console.log("Google login");
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+    window.location.href = `${apiUrl}/auth/google`;
   };
 
   return (
@@ -79,8 +98,13 @@ export default function LoginPage() {
               required
             />
 
-            <Button type="submit" className="w-full" size="lg">
-              {t("signIn")}
+            <Button
+              type="submit"
+              className="w-full"
+              size="lg"
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing in..." : t("signIn")}
             </Button>
           </form>
 

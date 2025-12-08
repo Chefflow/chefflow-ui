@@ -1,6 +1,7 @@
 {
   "navbar": {
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout"
   },
   "dashboard": {
     "tabs": {

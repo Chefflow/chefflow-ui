@@ -1,6 +1,7 @@
 {
   "navbar": {
-    "login": "Accedi"
+    "login": "Accedi",
+    "logout": "Esci"
   },
   "dashboard": {
     "tabs": {
