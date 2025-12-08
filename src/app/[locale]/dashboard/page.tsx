@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "@/i18n/routing";
 import { PlanningTab } from "@/components/dashboard/planning-tab";
 import { RecipeModal } from "@/components/dashboard/recipe-modal";
 import { RecipesTab } from "@/components/dashboard/recipes-tab";
 import { TabNavigation } from "@/components/dashboard/tab-navigation";
 import { useRecipeModal } from "@/hooks/use-recipe-modal";
+import { useRouter } from "@/i18n/routing";
 import { useAuthStore } from "@/store/auth-store";
 
 export default function DashboardPage() {

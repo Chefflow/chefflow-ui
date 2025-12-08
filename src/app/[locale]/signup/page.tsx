@@ -16,7 +16,7 @@ import { useSignupForm } from "@/hooks/use-signup-form";
 import { Link, useRouter } from "@/i18n/routing";
 import api from "@/lib/api/axiosClient";
 import { hashPassword } from "@/lib/crypto/hash-password";
-import { useAuthStore, type User as AuthUser } from "@/store/auth-store";
+import { type User as AuthUser, useAuthStore } from "@/store/auth-store";
 
 export default function SignupPage() {
   const t = useTranslations("signup");

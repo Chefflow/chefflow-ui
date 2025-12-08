@@ -15,7 +15,7 @@ import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link, useRouter } from "@/i18n/routing";
 import api from "@/lib/api/axiosClient";
 import { hashPassword } from "@/lib/crypto/hash-password";
-import { useAuthStore, type User } from "@/store/auth-store";
+import { type User, useAuthStore } from "@/store/auth-store";
 
 export default function LoginPage() {
   const t = useTranslations("login");

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
 import api from "@/lib/api/axiosClient";
-import { useAuthStore, type User } from "@/store/auth-store";
+import { type User, useAuthStore } from "@/store/auth-store";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
