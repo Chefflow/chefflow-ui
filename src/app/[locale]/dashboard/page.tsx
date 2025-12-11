@@ -12,6 +12,7 @@ import { useAuthStore } from "@/store/auth-store";
 export default function DashboardPage() {
   const router = useRouter();
   const { user, isAuthenticated } = useAuthStore();
+  console.log(user);
   const [activeTab, setActiveTab] = useState<"recipes" | "planning">("recipes");
   const hasRecipes = false;
 

@@ -26,13 +26,13 @@ export default function Navbar() {
   const isHomePage = pathname === "/" || pathname.match(/^\/[a-z]{2}$/);
 
   const handleLogout = async () => {
+    const { clearUser } = useAuthStore.getState();
+    clearUser();
     try {
       await logout();
       toast.success("Logged out successfully");
-      router.push("/");
     } catch (error) {
       console.error("Logout error:", error);
-      toast.error("Failed to logout");
     }
   };
 

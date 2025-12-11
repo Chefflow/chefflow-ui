@@ -123,12 +123,12 @@ export function clearAuthState(): void {
 }
 
 export async function logout(): Promise<void> {
+  clearAuthState();
   try {
     await api.post("/auth/logout");
   } catch (error) {
     console.error("Logout request failed:", error);
   } finally {
-    clearAuthState();
     if (typeof window !== "undefined") {
       window.location.href = "/login";
     }

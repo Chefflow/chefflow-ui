@@ -133,7 +133,7 @@ export default function SignupPage() {
             <PasswordInputField
               id="password"
               label={t("password")}
-              placeholder="••••••••"
+              placeholder="secret password"
               value={formData.password}
               onChange={(e) => updateField("password", e.target.value)}
               onBlur={() => markFieldAsTouched("password")}
@@ -147,7 +147,7 @@ export default function SignupPage() {
             <PasswordInputField
               id="confirmPassword"
               label={t("confirmPassword")}
-              placeholder="••••••••"
+              placeholder="confirm password"
               value={formData.confirmPassword}
               onChange={(e) => updateField("confirmPassword", e.target.value)}
               onBlur={() => markFieldAsTouched("confirmPassword")}

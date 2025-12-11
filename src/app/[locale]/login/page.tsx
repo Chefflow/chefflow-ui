@@ -90,7 +90,7 @@ export default function LoginPage() {
             <PasswordInputField
               id="password"
               label={t("password")}
-              placeholder="••••••••"
+              placeholder="secret password"
               value={formData.password}
               onChange={(e) => updateField("password", e.target.value)}
               showPassword={passwordVisibility.showPassword}
