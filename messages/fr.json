@@ -1,4 +1,17 @@
 {
+  "common": {
+    "loading": "Chargement...",
+    "error": {
+      "title": "Une erreur s'est produite",
+      "description": "Nous sommes désolés pour la gêne occasionnée.",
+      "retry": "Réessayer"
+    },
+    "notFound": {
+      "title": "Page non trouvée",
+      "description": "La page que vous recherchez n'existe pas.",
+      "home": "Retour à l'accueil"
+    }
+  },
   "navbar": {
     "login": "Se connecter",
     "logout": "Se déconnecter"
@@ -139,5 +152,27 @@
     "generateShoppingList": "Générer Liste de Courses",
     "analyzePlanning": "Analyser Planification",
     "addRecipe": "Ajouter recette"
+  },
+  "metadata": {
+    "home": {
+      "title": "Votre Gestionnaire Personnel de Recettes",
+      "description": "Organisez vos recettes, planifiez vos repas et cuisinez en toute confiance. ChefFlow facilite la planification des repas.",
+      "keywords": "gestionnaire de recettes, planification de repas, application cuisine, organisateur de recettes"
+    },
+    "login": {
+      "title": "Se Connecter",
+      "description": "Connectez-vous pour accéder à vos recettes et plans de repas.",
+      "keywords": "connexion, se connecter, authentification"
+    },
+    "signup": {
+      "title": "Créer un Compte",
+      "description": "Rejoignez ChefFlow pour commencer à organiser vos recettes dès aujourd'hui.",
+      "keywords": "inscription, s'inscrire, créer un compte"
+    },
+    "dashboard": {
+      "title": "Tableau de Bord",
+      "description": "Gérez vos recettes et plans de repas en un seul endroit.",
+      "keywords": "tableau de bord, recettes, planification de repas"
+    }
   }
 }

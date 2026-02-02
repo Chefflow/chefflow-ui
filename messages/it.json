@@ -1,4 +1,17 @@
 {
+  "common": {
+    "loading": "Caricamento...",
+    "error": {
+      "title": "Qualcosa è andato storto",
+      "description": "Ci scusiamo per l'inconveniente.",
+      "retry": "Riprova"
+    },
+    "notFound": {
+      "title": "Pagina non trovata",
+      "description": "La pagina che stai cercando non esiste.",
+      "home": "Torna alla home"
+    }
+  },
   "navbar": {
     "login": "Accedi",
     "logout": "Esci"
@@ -139,5 +152,27 @@
     "generateShoppingList": "Genera Lista della Spesa",
     "analyzePlanning": "Analizza Pianificazione",
     "addRecipe": "Aggiungi ricetta"
+  },
+  "metadata": {
+    "home": {
+      "title": "Il Tuo Gestore Personale di Ricette",
+      "description": "Organizza ricette, pianifica pasti e cucina con fiducia. ChefFlow rende la pianificazione dei pasti semplice.",
+      "keywords": "gestore ricette, pianificazione pasti, app cucina, organizzatore ricette"
+    },
+    "login": {
+      "title": "Accedi",
+      "description": "Accedi per accedere alle tue ricette e piani pasto.",
+      "keywords": "login, accesso, autenticazione"
+    },
+    "signup": {
+      "title": "Crea Account",
+      "description": "Unisciti a ChefFlow per iniziare a organizzare le tue ricette oggi.",
+      "keywords": "registrazione, iscriviti, crea account"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Gestisci le tue ricette e piani pasto in un unico posto.",
+      "keywords": "dashboard, ricette, pianificazione pasti"
+    }
   }
 }

@@ -6,14 +6,38 @@ import {
   ShoppingCart,
   Sparkles,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
+import { createMetadata } from "@/lib/metadata/shared";
 
-export default async function HomePage() {
-  const t = await getTranslations("home");
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale || "en";
+  const t = await getTranslations({ locale, namespace: "metadata.home" });
+
+  return createMetadata(t("title"), t("description"), locale, t("keywords"));
+}
+
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale || "en";
+  const t = await getTranslations({ locale, namespace: "home" });
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero Section - Vercel style */}

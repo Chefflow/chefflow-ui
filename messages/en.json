@@ -1,4 +1,17 @@
 {
+  "common": {
+    "loading": "Loading...",
+    "error": {
+      "title": "Something went wrong",
+      "description": "We're sorry for the inconvenience.",
+      "retry": "Try again"
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist.",
+      "home": "Go Home"
+    }
+  },
   "navbar": {
     "login": "Login",
     "logout": "Logout"
@@ -139,5 +152,27 @@
     "generateShoppingList": "Generate Shopping List",
     "analyzePlanning": "Analyze Planning",
     "addRecipe": "Add recipe"
+  },
+  "metadata": {
+    "home": {
+      "title": "Your Personal Recipe Manager",
+      "description": "Organize recipes, plan meals, and cook with confidence. ChefFlow makes meal planning effortless.",
+      "keywords": "recipe manager, meal planning, cooking app, recipe organizer"
+    },
+    "login": {
+      "title": "Sign In",
+      "description": "Sign in to access your recipes and meal plans.",
+      "keywords": "login, sign in, authentication"
+    },
+    "signup": {
+      "title": "Create Account",
+      "description": "Join ChefFlow to start organizing your recipes today.",
+      "keywords": "signup, register, create account"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Manage your recipes and meal plans in one place.",
+      "keywords": "dashboard, recipes, meal planning"
+    }
   }
 }

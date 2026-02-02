@@ -1,4 +1,17 @@
 {
+  "common": {
+    "loading": "Cargando...",
+    "error": {
+      "title": "Algo salió mal",
+      "description": "Lamentamos las molestias.",
+      "retry": "Intentar de nuevo"
+    },
+    "notFound": {
+      "title": "Página no encontrada",
+      "description": "La página que buscas no existe.",
+      "home": "Ir al inicio"
+    }
+  },
   "navbar": {
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión"
@@ -139,5 +152,27 @@
     "generateShoppingList": "Generar Lista de Compra",
     "analyzePlanning": "Analizar Planificación",
     "addRecipe": "Agregar receta"
+  },
+  "metadata": {
+    "home": {
+      "title": "Tu Gestor Personal de Recetas",
+      "description": "Organiza recetas, planifica comidas y cocina con confianza. ChefFlow hace que la planificación de comidas sea sencilla.",
+      "keywords": "gestor de recetas, planificación de comidas, aplicación de cocina, organizador de recetas"
+    },
+    "login": {
+      "title": "Iniciar Sesión",
+      "description": "Inicia sesión para acceder a tus recetas y planes de comidas.",
+      "keywords": "inicio de sesión, autenticación"
+    },
+    "signup": {
+      "title": "Crear Cuenta",
+      "description": "Únete a ChefFlow para comenzar a organizar tus recetas hoy.",
+      "keywords": "registro, crear cuenta"
+    },
+    "dashboard": {
+      "title": "Panel de Control",
+      "description": "Gestiona tus recetas y planes de comidas en un solo lugar.",
+      "keywords": "panel de control, recetas, planificación de comidas"
+    }
   }
 }

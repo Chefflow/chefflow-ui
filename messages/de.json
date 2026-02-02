@@ -1,4 +1,17 @@
 {
+  "common": {
+    "loading": "Lädt...",
+    "error": {
+      "title": "Etwas ist schief gelaufen",
+      "description": "Wir entschuldigen uns für die Unannehmlichkeiten.",
+      "retry": "Erneut versuchen"
+    },
+    "notFound": {
+      "title": "Seite nicht gefunden",
+      "description": "Die gesuchte Seite existiert nicht.",
+      "home": "Zur Startseite"
+    }
+  },
   "navbar": {
     "login": "Anmelden",
     "logout": "Abmelden"
@@ -139,5 +152,27 @@
     "generateShoppingList": "Einkaufsliste Erstellen",
     "analyzePlanning": "Planung Analysieren",
     "addRecipe": "Rezept Hinzufügen"
+  },
+  "metadata": {
+    "home": {
+      "title": "Ihr Persönlicher Rezept-Manager",
+      "description": "Organisieren Sie Rezepte, planen Sie Mahlzeiten und kochen Sie mit Zuversicht. ChefFlow macht Mahlzeitenplanung mühelos.",
+      "keywords": "Rezept-Manager, Mahlzeitenplanung, Koch-App, Rezept-Organizer"
+    },
+    "login": {
+      "title": "Anmelden",
+      "description": "Melden Sie sich an, um auf Ihre Rezepte und Speisepläne zuzugreifen.",
+      "keywords": "Anmeldung, Login, Authentifizierung"
+    },
+    "signup": {
+      "title": "Konto Erstellen",
+      "description": "Treten Sie ChefFlow bei, um noch heute mit der Organisation Ihrer Rezepte zu beginnen.",
+      "keywords": "Registrierung, Anmeldung, Konto erstellen"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Verwalten Sie Ihre Rezepte und Speisepläne an einem Ort.",
+      "keywords": "Dashboard, Rezepte, Mahlzeitenplanung"
+    }
   }
 }
