@@ -1,8 +1,9 @@
 "use client";
 
-import { ChefHat, LogOut, User } from "lucide-react";
+import { ChefHat, LogOut, User as UserIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import LanguageSelector from "@/components/LanguageSelector";
 import { Button } from "@/components/ui/button";
@@ -16,16 +17,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link } from "@/i18n/routing";
 import { logout } from "@/lib/api/axiosClient";
-import { useAuthStore } from "@/store/auth-store";
+import { type User, useAuthStore } from "@/store/auth-store";
 
-export default function Navbar() {
+interface NavbarClientProps {
+  user: User | null;
+}
+
+/**
+ * Client Component for Navbar
+ * Receives user from server component (secure auth)
+ * Syncs to Zustand store for UI state only
+ */
+export function NavbarClient({ user: serverUser }: NavbarClientProps) {
   const pathname = usePathname();
   const t = useTranslations("navbar");
-  const { user, isAuthenticated } = useAuthStore();
+  const { user, setUser, clearUser } = useAuthStore();
   const isHomePage = pathname === "/" || pathname.match(/^\/[a-z]{2}$/);
 
+  // Sync server auth state to client store (UI only, not for security)
+  useEffect(() => {
+    if (serverUser) {
+      setUser(serverUser);
+    }
+  }, [serverUser, setUser]);
+
   const handleLogout = async () => {
-    const { clearUser } = useAuthStore.getState();
     clearUser();
     try {
       await logout();
@@ -34,6 +50,8 @@ export default function Navbar() {
       console.error("Logout error:", error);
     }
   };
+
+  const isAuthenticated = !!user;
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -60,7 +78,7 @@ export default function Navbar() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <User className="h-4 w-4" />
+                    <UserIcon className="h-4 w-4" />
                     <span className="hidden sm:inline">
                       {user.name || user.username}
                     </span>

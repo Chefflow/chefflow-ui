@@ -1,6 +1,23 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+/**
+ * Auth Store - CLIENT-SIDE UI STATE ONLY
+ *
+ * ⚠️ SECURITY WARNING: This store is for UI display ONLY.
+ * It does NOT control access to protected routes.
+ *
+ * - Auth decisions happen in proxy.ts middleware and server components
+ * - This store syncs user data from server for display purposes
+ * - Never rely on isAuthenticated for security - it's for UI only
+ *
+ * Migration note: We keep localStorage to prevent UI flicker, but auth
+ * validation ALWAYS happens server-side in:
+ *   1. src/proxy.ts (middleware protection)
+ *   2. src/lib/auth/server.ts (requireAuth & getAuthUser)
+ *   3. Server Components (dashboard page, navbar)
+ */
+
 export interface User {
   username: string;
   email: string;
