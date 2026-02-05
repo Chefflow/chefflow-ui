@@ -59,10 +59,11 @@ export default function LoginPage() {
     }
   };
 
-  const handleGoogleLogin = (): void => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-    window.location.href = `${apiUrl}/auth/google`;
-  };
+  // TODO: Implement Google Login
+  // const handleGoogleLogin = (): void => {
+  //   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  //   window.location.href = `${apiUrl}/auth/google`;
+  // };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-secondary/30 px-4 py-12">
@@ -108,11 +109,11 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <Divider text={t("or")} />
+          {/* <Divider text={t("or")} /> */}
 
-          <GoogleButton onClick={handleGoogleLogin}>
+          {/* <GoogleButton onClick={handleGoogleLogin}>
             {t("continueWithGoogle")}
-          </GoogleButton>
+          </GoogleButton> */}
 
           <p className="text-center text-sm text-muted-foreground">
             {t("noAccount")}{" "}
