@@ -28,8 +28,10 @@ export default function middleware(request: NextRequest) {
   );
 
   // Check auth cookies (backend sets these as HTTP-only cookies)
-  const hasAuthCookie =
-    request.cookies.has("accessToken") || request.cookies.has("refreshToken");
+  // Note: We only check accessToken here. The refreshToken cookie has path='/auth/refresh'
+  // by design (security best practice - principle of least privilege). Token refresh is
+  // handled automatically by the HTTP client when receiving 401 responses.
+  const hasAuthCookie = request.cookies.has("accessToken");
 
   // Protect routes - redirect unauthenticated users to login
   if (isProtectedRoute && !hasAuthCookie) {

@@ -4,8 +4,6 @@ import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Divider } from "@/components/auth/divider";
-import { GoogleButton } from "@/components/auth/google-button";
 import { PasswordInputField } from "@/components/auth/password-input-field";
 import { TextInputField } from "@/components/auth/text-input-field";
 import { Button } from "@/components/ui/button";
