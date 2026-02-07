@@ -1,15 +1,15 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { type AuthError } from "@/domain/auth/errors";
+import type { AuthError } from "@/domain/auth/errors";
 import { handleError } from "@/lib/errors/error-handler";
 import {
-  loginSchema,
-  signupSchema,
   type LoginInput,
+  loginSchema,
   type SignupInput,
+  signupSchema,
 } from "@/lib/validation/auth.schema";
-import { type User } from "@/store/auth-store";
+import type { User } from "@/store/auth-store";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
