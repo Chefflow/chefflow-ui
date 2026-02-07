@@ -97,6 +97,16 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
   };
 
 function parseError(error: unknown): AuthError {
+  // Already an AuthError object
+  if (
+    error &&
+    typeof error === "object" &&
+    "code" in error &&
+    "message" in error
+  ) {
+    return error as AuthError;
+  }
+
   // Axios/fetch error with response
   if (error && typeof error === "object" && "response" in error) {
     const axiosError = error as {
