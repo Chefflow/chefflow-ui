@@ -3,13 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, User } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useActionState, useEffect, useTransition } from "react";
+import { useActionState, useEffect, useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { signupAction } from "@/app/actions/auth";
 import { ErrorAlert } from "@/components/auth/error-alert";
 import { PasswordInputField } from "@/components/auth/password-input-field";
 import { PasswordStrengthMeter } from "@/components/auth/password-strength-meter";
+import { SignupSuccess } from "@/components/auth/signup-success";
 import { SubmitButton } from "@/components/auth/submit-button";
 import { TermsCheckbox } from "@/components/auth/terms-checkbox";
 import { TextInputField } from "@/components/auth/text-input-field";
@@ -26,6 +26,7 @@ export default function SignupPage() {
 
   const [state, formAction] = useActionState(signupAction, null);
   const [isPending, startTransition] = useTransition();
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const passwordVisibility = usePasswordVisibility();
   const confirmPasswordVisibility = usePasswordVisibility();
@@ -46,10 +47,9 @@ export default function SignupPage() {
   useEffect(() => {
     if (state?.success && state.user) {
       setUser(state.user);
-      toast.success("Account created successfully!");
-      router.push("/dashboard");
+      setShowSuccess(true);
     }
-  }, [state, setUser, router]);
+  }, [state, setUser]);
 
   useEffect(() => {
     if (state?.fieldErrors) {
@@ -72,6 +72,16 @@ export default function SignupPage() {
       formAction(formData);
     });
   });
+
+  if (showSuccess && state?.user) {
+    return (
+      <SignupSuccess
+        userName={state.user.name!}
+        userEmail={state.user.email!}
+        onContinue={() => router.push("/dashboard")}
+      />
+    );
+  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-secondary/30 px-4 py-12">
