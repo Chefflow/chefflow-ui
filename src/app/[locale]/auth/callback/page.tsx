@@ -3,8 +3,9 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
-import api from "@/lib/api/axiosClient";
 import { type User, useAuthStore } from "@/store/auth-store";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
@@ -13,9 +14,18 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     async function handleOAuthCallback() {
       try {
-        // Fetch the user profile to verify authentication
-        const response = await api.get<User>("/auth/profile");
-        setUser(response.data);
+        const response = await fetch(`${API_URL}/auth/profile`, {
+          method: "GET",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile");
+        }
+
+        const user: User = await response.json();
+        setUser(user);
         toast.success("Welcome!");
         router.push("/dashboard");
       } catch (error) {

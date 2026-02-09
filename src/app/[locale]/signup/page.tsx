@@ -73,11 +73,11 @@ export default function SignupPage() {
     });
   });
 
-  if (showSuccess && state?.user) {
+  if (showSuccess && state?.user?.name && state?.user?.email) {
     return (
       <SignupSuccess
-        userName={state.user.name!}
-        userEmail={state.user.email!}
+        userName={state.user.name}
+        userEmail={state.user.email}
         onContinue={() => router.push("/dashboard")}
       />
     );

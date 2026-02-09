@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { toast } from "sonner";
+import { logoutAction } from "@/app/actions/auth";
 import LanguageSelector from "@/components/LanguageSelector";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +17,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "@/i18n/routing";
-import { logout } from "@/lib/api/axiosClient";
 import { type User, useAuthStore } from "@/store/auth-store";
 
 interface NavbarClientProps {
@@ -44,7 +44,7 @@ export function NavbarClient({ user: serverUser }: NavbarClientProps) {
   const handleLogout = async () => {
     clearUser();
     try {
-      await logout();
+      await logoutAction();
       toast.success("Logged out successfully");
     } catch (error) {
       console.error("Logout error:", error);
