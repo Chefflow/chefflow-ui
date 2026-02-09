@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { signupAction } from "@/app/actions/auth";
 import { ErrorAlert } from "@/components/auth/error-alert";
 import { PasswordInputField } from "@/components/auth/password-input-field";
+import { PasswordStrengthMeter } from "@/components/auth/password-strength-meter";
 import { SubmitButton } from "@/components/auth/submit-button";
 import { TermsCheckbox } from "@/components/auth/terms-checkbox";
 import { TextInputField } from "@/components/auth/text-input-field";
@@ -153,21 +154,24 @@ export default function SignupPage() {
               name="password"
               control={form.control}
               render={({ field }) => (
-                <PasswordInputField
-                  id="password"
-                  label={t("password")}
-                  placeholder="secret password"
-                  error={form.formState.errors.password?.message}
-                  showPassword={passwordVisibility.showPassword}
-                  onToggleVisibility={passwordVisibility.toggleVisibility}
-                  hint={t("passwordHint")}
-                  disabled={isPending}
-                  required
-                  value={field.value}
-                  onChange={field.onChange}
-                  onBlur={field.onBlur}
-                  name={field.name}
-                />
+                <div className="space-y-2">
+                  <PasswordInputField
+                    id="password"
+                    label={t("password")}
+                    placeholder="secret password"
+                    error={form.formState.errors.password?.message}
+                    showPassword={passwordVisibility.showPassword}
+                    onToggleVisibility={passwordVisibility.toggleVisibility}
+                    hint={t("passwordHint")}
+                    disabled={isPending}
+                    required
+                    value={field.value}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                  />
+                  <PasswordStrengthMeter password={field.value} />
+                </div>
               )}
             />
 
