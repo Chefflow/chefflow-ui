@@ -9,8 +9,8 @@ import { toast } from "sonner";
 import { loginAction } from "@/app/actions/auth";
 import { ErrorAlert } from "@/components/auth/error-alert";
 import { PasswordInputField } from "@/components/auth/password-input-field";
+import { SubmitButton } from "@/components/auth/submit-button";
 import { TextInputField } from "@/components/auth/text-input-field";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link, useRouter } from "@/i18n/routing";
@@ -129,14 +129,7 @@ export default function LoginPage() {
               )}
             />
 
-            <Button
-              type="submit"
-              className="w-full"
-              size="lg"
-              disabled={isPending}
-            >
-              {isPending ? "Signing in..." : t("signIn")}
-            </Button>
+            <SubmitButton className="w-full">{t("signIn")}</SubmitButton>
           </form>
 
           <p className="text-center text-sm text-muted-foreground">

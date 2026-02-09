@@ -9,9 +9,9 @@ import { toast } from "sonner";
 import { signupAction } from "@/app/actions/auth";
 import { ErrorAlert } from "@/components/auth/error-alert";
 import { PasswordInputField } from "@/components/auth/password-input-field";
+import { SubmitButton } from "@/components/auth/submit-button";
 import { TermsCheckbox } from "@/components/auth/terms-checkbox";
 import { TextInputField } from "@/components/auth/text-input-field";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link, useRouter } from "@/i18n/routing";
@@ -221,14 +221,7 @@ export default function SignupPage() {
               )}
             />
 
-            <Button
-              type="submit"
-              className="w-full"
-              size="lg"
-              disabled={isPending}
-            >
-              {isPending ? "Creating account..." : t("createAccount")}
-            </Button>
+            <SubmitButton className="w-full">{t("createAccount")}</SubmitButton>
           </form>
 
           <p className="text-center text-sm text-muted-foreground">
