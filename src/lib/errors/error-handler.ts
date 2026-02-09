@@ -1,12 +1,3 @@
-import {
-  AlertCircle,
-  Clock,
-  KeyRound,
-  Mail,
-  ServerCrash,
-  UserX,
-  WifiOff,
-} from "lucide-react";
 import type {
   AuthError,
   AuthErrorCode,
@@ -21,7 +12,7 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
         ? `"${error.field}" is already taken. Try one of these suggestions:`
         : "This username is already taken.",
       variant: "destructive",
-      icon: UserX,
+      iconName: "UserX",
       suggestions: error.suggestions,
     }),
 
@@ -29,7 +20,7 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
       title: "Account already exists",
       description: "An account with this email already exists.",
       variant: "default",
-      icon: Mail,
+      iconName: "Mail",
       actions: [
         { label: "Login instead", href: "/login", variant: "default" },
         {
@@ -44,7 +35,7 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
       title: "Incorrect username or password",
       description: "Double-check your credentials and try again.",
       variant: "destructive",
-      icon: KeyRound,
+      iconName: "KeyRound",
       actions: [
         {
           label: "Forgot password?",
@@ -59,21 +50,14 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
       description:
         "Unable to reach our servers. Check your internet connection.",
       variant: "destructive",
-      icon: WifiOff,
-      actions: [
-        {
-          label: "Retry",
-          action: () => window.location.reload(),
-          variant: "default",
-        },
-      ],
+      iconName: "WifiOff",
     }),
 
     RATE_LIMIT: (error) => ({
       title: "Too many attempts",
       description: "Please wait before trying again.",
       variant: "default",
-      icon: Clock,
+      iconName: "Clock",
       countdown: error.retryAfter,
     }),
 
@@ -82,7 +66,7 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
       description:
         "Our team has been notified. Please try again in a few minutes.",
       variant: "destructive",
-      icon: ServerCrash,
+      iconName: "ServerCrash",
       actions: [
         { label: "Contact support", href: "/support", variant: "outline" },
       ],
@@ -92,7 +76,7 @@ const configs: Record<AuthErrorCode, (error: AuthError) => ErrorDisplayConfig> =
       title: "Please check your information",
       description: error.message,
       variant: "destructive",
-      icon: AlertCircle,
+      iconName: "AlertCircle",
     }),
   };
 
@@ -156,7 +140,7 @@ export function handleError(error: unknown): ErrorDisplayConfig {
         title: "Error",
         description: authError.message || "Something went wrong",
         variant: "destructive",
-        icon: AlertCircle,
+        iconName: "AlertCircle",
       };
 }
 

@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import type { AuthError } from "@/domain/auth/errors";
+import { hashPassword } from "@/lib/crypto/hash-password.server";
 import { handleError } from "@/lib/errors/error-handler";
 import {
   type LoginInput,
@@ -28,15 +29,22 @@ async function apiRequest<T>(
   endpoint: string,
   data: Record<string, unknown>,
 ): Promise<T> {
-  const response = await fetch(`${API_URL}${endpoint}`, {
+  const url = `${API_URL}${endpoint}`;
+  console.log("[API Request] Calling:", url);
+  console.log("[API Request] Data:", data);
+
+  const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify(data),
   });
 
+  console.log("[API Request] Response status:", response.status);
+
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
+    console.log("[API Request] Error response:", errorData);
     const error: AuthError = {
       code: response.status === 409 ? "USERNAME_TAKEN" : "SERVER_ERROR",
       message: errorData.message || "Request failed",
@@ -45,7 +53,9 @@ async function apiRequest<T>(
     throw error;
   }
 
-  return response.json();
+  const responseData = await response.json();
+  console.log("[API Request] Success response:", responseData);
+  return responseData;
 }
 
 export async function signupAction(
@@ -88,13 +98,17 @@ export async function signupAction(
     const {
       confirmPassword: _removed,
       acceptTerms: _terms,
-      ...signupData
+      password,
+      ...restData
     } = result.data;
 
-    const response = await apiRequest<{ user: User }>(
-      "/auth/register",
-      signupData,
-    );
+    const hashedPassword = hashPassword(password);
+    console.log("[Server Action] Password hashed for signup");
+
+    const response = await apiRequest<{ user: User }>("/auth/register", {
+      ...restData,
+      password: hashedPassword,
+    });
 
     return {
       success: true,
@@ -113,14 +127,22 @@ export async function loginAction(
   formData: FormData,
 ): Promise<ActionState> {
   try {
+    console.log("[Server Action] loginAction called");
+    console.log("[Server Action] FormData:", {
+      username: formData.get("username"),
+      password: formData.get("password") ? "***" : null,
+    });
+
     const rawData: LoginInput = {
       username: formData.get("username") as string,
       password: formData.get("password") as string,
     };
 
+    console.log("[Server Action] Validating with Zod...");
     const result = loginSchema.safeParse(rawData);
 
     if (!result.success) {
+      console.log("[Server Action] Validation failed:", result.error.issues);
       const fieldErrors = result.error.issues.reduce(
         (acc, issue) => {
           const field = issue.path[0] as string;
@@ -141,16 +163,25 @@ export async function loginAction(
       };
     }
 
-    const response = await apiRequest<{ user: User }>(
-      "/auth/login",
-      result.data,
-    );
+    console.log("[Server Action] Validation passed, calling API...");
+    console.log("[Server Action] API_URL:", API_URL);
+
+    const hashedPassword = hashPassword(result.data.password);
+    console.log("[Server Action] Password hashed for login");
+
+    const response = await apiRequest<{ user: User }>("/auth/login", {
+      username: result.data.username,
+      password: hashedPassword,
+    });
+
+    console.log("[Server Action] API call successful:", response);
 
     return {
       success: true,
       user: response.user,
     };
   } catch (error) {
+    console.error("[Server Action] Error caught:", error);
     return {
       success: false,
       error: handleError(error),

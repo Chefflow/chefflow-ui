@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import type { ErrorDisplayConfig } from "@/domain/auth/errors";
+import { getIconComponent } from "@/lib/errors/icon-mapper";
 
 interface ErrorAlertProps {
   config: ErrorDisplayConfig;
@@ -13,6 +14,7 @@ interface ErrorAlertProps {
 
 export function ErrorAlert({ config }: ErrorAlertProps) {
   const [countdown, setCountdown] = useState(config.countdown);
+  const Icon = getIconComponent(config.iconName);
 
   useEffect(() => {
     if (!countdown) return;
@@ -33,7 +35,7 @@ export function ErrorAlert({ config }: ErrorAlertProps) {
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
       >
         <Alert variant={config.variant} className="border-l-4 shadow-md">
-          <config.icon className="h-4 w-4" />
+          <Icon className="h-4 w-4" />
           <AlertTitle className="font-semibold">{config.title}</AlertTitle>
           <AlertDescription className="mt-2 space-y-3">
             <p className="text-sm">{config.description}</p>
@@ -77,14 +79,9 @@ export function ErrorAlert({ config }: ErrorAlertProps) {
                     <Button
                       variant={action.variant || "outline"}
                       size="sm"
-                      asChild={!!action.href}
-                      onClick={action.action}
+                      asChild
                     >
-                      {action.href ? (
-                        <Link href={action.href}>{action.label}</Link>
-                      ) : (
-                        action.label
-                      )}
+                      <Link href={action.href || "#"}>{action.label}</Link>
                     </Button>
                   </motion.div>
                 ))}

@@ -1,5 +1,3 @@
-import type { LucideIcon } from "lucide-react";
-
 export type AuthErrorCode =
   | "USERNAME_TAKEN"
   | "EMAIL_EXISTS"
@@ -21,7 +19,6 @@ export interface AuthError {
 export interface ErrorAction {
   label: string;
   href?: string;
-  action?: () => void;
   variant?: "default" | "outline" | "ghost" | "destructive";
 }
 
@@ -29,7 +26,7 @@ export interface ErrorDisplayConfig {
   title: string;
   description: string;
   variant: "destructive" | "default";
-  icon: LucideIcon;
+  iconName: string;
   suggestions?: string[];
   actions?: ErrorAction[];
   countdown?: number;
