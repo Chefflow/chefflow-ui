@@ -23,8 +23,7 @@ export default function middleware(request: NextRequest) {
   );
 
   const hasAuthCookie =
-    request.cookies.has("accessToken") ||
-    request.cookies.has("refreshToken");
+    request.cookies.has("accessToken") || request.cookies.has("refreshToken");
 
   if (isProtectedRoute && !hasAuthCookie) {
     const loginUrl = new URL(`/${locale}/login`, request.url);

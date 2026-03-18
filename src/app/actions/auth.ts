@@ -37,20 +37,20 @@ async function apiRequest<T>(
     credentials: "include",
     body: JSON.stringify(data),
   });
-  
+
   const setCookieHeader = response.headers.get("set-cookie");
   if (setCookieHeader) {
     const cookieStore = await cookies();
-    
-    setCookieHeader.split(',').forEach(cookie => {
-      const [cookiePair] = cookie.trim().split(';');
-      const [name, value] = cookiePair.split('=');
+
+    setCookieHeader.split(",").forEach((cookie) => {
+      const [cookiePair] = cookie.trim().split(";");
+      const [name, value] = cookiePair.split("=");
       if (name && value) {
         cookieStore.set(name.trim(), value.trim(), {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'lax',
-          path: '/'
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+          path: "/",
         });
       }
     });
