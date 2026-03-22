@@ -4,6 +4,7 @@
  */
 
 import type { ApiError, ApiResponse } from "./interface";
+import type { LoginRequest, RegisterRequest, UpdateProfileRequest } from "./interface";
 
 class BaseClient {
   private baseUrl: string;
@@ -64,17 +65,17 @@ class BaseClient {
     return this.request<T>(endpoint, { method: "GET" });
   }
 
-  async post<T>(endpoint: string, data?: any): Promise<ApiResponse<T>> {
+  async post<T>(endpoint: string, data?: unknown): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       method: "POST",
-      body: data ? JSON.stringify(data) : undefined,
+      body: data ? JSON.stringify(data as Record<string, unknown>) : undefined,
     });
   }
 
-  async patch<T>(endpoint: string, data?: any): Promise<ApiResponse<T>> {
+  async patch<T>(endpoint: string, data?: unknown): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       method: "PATCH",
-      body: data ? JSON.stringify(data) : undefined,
+      body: data ? JSON.stringify(data as Record<string, unknown>) : undefined,
     });
   }
 
