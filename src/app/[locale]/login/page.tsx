@@ -3,28 +3,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useActionState, useEffect, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { loginAction } from "@/app/actions/auth";
-import { ErrorAlert } from "@/components/auth/error-alert";
 import { PasswordInputField } from "@/components/auth/password-input-field";
-import { SubmitButton } from "@/components/auth/submit-button";
 import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
-import { Link, useRouter } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { type LoginInput, loginSchema } from "@/lib/validation/auth.schema";
-import { useAuthStore } from "@/store/auth-store";
 
 export default function LoginPage() {
   const t = useTranslations("login");
-  const router = useRouter();
-  const setUser = useAuthStore((state) => state.setUser);
-
-  const [state, formAction] = useActionState(loginAction, null);
-  const [isPending, startTransition] = useTransition();
-
   const passwordVisibility = usePasswordVisibility();
 
   const form = useForm<LoginInput>({
@@ -36,42 +24,9 @@ export default function LoginPage() {
     mode: "onTouched",
   });
 
-  useEffect(() => {
-    console.log("[Client] State changed:", state);
-
-    if (state?.success && state.user) {
-      console.log("[Client] Login successful, redirecting...");
-      setUser(state.user);
-      toast.success("Welcome back!");
-      router.push("/dashboard");
-    }
-
-    if (state?.error) {
-      console.log("[Client] Error received:", state.error);
-    }
-  }, [state, setUser, router]);
-
-  useEffect(() => {
-    if (state?.fieldErrors) {
-      console.log("[Client] Field errors:", state.fieldErrors);
-      Object.entries(state.fieldErrors).forEach(([field, message]) => {
-        form.setError(field as keyof LoginInput, { message });
-      });
-    }
-  }, [state?.fieldErrors, form]);
-
-  const handleSubmit = form.handleSubmit((data) => {
-    console.log("[Client] Form validation passed:", data);
-
-    const formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("password", data.password);
-
-    console.log("[Client] Calling formAction with FormData");
-    startTransition(() => {
-      formAction(formData);
-    });
-  });
+  const handleSubmit = (data: LoginInput) => {
+    console.log("Login data:", data);
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-secondary/30 px-4 py-12">
@@ -84,9 +39,10 @@ export default function LoginPage() {
         </CardHeader>
 
         <CardContent className="space-y-5 pb-8">
-          {state?.error && <ErrorAlert config={state.error} />}
-
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="space-y-4"
+          >
             <Controller
               name="username"
               control={form.control}
@@ -98,7 +54,6 @@ export default function LoginPage() {
                   type="text"
                   placeholder="username"
                   error={form.formState.errors.username?.message}
-                  disabled={isPending}
                   required
                   value={field.value}
                   onChange={field.onChange}
@@ -119,7 +74,6 @@ export default function LoginPage() {
                   error={form.formState.errors.password?.message}
                   showPassword={passwordVisibility.showPassword}
                   onToggleVisibility={passwordVisibility.toggleVisibility}
-                  disabled={isPending}
                   required
                   value={field.value}
                   onChange={field.onChange}
@@ -129,7 +83,12 @@ export default function LoginPage() {
               )}
             />
 
-            <SubmitButton className="w-full">{t("signIn")}</SubmitButton>
+            <button
+              type="submit"
+              className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              {t("signIn")}
+            </button>
           </form>
 
           <p className="text-center text-sm text-muted-foreground">
