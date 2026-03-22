@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
+import { QueryProvider } from "@/providers/query-client-provider";
 import "../globals.css";
 
 const inter = Inter({
@@ -42,11 +43,13 @@ export default async function LocaleLayout({
       <body
         className={`${inter.variable} ${crimsonPro.variable} font-sans antialiased bg-background text-foreground min-h-full`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Toaster />
-        </NextIntlClientProvider>
+        <QueryProvider>
+          <NextIntlClientProvider messages={messages}>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Toaster />
+          </NextIntlClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );
