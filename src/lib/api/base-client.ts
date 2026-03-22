@@ -3,8 +3,13 @@
  * Following ChefFlow UI authentication integration specs
  */
 
-import type { ApiError, ApiResponse } from "./interface";
-import type { LoginRequest, RegisterRequest, UpdateProfileRequest } from "./interface";
+import type {
+  ApiError,
+  ApiResponse,
+  LoginRequest,
+  RegisterRequest,
+  UpdateProfileRequest,
+} from "./interface";
 
 class BaseClient {
   private baseUrl: string;
