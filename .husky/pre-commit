@@ -1,14 +1,18 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-# Run Biome linting and formatting check (without modifying files)
-echo "🔍 Running Biome checks..."
+echo "🔍 Running Biome checks and auto-fixing..."
+
+# Run Biome with --write to automatically fix issues
+pnpm biome check --write --no-errors-on-unmatched --files-ignore-unknown=true
+
+# Check if there are any remaining issues after auto-fix
+echo "🔍 Checking for remaining issues..."
 pnpm biome check --no-errors-on-unmatched --files-ignore-unknown=true
 
-# Check if Biome found any errors (exit code 1)
+# Check if Biome found any remaining errors (exit code 1)
 if [ $? -ne 0 ]; then
-  echo "❌ Biome found issues. Please fix them before committing."
-  echo "💡 Run 'pnpm biome check --write' to fix them automatically."
+  echo "❌ Biome found issues that couldn't be auto-fixed. Please fix them manually before committing."
   exit 1
 fi
 
