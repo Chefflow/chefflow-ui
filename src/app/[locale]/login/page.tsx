@@ -9,7 +9,7 @@ import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link } from "@/i18n/routing";
-import { type LoginInput, loginSchema } from "@/lib/validation/auth.schema";
+import { type LoginInput, loginSchema } from "@/lib/validations/auth.schema";
 
 export default function LoginPage() {
   const t = useTranslations("login");
@@ -52,7 +52,7 @@ export default function LoginPage() {
                   label={t("username")}
                   icon={Mail}
                   type="text"
-                  placeholder="username"
+                  placeholder={t("username")}
                   error={form.formState.errors.username?.message}
                   required
                   value={field.value}
@@ -70,7 +70,7 @@ export default function LoginPage() {
                 <PasswordInputField
                   id="password"
                   label={t("password")}
-                  placeholder="secret password"
+                  placeholder="••••••••"
                   error={form.formState.errors.password?.message}
                   showPassword={passwordVisibility.showPassword}
                   onToggleVisibility={passwordVisibility.toggleVisibility}

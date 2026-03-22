@@ -2,7 +2,7 @@
 
 import { CheckCircle2, XCircle } from "lucide-react";
 import { motion } from "motion/react";
-import { calculatePasswordStrength } from "@/lib/validation/password-strength";
+import { calculatePasswordStrength } from "@/lib/validations/password-strength";
 
 interface PasswordStrengthMeterProps {
   password: string;

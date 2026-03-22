@@ -1,11 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RecipesTab } from "@/components/dashboard/recipes-tab";
 import { TabNavigation } from "@/components/dashboard/tab-navigation";
 import { useRecipeModal } from "@/hooks/use-recipe-modal";
-import { type User, useAuthStore } from "@/store/auth-store";
 
 // Lazy load heavy components with loading states
 const RecipeModal = dynamic(
@@ -41,15 +40,12 @@ const PlanningTab = dynamic(
 );
 
 interface DashboardClientProps {
-  user: User;
   initialTab?: "recipes" | "planning";
 }
 
 export function DashboardClient({
-  user,
   initialTab = "recipes",
 }: DashboardClientProps) {
-  const setUser = useAuthStore((state) => state.setUser);
   const [activeTab, setActiveTab] = useState<"recipes" | "planning">(
     initialTab,
   );
@@ -57,12 +53,6 @@ export function DashboardClient({
 
   const { isOpen, formData, updateField, openModal, handleCancel, handleSave } =
     useRecipeModal();
-
-  // Sync server user to client store (UI only, not for auth)
-  // This ensures the Zustand store is updated with the server-validated user
-  useEffect(() => {
-    setUser(user);
-  }, [user, setUser]);
 
   return (
     <div className="flex min-h-screen flex-col">

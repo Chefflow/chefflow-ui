@@ -18,7 +18,7 @@ import { Link } from "@/i18n/routing";
 export function Navbar() {
   const pathname = usePathname();
   const t = useTranslations("navbar");
-  const isHomePage = pathname === "/" || pathname.match(/^\/[a-z]{2}$/);
+  const _isHomePage = pathname === "/" || pathname.match(/^\/[a-z]{2}$/);
 
   const isAuthenticated = false;
 

@@ -9,7 +9,7 @@ import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link } from "@/i18n/routing";
-import { type SignupInput, signupSchema } from "@/lib/validation/auth.schema";
+import { type SignupInput, signupSchema } from "@/lib/validations/auth.schema";
 
 export default function SignupPage() {
   const t = useTranslations("signup");
@@ -56,7 +56,7 @@ export default function SignupPage() {
                   label={t("username")}
                   icon={User}
                   type="text"
-                  placeholder="username"
+                  placeholder={t("usernamePlaceholder") || "username"}
                   error={form.formState.errors.username?.message}
                   required
                   value={field.value}
@@ -76,7 +76,7 @@ export default function SignupPage() {
                   label={t("name")}
                   icon={User}
                   type="text"
-                  placeholder="John Doe"
+                  placeholder={t("namePlaceholder") || "John Doe"}
                   error={form.formState.errors.name?.message}
                   required
                   value={field.value}
@@ -96,7 +96,7 @@ export default function SignupPage() {
                   label={t("email")}
                   icon={Mail}
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder={t("email")}
                   error={form.formState.errors.email?.message}
                   required
                   value={field.value}
@@ -114,7 +114,7 @@ export default function SignupPage() {
                 <PasswordInputField
                   id="password"
                   label={t("password")}
-                  placeholder="••••••••"
+                  placeholder={t("passwordHint") || "••••••••"}
                   error={form.formState.errors.password?.message}
                   showPassword={passwordVisibility.showPassword}
                   onToggleVisibility={passwordVisibility.toggleVisibility}
@@ -134,7 +134,7 @@ export default function SignupPage() {
                 <PasswordInputField
                   id="confirmPassword"
                   label={t("confirmPassword")}
-                  placeholder="••••••••"
+                  placeholder={t("confirmPassword")}
                   error={form.formState.errors.confirmPassword?.message}
                   showPassword={passwordVisibility.showPassword}
                   onToggleVisibility={passwordVisibility.toggleVisibility}
@@ -151,7 +151,7 @@ export default function SignupPage() {
               type="submit"
               className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
             >
-              {t("signUp")}
+              {t("createAccount")}
             </button>
           </form>
 
