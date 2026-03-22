@@ -3,7 +3,6 @@
  * Based on API documentation and authentication specs
  */
 
-
 export interface ApiError {
   message: string[];
   error: string;
@@ -14,7 +13,6 @@ export interface ApiResponse<T = any> {
   data?: T;
   error?: ApiError;
 }
-
 
 export interface ApiUser {
   id: string;
@@ -47,7 +45,6 @@ export interface UpdateProfileRequest {
   image?: string;
 }
 
-
 export interface Recipe {
   id: string;
   title: string;
@@ -55,7 +52,7 @@ export interface Recipe {
   servings: number;
   prepTime: number;
   cookTime?: number;
-  difficulty?: 'EASY' | 'MEDIUM' | 'HARD';
+  difficulty?: "EASY" | "MEDIUM" | "HARD";
   image?: string;
   authorId: string;
   author: ApiUser;
@@ -82,17 +79,17 @@ export interface RecipeStep {
   order: number;
 }
 
-export type IngredientUnit = 
-  | 'GRAM'
-  | 'KILOGRAM'
-  | 'MILLILITER'
-  | 'LITER'
-  | 'TEASPOON'
-  | 'TABLESPOON'
-  | 'CUP'
-  | 'UNIT'
-  | 'PINCH'
-  | 'TO_TASTE';
+export type IngredientUnit =
+  | "GRAM"
+  | "KILOGRAM"
+  | "MILLILITER"
+  | "LITER"
+  | "TEASPOON"
+  | "TABLESPOON"
+  | "CUP"
+  | "UNIT"
+  | "PINCH"
+  | "TO_TASTE";
 
 export interface CreateRecipeRequest {
   title: string;
@@ -100,10 +97,10 @@ export interface CreateRecipeRequest {
   servings: number;
   prepTime: number;
   cookTime?: number;
-  difficulty?: 'EASY' | 'MEDIUM' | 'HARD';
+  difficulty?: "EASY" | "MEDIUM" | "HARD";
   image?: string;
-  ingredients: Omit<RecipeIngredient, 'id' | 'recipeId'>[];
-  steps: Omit<RecipeStep, 'id' | 'recipeId'>[];
+  ingredients: Omit<RecipeIngredient, "id" | "recipeId">[];
+  steps: Omit<RecipeStep, "id" | "recipeId">[];
 }
 
 export interface AddIngredientRequest {
@@ -121,7 +118,7 @@ export interface CsrfTokenResponse {
   csrfToken: string;
 }
 
-export type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT';
+export type HttpMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
 export interface QueryConfig {
   staleTime: number;

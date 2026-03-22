@@ -3,35 +3,35 @@
  * Handles login, register, profile, and logout operations
  */
 
-import { baseClient } from './base-client';
-import {
+import { baseClient } from "./base-client";
+import type {
   ApiUser,
+  AuthResponse,
+  CsrfTokenResponse,
   LoginRequest,
   RegisterRequest,
-  AuthResponse,
   UpdateProfileRequest,
-  CsrfTokenResponse
-} from './interface';
+} from "./interface";
 
 class AuthClient {
   async register(data: RegisterRequest) {
-    return baseClient.post<AuthResponse>('/auth/register', data);
+    return baseClient.post<AuthResponse>("/auth/register", data);
   }
 
   async login(data: LoginRequest) {
-    return baseClient.post<AuthResponse>('/auth/login', data);
+    return baseClient.post<AuthResponse>("/auth/login", data);
   }
 
   async getProfile() {
-    return baseClient.get<ApiUser>('/users/me');
+    return baseClient.get<ApiUser>("/users/me");
   }
 
   async logout() {
-    return baseClient.post<void>('/auth/logout');
+    return baseClient.post<void>("/auth/logout");
   }
 
   async getCsrfToken() {
-    return baseClient.get<CsrfTokenResponse>('/auth/csrf');
+    return baseClient.get<CsrfTokenResponse>("/auth/csrf");
   }
 
   async updateProfile(username: string, data: UpdateProfileRequest) {
