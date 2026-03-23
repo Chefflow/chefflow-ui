@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { authClient } from "@/lib/api/auth-client";
-import type { ApiUser, AuthResponse, RegisterRequest } from "@/lib/api/interface";
+import type {
+  ApiUser,
+  AuthResponse,
+  RegisterRequest,
+} from "@/lib/api/interface";
 import { hashPassword } from "@/lib/crypto/hash-password.client";
 
 interface UseSignupOptions {
