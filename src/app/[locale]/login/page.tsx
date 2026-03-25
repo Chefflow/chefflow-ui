@@ -2,27 +2,31 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { PasswordInputField } from "@/components/auth/password-input-field";
 import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useLogin } from "@/hooks/use-login";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
+import { useLogin } from "@/hooks/use-login";
 import { Link } from "@/i18n/routing";
 import { type LoginInput, loginSchema } from "@/lib/validations/auth.schema";
+import { getRedirectUrl } from "@/lib/auth/redirect";
 
 export default function LoginPage() {
   const t = useTranslations("login");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const passwordVisibility = usePasswordVisibility();
+
+  const redirectTo = getRedirectUrl(searchParams);
 
   const { login, isLoading } = useLogin({
     onSuccess: (user) => {
       toast.success(t("successMessage", { name: user.name }));
-      router.push("/dashboard");
+      router.push(redirectTo);
     },
     onError: (error) => {
       toast.error(error);

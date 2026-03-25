@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, User } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -15,16 +15,20 @@ import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useSignup } from "@/hooks/use-signup";
 import { Link } from "@/i18n/routing";
 import { type SignupInput, signupSchema } from "@/lib/validations/auth.schema";
+import { getRedirectUrl } from "@/lib/auth/redirect";
 
 export default function SignupPage() {
   const t = useTranslations("signup");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const passwordVisibility = usePasswordVisibility();
+
+  const redirectTo = getRedirectUrl(searchParams);
 
   const { signup, isLoading } = useSignup({
     onSuccess: (user) => {
       toast.success(t("successMessage", { name: user.name }));
-      router.push("/dashboard");
+      router.push(redirectTo);
     },
     onError: (error) => {
       toast.error(error);
