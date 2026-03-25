@@ -2,14 +2,14 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, User } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { PasswordInputField } from "@/components/auth/password-input-field";
-import { TextInputField } from "@/components/auth/text-input-field";
-import { TermsCheckbox } from "@/components/auth/terms-checkbox";
 import { PasswordStrengthMeter } from "@/components/auth/password-strength-meter";
+import { TermsCheckbox } from "@/components/auth/terms-checkbox";
+import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useSignup } from "@/hooks/use-signup";

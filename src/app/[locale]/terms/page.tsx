@@ -15,9 +15,7 @@ export default function TermsPage() {
             <h1 className="text-3xl font-bold tracking-tight text-foreground">
               {t("title")}
             </h1>
-            <p className="text-sm text-muted-foreground">
-              {t("lastUpdated")}
-            </p>
+            <p className="text-sm text-muted-foreground">{t("lastUpdated")}</p>
           </CardHeader>
 
           <CardContent className="space-y-8 pb-8">
@@ -118,10 +116,7 @@ export default function TermsPage() {
         </Card>
 
         <div className="mt-8 text-center">
-          <Link
-            href="/signup"
-            className="text-primary hover:underline text-sm"
-          >
+          <Link href="/signup" className="text-primary hover:underline text-sm">
             ← {t("backToSignup")}
           </Link>
         </div>
