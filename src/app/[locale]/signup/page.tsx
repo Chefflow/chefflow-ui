@@ -14,8 +14,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useSignup } from "@/hooks/use-signup";
 import { Link } from "@/i18n/routing";
-import { type SignupInput, signupSchema } from "@/lib/validations/auth.schema";
 import { getRedirectUrl } from "@/lib/auth/redirect";
+import { type SignupInput, signupSchema } from "@/lib/validations/auth.schema";
 
 export default function SignupPage() {
   const t = useTranslations("signup");

@@ -9,11 +9,11 @@ import { toast } from "sonner";
 import { PasswordInputField } from "@/components/auth/password-input-field";
 import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { useLogin } from "@/hooks/use-login";
+import { usePasswordVisibility } from "@/hooks/use-password-visibility";
 import { Link } from "@/i18n/routing";
-import { type LoginInput, loginSchema } from "@/lib/validations/auth.schema";
 import { getRedirectUrl } from "@/lib/auth/redirect";
+import { type LoginInput, loginSchema } from "@/lib/validations/auth.schema";
 
 export default function LoginPage() {
   const t = useTranslations("login");
