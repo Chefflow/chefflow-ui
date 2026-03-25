@@ -132,11 +132,13 @@
     "passwordHint": "Mindestens 8 Zeichen mit Groß-, Kleinbuchstaben und Zahlen",
     "confirmPassword": "Passwort bestätigen",
     "acceptThe": "Ich akzeptiere die",
-    "termsAndConditions": "Allgemeinen Geschäftsbedingungen",
+    "termsAndConditions": "Geschäftsbedingungen",
     "createAccount": "Konto erstellen",
+    "creatingAccount": "Konto wird erstellt...",
+    "successMessage": "Willkommen bei ChefFlow, {name}!",
     "or": "ODER",
     "continueWithGoogle": "Mit Google fortfahren",
-    "haveAccount": "Sie haben bereits ein Konto?",
+    "haveAccount": "Haben Sie bereits ein Konto?",
     "signIn": "Anmelden",
     "errors": {
       "usernameNoSpaces": "Der Benutzername darf keine Leerzeichen enthalten",
@@ -157,24 +159,67 @@
   },
   "metadata": {
     "home": {
-      "title": "Ihr Persönlicher Rezept-Manager",
-      "description": "Organisieren Sie Rezepte, planen Sie Mahlzeiten und kochen Sie mit Zuversicht. ChefFlow macht Mahlzeitenplanung mühelos.",
-      "keywords": "Rezept-Manager, Mahlzeitenplanung, Koch-App, Rezept-Organizer"
+      "title": "Ihr persönlicher Rezeptmanager",
+      "description": "Organisieren Sie Rezepte, planen Sie Mahlzeiten und kochen Sie mit Zuversicht. ChefFlow macht die Mahlzeitenplanung mühelos.",
+      "keywords": "Rezeptmanager, Mahlzeitenplanung, Koch-App, Rezeptorganisator"
     },
     "login": {
       "title": "Anmelden",
-      "description": "Melden Sie sich an, um auf Ihre Rezepte und Speisepläne zuzugreifen.",
-      "keywords": "Anmeldung, Login, Authentifizierung"
+      "description": "Melden Sie sich an, um auf Ihre Rezepte und Mahlzeitenpläne zuzugreifen.",
+      "keywords": "Anmelden, Login, Authentifizierung"
     },
     "signup": {
       "title": "Konto Erstellen",
-      "description": "Treten Sie ChefFlow bei, um noch heute mit der Organisation Ihrer Rezepte zu beginnen.",
-      "keywords": "Registrierung, Anmeldung, Konto erstellen"
+      "description": "Treten Sie ChefFlow bei, um heute mit der Organisation Ihrer Rezepte zu beginnen.",
+      "keywords": "Registrierung, Konto erstellen, Signup"
     },
     "dashboard": {
       "title": "Dashboard",
-      "description": "Verwalten Sie Ihre Rezepte und Speisepläne an einem Ort.",
+      "description": "Verwalten Sie Ihre Rezepte und Mahlzeitenpläne an einem Ort.",
       "keywords": "Dashboard, Rezepte, Mahlzeitenplanung"
     }
+  },
+  "terms": {
+    "title": "Geschäftsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert: März 2025",
+    "acceptance": {
+      "title": "Annahme der Bedingungen",
+      "content": "Durch die Nutzung von ChefFlow stimmen Sie diesen Geschäftsbedingungen zu. Wenn Sie nicht zustimmen, verwenden Sie bitte unseren Dienst nicht."
+    },
+    "dataUse": {
+      "title": "Wie Wir Ihre Daten Verwenden",
+      "content": "Wir sammeln und verwenden Ihre Daten ausschließlich, um ChefFlow-Dienste bereitzustellen und zu verbessern:",
+      "points": {
+        "personal": "Persönliche Informationen (Name, E-Mail) für die Kontoverwaltung",
+        "recipes": "Ihre Rezepte und Mahlzeitenpläne für die Servicefunktionalität",
+        "planning": "Nutzungsmuster zur Verbesserung der Benutzererfahrung",
+        "improvement": "Zusammengefasste, anonyme Daten für Serviceverbesserungen"
+      },
+      "noCommercial": "Wir werden Ihre persönlichen Daten niemals an Dritte für kommerzielle Zwecke verkaufen, vermieten oder weitergeben."
+    },
+    "dataProtection": {
+      "title": "Datenschutz",
+      "content": "Wir implementieren angemessene Sicherheitsmaßnahmen, um Ihre persönlichen Informationen vor unbefugtem Zugriff, Veränderung, Offenlegung oder Zerstörung zu schützen."
+    },
+    "userRights": {
+      "title": "Ihre Rechte",
+      "content": "Sie haben das Recht, jederzeit auf Ihre persönlichen Daten zuzugreifen, sie zu ändern oder zu löschen. Wenn Sie Ihr Konto und alle zugehörigen Daten löschen möchten, kontaktieren Sie uns bitte unter",
+      "contact": "",
+      "contactSuffix": " und wir werden Ihre Anfrage innerhalb von 30 Tagen bearbeiten."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern, Sie angemeldet zu halten und die Service-Nutzung zu analysieren. Sie können Cookies in Ihren Browsereinstellungen deaktivieren."
+    },
+    "changes": {
+      "title": "Änderungen an den Bedingungen",
+      "content": "Wir können diese Bedingungen gelegentlich aktualisieren. Wir werden Benutzer über wichtige Änderungen per E-Mail oder über unseren Dienst benachrichtigen."
+    },
+    "contact": {
+      "title": "Kontaktieren Sie Uns",
+      "content": "Wenn Sie Fragen zu diesen Bedingungen haben, kontaktieren Sie uns bitte unter"
+    },
+    "backToSignup": "Zurück zur Anmeldung",
+    "footer": "Vielen Dank, dass Sie ChefFlow verwenden!"
   }
 }

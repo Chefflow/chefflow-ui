@@ -134,6 +134,8 @@
     "acceptThe": "Acepto los",
     "termsAndConditions": "Términos y Condiciones",
     "createAccount": "Crear cuenta",
+    "creatingAccount": "Creando cuenta...",
+    "successMessage": "¡Bienvenido a ChefFlow, {name}!",
     "or": "O",
     "continueWithGoogle": "Continuar con Google",
     "haveAccount": "¿Ya tienes una cuenta?",
@@ -157,24 +159,67 @@
   },
   "metadata": {
     "home": {
-      "title": "Tu Gestor Personal de Recetas",
-      "description": "Organiza recetas, planifica comidas y cocina con confianza. ChefFlow hace que la planificación de comidas sea sencilla.",
-      "keywords": "gestor de recetas, planificación de comidas, aplicación de cocina, organizador de recetas"
+      "title": "Tu Gestor de Recetas Personal",
+      "description": "Organiza recetas, planifica comidas y cocina con confianza. ChefFlow hace que la planificación de comidas sea fácil.",
+      "keywords": "gestor de recetas, planificación de comidas, app de cocina, organizador de recetas"
     },
     "login": {
       "title": "Iniciar Sesión",
       "description": "Inicia sesión para acceder a tus recetas y planes de comidas.",
-      "keywords": "inicio de sesión, autenticación"
+      "keywords": "iniciar sesión, login, autenticación"
     },
     "signup": {
       "title": "Crear Cuenta",
       "description": "Únete a ChefFlow para comenzar a organizar tus recetas hoy.",
-      "keywords": "registro, crear cuenta"
+      "keywords": "registro, crear cuenta, sign up"
     },
     "dashboard": {
       "title": "Panel de Control",
       "description": "Gestiona tus recetas y planes de comidas en un solo lugar.",
-      "keywords": "panel de control, recetas, planificación de comidas"
+      "keywords": "dashboard, recetas, planificación de comidas"
     }
+  },
+  "terms": {
+    "title": "Términos y Condiciones",
+    "lastUpdated": "Última actualización: Marzo 2026",
+    "acceptance": {
+      "title": "Aceptación de los Términos",
+      "content": "Al usar ChefFlow, aceptas estos términos y condiciones. Si no estás de acuerdo, por favor no uses nuestro servicio."
+    },
+    "dataUse": {
+      "title": "Cómo Usamos Tus Datos",
+      "content": "Recopilamos y usamos tus datos únicamente para proporcionar y mejorar los servicios de ChefFlow:",
+      "points": {
+        "personal": "Información personal (nombre, email) para la gestión de la cuenta",
+        "recipes": "Tus recetas y planes de comidas para la funcionalidad del servicio",
+        "planning": "Patrones de uso para mejorar la experiencia del usuario",
+        "improvement": "Datos agregados y anónimos para mejoras del servicio"
+      },
+      "noCommercial": "Nunca venderemos, alquilaremos ni compartiremos tus datos personales con terceros para fines comerciales."
+    },
+    "dataProtection": {
+      "title": "Protección de Datos",
+      "content": "Implementamos medidas de seguridad apropiadas para proteger tu información personal contra acceso no autorizado, alteración, divulgación o destrucción."
+    },
+    "userRights": {
+      "title": "Tus Derechos",
+      "content": "Tienes derecho a acceder, modificar o eliminar tus datos personales en cualquier momento. Si deseas eliminar tu cuenta y todos los datos asociados, por favor contáctanos en",
+      "contact": "",
+      "contactSuffix": " y procesaremos tu solicitud dentro de 30 días."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Usamos cookies para mejorar tu experiencia, mantener tu sesión activa y analizar el uso del servicio. Puedes desactivar las cookies en la configuración de tu navegador."
+    },
+    "changes": {
+      "title": "Cambios en los Términos",
+      "content": "Podemos actualizar estos términos ocasionalmente. Notificaremos a los usuarios cambios importantes por correo electrónico o a través de nuestro servicio."
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "content": "Si tienes preguntas sobre estos términos, por favor contáctanos en"
+    },
+    "backToSignup": "Volver al registro",
+    "footer": "¡Gracias por usar ChefFlow!"
   }
 }

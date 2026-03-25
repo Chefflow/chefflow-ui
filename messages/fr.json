@@ -132,8 +132,10 @@
     "passwordHint": "Au moins 8 caractères avec majuscules, minuscules et chiffres",
     "confirmPassword": "Confirmer le mot de passe",
     "acceptThe": "J'accepte les",
-    "termsAndConditions": "Conditions Générales",
+    "termsAndConditions": "Termes & Conditions",
     "createAccount": "Créer un compte",
+    "creatingAccount": "Création du compte...",
+    "successMessage": "Bienvenue chez ChefFlow, {name}!",
     "or": "OU",
     "continueWithGoogle": "Continuer avec Google",
     "haveAccount": "Vous avez déjà un compte?",
@@ -157,9 +159,9 @@
   },
   "metadata": {
     "home": {
-      "title": "Votre Gestionnaire Personnel de Recettes",
-      "description": "Organisez vos recettes, planifiez vos repas et cuisinez en toute confiance. ChefFlow facilite la planification des repas.",
-      "keywords": "gestionnaire de recettes, planification de repas, application cuisine, organisateur de recettes"
+      "title": "Votre Gestionnaire de Recettes Personnel",
+      "description": "Organisez des recettes, planifiez des repas et cuisinez avec confiance. ChefFlow rend la planification des repas sans effort.",
+      "keywords": "gestionnaire de recettes, planification des repas, application de cuisine, organisateur de recettes"
     },
     "login": {
       "title": "Se Connecter",
@@ -168,13 +170,56 @@
     },
     "signup": {
       "title": "Créer un Compte",
-      "description": "Rejoignez ChefFlow pour commencer à organiser vos recettes dès aujourd'hui.",
-      "keywords": "inscription, s'inscrire, créer un compte"
+      "description": "Rejoignez ChefFlow pour commencer à organiser vos recettes aujourd'hui.",
+      "keywords": "inscription, créer un compte, signup"
     },
     "dashboard": {
       "title": "Tableau de Bord",
       "description": "Gérez vos recettes et plans de repas en un seul endroit.",
-      "keywords": "tableau de bord, recettes, planification de repas"
+      "keywords": "tableau de bord, recettes, planification des repas"
     }
+  },
+  "terms": {
+    "title": "Termes & Conditions",
+    "lastUpdated": "Dernière mise à jour : Mars 2025",
+    "acceptance": {
+      "title": "Acceptation des Termes",
+      "content": "En utilisant ChefFlow, vous acceptez ces termes et conditions. Si vous n'êtes pas d'accord, veuillez ne pas utiliser notre service."
+    },
+    "dataUse": {
+      "title": "Comment Nous Utilisons Vos Données",
+      "content": "Nous collectons et utilisons vos données uniquement pour fournir et améliorer les services ChefFlow :",
+      "points": {
+        "personal": "Informations personnelles (nom, email) pour la gestion du compte",
+        "recipes": "Vos recettes et plans de repas pour la fonctionnalité du service",
+        "planning": "Modèles d'utilisation pour améliorer l'expérience utilisateur",
+        "improvement": "Données agrégées et anonymes pour les améliorations du service"
+      },
+      "noCommercial": "Nous ne vendrons, ne louerons ni ne partagerons jamais vos données personnelles avec des tiers à des fins commerciales."
+    },
+    "dataProtection": {
+      "title": "Protection des Données",
+      "content": "Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos informations personnelles contre l'accès non autorisé, la modification, la divulgation ou la destruction."
+    },
+    "userRights": {
+      "title": "Vos Droits",
+      "content": "Vous avez le droit d'accéder, modifier ou supprimer vos données personnelles à tout moment. Si vous souhaitez supprimer votre compte et toutes les données associées, veuillez nous contacter à",
+      "contact": "",
+      "contactSuffix": " et nous traiterons votre demande dans les 30 jours."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Nous utilisons des cookies pour améliorer votre expérience, maintenir votre connexion et analyser l'utilisation du service. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur."
+    },
+    "changes": {
+      "title": "Changements aux Termes",
+      "content": "Nous pouvons occasionnellement mettre à jour ces termes. Nous notifierons les utilisateurs des changements importants par email ou via notre service."
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "content": "Si vous avez des questions sur ces termes, veuillez nous contacter à"
+    },
+    "backToSignup": "Retour à l'inscription",
+    "footer": "Merci d'utiliser ChefFlow !"
   }
 }

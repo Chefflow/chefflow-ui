@@ -3,17 +3,33 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, User } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { PasswordInputField } from "@/components/auth/password-input-field";
 import { TextInputField } from "@/components/auth/text-input-field";
+import { TermsCheckbox } from "@/components/auth/terms-checkbox";
+import { PasswordStrengthMeter } from "@/components/auth/password-strength-meter";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
+import { useSignup } from "@/hooks/use-signup";
 import { Link } from "@/i18n/routing";
 import { type SignupInput, signupSchema } from "@/lib/validations/auth.schema";
 
 export default function SignupPage() {
   const t = useTranslations("signup");
+  const router = useRouter();
   const passwordVisibility = usePasswordVisibility();
+
+  const { signup, isLoading } = useSignup({
+    onSuccess: (user) => {
+      toast.success(t("successMessage", { name: user.name }));
+      router.push("/dashboard");
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
 
   const form = useForm<SignupInput>({
     resolver: zodResolver(signupSchema),
@@ -29,7 +45,7 @@ export default function SignupPage() {
   });
 
   const handleSubmit = (data: SignupInput) => {
-    console.log("Signup data:", data);
+    signup(data);
   };
 
   return (
@@ -111,19 +127,22 @@ export default function SignupPage() {
               name="password"
               control={form.control}
               render={({ field }) => (
-                <PasswordInputField
-                  id="password"
-                  label={t("password")}
-                  placeholder={t("passwordHint") || "••••••••"}
-                  error={form.formState.errors.password?.message}
-                  showPassword={passwordVisibility.showPassword}
-                  onToggleVisibility={passwordVisibility.toggleVisibility}
-                  required
-                  value={field.value}
-                  onChange={field.onChange}
-                  onBlur={field.onBlur}
-                  name={field.name}
-                />
+                <div className="space-y-2">
+                  <PasswordInputField
+                    id="password"
+                    label={t("password")}
+                    placeholder={t("passwordHint") || "••••••••"}
+                    error={form.formState.errors.password?.message}
+                    showPassword={passwordVisibility.showPassword}
+                    onToggleVisibility={passwordVisibility.toggleVisibility}
+                    required
+                    value={field.value}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                  />
+                  <PasswordStrengthMeter password={field.value} />
+                </div>
               )}
             />
 
@@ -147,11 +166,33 @@ export default function SignupPage() {
               )}
             />
 
+            <Controller
+              name="acceptTerms"
+              control={form.control}
+              render={({ field }) => (
+                <TermsCheckbox
+                  id="acceptTerms"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                >
+                  {t("acceptThe")}{" "}
+                  <Link
+                    href="/terms"
+                    className="text-primary hover:underline"
+                    target="_blank"
+                  >
+                    {t("termsAndConditions")}
+                  </Link>
+                </TermsCheckbox>
+              )}
+            />
+
             <button
               type="submit"
+              disabled={isLoading}
               className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
             >
-              {t("createAccount")}
+              {isLoading ? t("creatingAccount") : t("createAccount")}
             </button>
           </form>
 
