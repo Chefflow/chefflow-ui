@@ -14,7 +14,9 @@
   },
   "navbar": {
     "login": "Anmelden",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "dashboard": "Dashboard",
+    "logoutSuccess": "Erfolgreich abgemeldet"
   },
   "dashboard": {
     "tabs": {

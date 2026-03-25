@@ -14,7 +14,9 @@
   },
   "navbar": {
     "login": "Se connecter",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "dashboard": "Tableau de bord",
+    "logoutSuccess": "Déconnexion réussie"
   },
   "dashboard": {
     "tabs": {

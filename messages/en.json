@@ -14,7 +14,9 @@
   },
   "navbar": {
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "logoutSuccess": "Logged out successfully"
   },
   "dashboard": {
     "tabs": {

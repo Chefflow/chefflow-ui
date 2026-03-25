@@ -1,7 +1,6 @@
 "use client";
 
 import { ChefHat, LogOut, User as UserIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import LanguageSelector from "@/components/LanguageSelector";
 import { Button } from "@/components/ui/button";
@@ -13,14 +12,39 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/hooks/use-auth";
+import { useLogout } from "@/hooks/use-logout";
 import { Link } from "@/i18n/routing";
+import { toast } from "sonner";
 
 export function Navbar() {
-  const pathname = usePathname();
   const t = useTranslations("navbar");
-  const _isHomePage = pathname === "/" || pathname.match(/^\/[a-z]{2}$/);
 
-  const isAuthenticated = false;
+  const { user, isLoading } = useAuth();
+  const { logout } = useLogout({
+    onSuccess: () => {
+      toast.success(t("logoutSuccess"));
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
+
+  const isAuthenticated = !!user;
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const getUserInitials = (name?: string | null) => {
+    if (!name) return "U";
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -37,37 +61,46 @@ export function Navbar() {
           </Link>
 
           <div className="flex items-center gap-4">
-            {!isAuthenticated && (
+            {!isLoading && !isAuthenticated && (
               <Button asChild variant="outline" size="sm">
                 <Link href="/login">{t("login")}</Link>
               </Button>
             )}
 
-            {isAuthenticated && (
+            {isAuthenticated && user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="gap-2">
-                    <UserIcon className="h-4 w-4" />
-                    <span className="hidden sm:inline">User</span>
+                  <Button variant="ghost" size="sm" className="gap-2 h-10 px-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                      {getUserInitials(user.name)}
+                    </div>
+                    <span className="hidden sm:inline">
+                      {user.name || user.username}
+                    </span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium">User Name</p>
+                      <p className="text-sm font-medium">
+                        {user.name || user.username}
+                      </p>
                       <p className="text-xs text-muted-foreground">
-                        user@example.com
+                        {user.email}
                       </p>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard" className="cursor-pointer">
-                      Dashboard
+                      {t("dashboard")}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="cursor-pointer"
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>{t("logout")}</span>
                   </DropdownMenuItem>

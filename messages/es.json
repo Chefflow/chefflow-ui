@@ -14,7 +14,9 @@
   },
   "navbar": {
     "login": "Iniciar sesión",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "dashboard": "Panel de control",
+    "logoutSuccess": "Sesión cerrada correctamente"
   },
   "dashboard": {
     "tabs": {

@@ -14,7 +14,9 @@
   },
   "navbar": {
     "login": "Accedi",
-    "logout": "Esci"
+    "logout": "Esci",
+    "dashboard": "Dashboard",
+    "logoutSuccess": "Disconnessione riuscita"
   },
   "dashboard": {
     "tabs": {
