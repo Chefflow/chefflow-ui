@@ -2,6 +2,7 @@
 
 import { ChefHat, LogOut, User as UserIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import LanguageSelector from "@/components/LanguageSelector";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +16,6 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 import { useLogout } from "@/hooks/use-logout";
 import { Link } from "@/i18n/routing";
-import { toast } from "sonner";
 
 export function Navbar() {
   const t = useTranslations("navbar");
