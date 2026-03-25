@@ -3,17 +3,31 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { PasswordInputField } from "@/components/auth/password-input-field";
 import { TextInputField } from "@/components/auth/text-input-field";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { usePasswordVisibility } from "@/hooks/use-password-visibility";
+import { useLogin } from "@/hooks/use-login";
 import { Link } from "@/i18n/routing";
 import { type LoginInput, loginSchema } from "@/lib/validations/auth.schema";
 
 export default function LoginPage() {
   const t = useTranslations("login");
+  const router = useRouter();
   const passwordVisibility = usePasswordVisibility();
+
+  const { login, isLoading } = useLogin({
+    onSuccess: (user) => {
+      toast.success(t("successMessage", { name: user.name }));
+      router.push("/dashboard");
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
 
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
@@ -25,7 +39,7 @@ export default function LoginPage() {
   });
 
   const handleSubmit = (data: LoginInput) => {
-    console.log("Login data:", data);
+    login(data);
   };
 
   return (
@@ -85,9 +99,10 @@ export default function LoginPage() {
 
             <button
               type="submit"
+              disabled={isLoading}
               className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
             >
-              {t("signIn")}
+              {isLoading ? t("signingIn") : t("signIn")}
             </button>
           </form>
 

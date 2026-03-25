@@ -113,6 +113,8 @@
     "password": "Mot de passe",
     "forgotPassword": "Mot de passe oublié?",
     "signIn": "Se connecter",
+    "signingIn": "Connexion...",
+    "successMessage": "Content de vous revoir, {name}!",
     "or": "OU",
     "continueWithGoogle": "Continuer avec Google",
     "noAccount": "Vous n'avez pas de compte?",

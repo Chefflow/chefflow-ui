@@ -113,6 +113,8 @@
     "password": "Passwort",
     "forgotPassword": "Passwort vergessen?",
     "signIn": "Anmelden",
+    "signingIn": "Anmelden...",
+    "successMessage": "Willkommen zurück, {name}!",
     "or": "ODER",
     "continueWithGoogle": "Mit Google fortfahren",
     "noAccount": "Sie haben noch kein Konto?",

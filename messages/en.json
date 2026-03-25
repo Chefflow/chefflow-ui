@@ -113,6 +113,8 @@
     "password": "Password",
     "forgotPassword": "Forgot password?",
     "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "successMessage": "Welcome back, {name}!",
     "or": "OR",
     "continueWithGoogle": "Continue with Google",
     "noAccount": "Don't have an account?",
