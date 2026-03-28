@@ -110,6 +110,12 @@ export interface CreateStepRequest {
   duration?: number;
 }
 
+export interface UpdateRecipeRequest {
+  title?: string;
+  servings?: number;
+  prepTime?: number;
+}
+
 export interface CsrfTokenResponse {
   csrfToken: string;
 }

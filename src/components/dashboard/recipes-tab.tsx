@@ -2,7 +2,6 @@
 
 import { ChefHat, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { toast } from "sonner";
 import { RecipeCard } from "@/components/dashboard/recipe-card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,6 +11,7 @@ import type { Recipe } from "@/lib/api/interface";
 interface RecipesTabProps {
   onOpenCreateModal: () => void;
   onOpenEditModal: (recipe: Recipe) => void;
+  onDeleteRecipe: (recipe: Recipe) => void;
 }
 
 const RecipeCardSkeleton = () => (
@@ -31,6 +31,7 @@ const RecipeCardSkeleton = () => (
 export const RecipesTab = ({
   onOpenCreateModal,
   onOpenEditModal,
+  onDeleteRecipe,
 }: RecipesTabProps) => {
   const t = useTranslations("dashboard");
   const { recipes, isLoading, error, refetch } = useRecipes();
@@ -101,7 +102,7 @@ export const RecipesTab = ({
               key={recipe.id}
               recipe={recipe}
               onEdit={onOpenEditModal}
-              onDelete={() => toast.error("Delete not yet supported")}
+              onDelete={onDeleteRecipe}
             />
           ))}
         </div>

@@ -2,7 +2,10 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import type { CreateRecipeRequest } from "@/lib/api/interface";
+import type {
+  CreateRecipeRequest,
+  UpdateRecipeRequest,
+} from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
 
 export const RECIPE_KEYS = {
@@ -58,6 +61,42 @@ export const useCreateRecipe = () => {
     },
     onError: () => {
       toast.error("Failed to create recipe");
+    },
+  });
+};
+
+export const useDeleteRecipe = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => recipeClient.deleteRecipe(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: RECIPE_KEYS.all });
+      toast.success("Recipe deleted");
+    },
+    onError: () => {
+      toast.error("Failed to delete recipe");
+    },
+  });
+};
+
+export const useUpdateRecipe = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: UpdateRecipeRequest }) =>
+      recipeClient.updateRecipe(id, data),
+    onSuccess: (response, { id }) => {
+      if (response.error) {
+        toast.error(response.error.message[0] ?? "Failed to update recipe");
+        return;
+      }
+      queryClient.invalidateQueries({ queryKey: RECIPE_KEYS.all });
+      queryClient.invalidateQueries({ queryKey: RECIPE_KEYS.detail(id) });
+      toast.success("Recipe updated");
+    },
+    onError: () => {
+      toast.error("Failed to update recipe");
     },
   });
 };

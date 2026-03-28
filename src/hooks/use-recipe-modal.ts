@@ -3,8 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useCreateRecipe } from "@/hooks/use-recipes";
+import { useCreateRecipe, useUpdateRecipe } from "@/hooks/use-recipes";
 import type { Recipe } from "@/lib/api/interface";
+import { recipeClient } from "@/lib/api/recipe-client";
 import {
   type RecipeFormValues,
   recipeFormSchema,
@@ -24,6 +25,7 @@ export const useRecipeModal = () => {
   const [editingRecipe, setEditingRecipe] = useState<Recipe | null>(null);
 
   const createRecipe = useCreateRecipe();
+  const updateRecipe = useUpdateRecipe();
 
   const form = useForm<RecipeFormValues>({
     resolver: zodResolver(recipeFormSchema),
@@ -47,24 +49,41 @@ export const useRecipeModal = () => {
     setIsOpen(true);
   };
 
-  const openEditModal = (recipe: Recipe): void => {
+  const openEditModal = async (recipe: Recipe): Promise<void> => {
+    // Reset with list data immediately so title/servings/prepTime are
+    // pre-filled before the modal mounts — avoids RHF timing issues.
     form.reset({
       title: recipe.title,
       servings: recipe.servings,
       prepTime: recipe.prepTime,
-      ingredients: recipe.ingredients.map((ing) => ({
-        ingredientName: ing.ingredientName,
-        quantity: ing.quantity,
-        unit: ing.unit,
-      })),
-      steps: recipe.steps.map((step) => ({
-        instruction: step.instruction,
-        duration: step.duration,
-      })),
+      ingredients: [],
+      steps: [],
     });
     setEditingRecipe(recipe);
     setMode("edit");
     setIsOpen(true);
+
+    // Fetch full recipe to populate ingredients and steps asynchronously.
+    const response = await recipeClient.getRecipe(recipe.id);
+    if (response.data) {
+      const full = response.data;
+      setEditingRecipe(full);
+      form.setValue(
+        "ingredients",
+        (full.ingredients ?? []).map((ing) => ({
+          ingredientName: ing.ingredientName,
+          quantity: ing.quantity,
+          unit: ing.unit,
+        })),
+      );
+      form.setValue(
+        "steps",
+        (full.steps ?? []).map((step) => ({
+          instruction: step.instruction,
+          duration: step.duration,
+        })),
+      );
+    }
   };
 
   const closeModal = (): void => {
@@ -74,22 +93,42 @@ export const useRecipeModal = () => {
   };
 
   const onSubmit = async (data: RecipeFormValues): Promise<void> => {
-    createRecipe.mutate(
-      {
-        title: data.title,
-        servings: data.servings,
-        prepTime: data.prepTime,
-        ingredients: data.ingredients,
-        steps: data.steps,
-      },
-      {
-        onSuccess: (response) => {
-          if (!response.error) {
-            closeModal();
-          }
+    if (mode === "edit" && editingRecipe) {
+      updateRecipe.mutate(
+        {
+          id: editingRecipe.id,
+          data: {
+            title: data.title,
+            servings: data.servings,
+            prepTime: data.prepTime,
+          },
         },
-      },
-    );
+        {
+          onSuccess: (response) => {
+            if (!response.error) {
+              closeModal();
+            }
+          },
+        },
+      );
+    } else {
+      createRecipe.mutate(
+        {
+          title: data.title,
+          servings: data.servings,
+          prepTime: data.prepTime,
+          ingredients: data.ingredients,
+          steps: data.steps,
+        },
+        {
+          onSuccess: (response) => {
+            if (!response.error) {
+              closeModal();
+            }
+          },
+        },
+      );
+    }
   };
 
   return {
@@ -103,7 +142,7 @@ export const useRecipeModal = () => {
     openEditModal,
     closeModal,
     onSubmit,
-    isPending: createRecipe.isPending,
+    isPending: createRecipe.isPending || updateRecipe.isPending,
   };
 };
 

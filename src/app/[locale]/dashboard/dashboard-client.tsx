@@ -2,10 +2,13 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { DeleteConfirmDialog } from "@/components/dashboard/delete-confirm-dialog";
 import { RecipeModal } from "@/components/dashboard/recipe-modal";
 import { RecipesTab } from "@/components/dashboard/recipes-tab";
 import { TabNavigation } from "@/components/dashboard/tab-navigation";
 import { useRecipeModal } from "@/hooks/use-recipe-modal";
+import { useDeleteRecipe } from "@/hooks/use-recipes";
+import type { Recipe } from "@/lib/api/interface";
 
 const PlanningTab = dynamic(
   () =>
@@ -32,6 +35,7 @@ export function DashboardClient({
   const [activeTab, setActiveTab] = useState<"recipes" | "planning">(
     initialTab,
   );
+  const [recipeToDelete, setRecipeToDelete] = useState<Recipe | null>(null);
 
   const {
     isOpen,
@@ -46,6 +50,8 @@ export function DashboardClient({
     isPending,
   } = useRecipeModal();
 
+  const deleteRecipe = useDeleteRecipe();
+
   return (
     <div className="flex min-h-screen flex-col">
       <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
@@ -56,6 +62,7 @@ export function DashboardClient({
             <RecipesTab
               onOpenCreateModal={openCreateModal}
               onOpenEditModal={openEditModal}
+              onDeleteRecipe={(recipe) => setRecipeToDelete(recipe)}
             />
           ) : (
             <PlanningTab />
@@ -72,6 +79,19 @@ export function DashboardClient({
         onSubmit={onSubmit}
         onClose={closeModal}
         isPending={isPending}
+      />
+
+      <DeleteConfirmDialog
+        recipe={recipeToDelete}
+        onConfirm={() => {
+          if (recipeToDelete) {
+            deleteRecipe.mutate(recipeToDelete.id, {
+              onSuccess: () => setRecipeToDelete(null),
+            });
+          }
+        }}
+        onCancel={() => setRecipeToDelete(null)}
+        isPending={deleteRecipe.isPending}
       />
     </div>
   );

@@ -7,6 +7,7 @@ import type {
   Recipe,
   RecipeIngredient,
   RecipeStep,
+  UpdateRecipeRequest,
 } from "./interface";
 
 class RecipeClient {
@@ -37,6 +38,17 @@ class RecipeClient {
     data: CreateStepRequest,
   ): Promise<ApiResponse<RecipeStep>> {
     return baseClient.post<RecipeStep>(`/recipes/${recipeId}/steps`, data);
+  }
+
+  async updateRecipe(
+    id: string,
+    data: UpdateRecipeRequest,
+  ): Promise<ApiResponse<Recipe>> {
+    return baseClient.patch<Recipe>(`/recipes/${id}`, data);
+  }
+
+  async deleteRecipe(id: string): Promise<ApiResponse<void>> {
+    return baseClient.delete<void>(`/recipes/${id}`);
   }
 }
 

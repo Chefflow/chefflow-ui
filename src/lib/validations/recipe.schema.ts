@@ -36,10 +36,8 @@ export const recipeFormSchema = z.object({
     .min(1, "Servings must be at least 1")
     .max(100, "Servings must be at most 100"),
   prepTime: z.number().min(1, "Prep time must be at least 1 minute"),
-  ingredients: z
-    .array(ingredientSchema)
-    .min(1, "At least one ingredient is required"),
-  steps: z.array(stepSchema).min(1, "At least one step is required"),
+  ingredients: z.array(ingredientSchema),
+  steps: z.array(stepSchema),
 });
 
 export type RecipeFormValues = z.infer<typeof recipeFormSchema>;
