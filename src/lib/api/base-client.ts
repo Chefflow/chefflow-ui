@@ -26,7 +26,11 @@ class BaseClient {
   }
 
   private redirectToLogin(): void {
-    if (typeof window !== "undefined") {
+    if (
+      typeof window !== "undefined" &&
+      !window.location.pathname.includes("/login") &&
+      !window.location.pathname.includes("/signup")
+    ) {
       window.location.href = "/en/login";
     }
   }
