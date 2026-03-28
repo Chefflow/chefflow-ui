@@ -1,6 +1,6 @@
 "use client";
 
-import { ChefHat, LogOut, User as UserIcon } from "lucide-react";
+import { ChefHat, LogOut } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import LanguageSelector from "@/components/LanguageSelector";

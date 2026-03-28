@@ -3,24 +3,38 @@
  * Following ChefFlow UI authentication integration specs
  */
 
-import type {
-  ApiError,
-  ApiResponse,
-  LoginRequest,
-  RegisterRequest,
-  UpdateProfileRequest,
-} from "./interface";
+import type { ApiError, ApiResponse } from "./interface";
 
 class BaseClient {
   private baseUrl: string;
+  private _isRefreshing: boolean = false;
 
   constructor() {
     this.baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
   }
 
+  private async refreshTokens(): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.baseUrl}/auth/refresh`, {
+        method: "POST",
+        credentials: "include",
+      });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  private redirectToLogin(): void {
+    if (typeof window !== "undefined") {
+      window.location.href = "/en/login";
+    }
+  }
+
   private async request<T>(
     endpoint: string,
     options: RequestInit = {},
+    isRetry: boolean = false,
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseUrl}${endpoint}`;
 
@@ -35,6 +49,25 @@ class BaseClient {
 
     try {
       const response = await fetch(url, config);
+
+      if (response.status === 401 && !isRetry && !this._isRefreshing) {
+        this._isRefreshing = true;
+        const refreshed = await this.refreshTokens();
+        this._isRefreshing = false;
+
+        if (refreshed) {
+          return this.request<T>(endpoint, options, true);
+        }
+
+        this.redirectToLogin();
+        return {
+          error: {
+            message: ["Session expired. Please log in again."],
+            error: "Unauthorized",
+            statusCode: 401,
+          },
+        };
+      }
 
       if (response.status === 204) {
         return { data: null as T };
@@ -55,7 +88,7 @@ class BaseClient {
       }
 
       return { data };
-    } catch (error) {
+    } catch (_error) {
       return {
         error: {
           message: ["Network error or server unavailable"],

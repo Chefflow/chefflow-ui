@@ -2,27 +2,10 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { RecipeModal } from "@/components/dashboard/recipe-modal";
 import { RecipesTab } from "@/components/dashboard/recipes-tab";
 import { TabNavigation } from "@/components/dashboard/tab-navigation";
 import { useRecipeModal } from "@/hooks/use-recipe-modal";
-
-// Lazy load heavy components with loading states
-const RecipeModal = dynamic(
-  () =>
-    import("@/components/dashboard/recipe-modal").then((m) => ({
-      default: m.RecipeModal,
-    })),
-  {
-    loading: () => (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <div className="animate-pulse rounded-lg bg-background p-8">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-r-transparent" />
-        </div>
-      </div>
-    ),
-    ssr: false,
-  },
-);
 
 const PlanningTab = dynamic(
   () =>
@@ -49,10 +32,19 @@ export function DashboardClient({
   const [activeTab, setActiveTab] = useState<"recipes" | "planning">(
     initialTab,
   );
-  const hasRecipes = false;
 
-  const { isOpen, formData, updateField, openModal, handleCancel, handleSave } =
-    useRecipeModal();
+  const {
+    isOpen,
+    mode,
+    form,
+    ingredientsField,
+    stepsField,
+    openCreateModal,
+    openEditModal,
+    closeModal,
+    onSubmit,
+    isPending,
+  } = useRecipeModal();
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -61,7 +53,10 @@ export function DashboardClient({
       <div className="flex-1 bg-background">
         <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
           {activeTab === "recipes" ? (
-            <RecipesTab hasRecipes={hasRecipes} onCreateRecipe={openModal} />
+            <RecipesTab
+              onOpenCreateModal={openCreateModal}
+              onOpenEditModal={openEditModal}
+            />
           ) : (
             <PlanningTab />
           )}
@@ -70,10 +65,13 @@ export function DashboardClient({
 
       <RecipeModal
         isOpen={isOpen}
-        formData={formData}
-        onUpdateField={updateField}
-        onCancel={handleCancel}
-        onSave={handleSave}
+        mode={mode}
+        form={form}
+        ingredientsField={ingredientsField}
+        stepsField={stepsField}
+        onSubmit={onSubmit}
+        onClose={closeModal}
+        isPending={isPending}
       />
     </div>
   );

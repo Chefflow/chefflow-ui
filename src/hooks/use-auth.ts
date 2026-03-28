@@ -1,5 +1,4 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useCallback } from "react";
 import { authClient } from "@/lib/api/auth-client";
 import { baseClient } from "@/lib/api/base-client";
 import {

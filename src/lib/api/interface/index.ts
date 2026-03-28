@@ -93,14 +93,10 @@ export type IngredientUnit =
 
 export interface CreateRecipeRequest {
   title: string;
-  description?: string;
   servings: number;
   prepTime: number;
-  cookTime?: number;
-  difficulty?: "EASY" | "MEDIUM" | "HARD";
-  image?: string;
-  ingredients: Omit<RecipeIngredient, "id" | "recipeId">[];
-  steps: Omit<RecipeStep, "id" | "recipeId">[];
+  ingredients: Omit<RecipeIngredient, "id" | "recipeId" | "order">[];
+  steps: Omit<RecipeStep, "id" | "recipeId" | "order">[];
 }
 
 export interface AddIngredientRequest {
