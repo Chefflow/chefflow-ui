@@ -34,16 +34,6 @@ export const RecipeCard = ({ recipe, onEdit, onDelete }: RecipeCardProps) => {
         ) : (
           <ChefHat className="w-12 h-12 text-primary opacity-40" />
         )}
-        {recipe.difficulty && (
-          <span
-            className={cn(
-              "absolute top-2 right-2 text-xs font-medium px-2 py-0.5 rounded-full",
-              difficultyConfig[recipe.difficulty].className,
-            )}
-          >
-            {difficultyConfig[recipe.difficulty].label}
-          </span>
-        )}
       </div>
 
       <CardContent className="flex-1 px-4 pt-3 pb-2">
