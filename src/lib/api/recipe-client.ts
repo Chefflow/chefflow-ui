@@ -50,6 +50,22 @@ class RecipeClient {
   async deleteRecipe(id: string): Promise<ApiResponse<void>> {
     return baseClient.delete<void>(`/recipes/${id}`);
   }
+
+  async deleteIngredient(
+    recipeId: string,
+    ingredientId: string,
+  ): Promise<ApiResponse<void>> {
+    return baseClient.delete<void>(
+      `/recipes/${recipeId}/ingredients/${ingredientId}`,
+    );
+  }
+
+  async deleteStep(
+    recipeId: string,
+    stepId: string,
+  ): Promise<ApiResponse<void>> {
+    return baseClient.delete<void>(`/recipes/${recipeId}/steps/${stepId}`);
+  }
 }
 
 export const recipeClient = new RecipeClient();

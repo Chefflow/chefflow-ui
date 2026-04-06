@@ -135,6 +135,36 @@ export const RecipeModal = ({
                 )}
               </div>
             </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="cookTime">Cook Time (min)</Label>
+              <Input
+                id="cookTime"
+                type="number"
+                min={1}
+                {...register("cookTime", { valueAsNumber: true })}
+              />
+              {errors.cookTime && (
+                <p className="text-destructive text-xs mt-1">
+                  {errors.cookTime.message}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                placeholder="A brief description of the recipe…"
+                className="resize-none min-h-[72px]"
+                {...register("description")}
+              />
+              {errors.description && (
+                <p className="text-destructive text-xs mt-1">
+                  {errors.description.message}
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Ingredients */}

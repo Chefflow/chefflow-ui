@@ -52,7 +52,6 @@ export interface Recipe {
   servings: number;
   prepTime: number;
   cookTime?: number;
-  difficulty?: "EASY" | "MEDIUM" | "HARD";
   image?: string;
   authorId: string;
   author: ApiUser;
@@ -93,8 +92,10 @@ export type IngredientUnit =
 
 export interface CreateRecipeRequest {
   title: string;
+  description?: string;
   servings: number;
   prepTime: number;
+  cookTime?: number;
   ingredients: Omit<RecipeIngredient, "id" | "recipeId" | "order">[];
   steps: Omit<RecipeStep, "id" | "recipeId" | "order">[];
 }
@@ -112,8 +113,10 @@ export interface CreateStepRequest {
 
 export interface UpdateRecipeRequest {
   title?: string;
+  description?: string;
   servings?: number;
   prepTime?: number;
+  cookTime?: number;
 }
 
 export interface CsrfTokenResponse {

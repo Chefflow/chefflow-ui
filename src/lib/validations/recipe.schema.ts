@@ -31,11 +31,16 @@ export const recipeFormSchema = z.object({
     .string()
     .min(1, "Title is required")
     .max(100, "Title must be at most 100 characters"),
+  description: z
+    .string()
+    .max(500, "Description must be at most 500 characters")
+    .optional(),
   servings: z
     .number()
     .min(1, "Servings must be at least 1")
     .max(100, "Servings must be at most 100"),
   prepTime: z.number().min(1, "Prep time must be at least 1 minute"),
+  cookTime: z.number().min(1, "Cook time must be at least 1 minute").optional(),
   ingredients: z.array(ingredientSchema),
   steps: z.array(stepSchema),
 });
