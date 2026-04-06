@@ -107,7 +107,10 @@ export const RecipeCard = ({
         ) : (
           <span />
         )}
-        <fieldset className="flex gap-0.5 border-0 p-0 m-0" aria-label="Recipe actions">
+        <fieldset
+          className="flex gap-0.5 border-0 p-0 m-0"
+          aria-label="Recipe actions"
+        >
           <Button
             variant="ghost"
             size="icon"
