@@ -12,6 +12,7 @@ interface RecipesTabProps {
   onOpenCreateModal: () => void;
   onOpenEditModal: (recipe: Recipe) => void;
   onDeleteRecipe: (recipe: Recipe) => void;
+  onViewRecipe: (recipe: Recipe) => void;
 }
 
 const RecipeCardSkeleton = () => (
@@ -32,6 +33,7 @@ export const RecipesTab = ({
   onOpenCreateModal,
   onOpenEditModal,
   onDeleteRecipe,
+  onViewRecipe,
 }: RecipesTabProps) => {
   const t = useTranslations("dashboard");
   const { recipes, isLoading, error, refetch } = useRecipes();
@@ -103,6 +105,7 @@ export const RecipesTab = ({
               recipe={recipe}
               onEdit={onOpenEditModal}
               onDelete={onDeleteRecipe}
+              onView={onViewRecipe}
             />
           ))}
         </div>

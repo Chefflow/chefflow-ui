@@ -7,8 +7,17 @@ import { RecipeModal } from "@/components/dashboard/recipe-modal";
 import { RecipesTab } from "@/components/dashboard/recipes-tab";
 import { TabNavigation } from "@/components/dashboard/tab-navigation";
 import { useRecipeModal } from "@/hooks/use-recipe-modal";
+import { useRecipeSidebar } from "@/hooks/use-recipe-sidebar";
 import { useDeleteRecipe } from "@/hooks/use-recipes";
 import type { Recipe } from "@/lib/api/interface";
+
+const RecipeDetailSidebar = dynamic(
+  () =>
+    import("@/components/dashboard/recipe-detail-sidebar").then((m) => ({
+      default: m.RecipeDetailSidebar,
+    })),
+  { ssr: false },
+);
 
 const PlanningTab = dynamic(
   () =>
@@ -51,6 +60,7 @@ export function DashboardClient({
   } = useRecipeModal();
 
   const deleteRecipe = useDeleteRecipe();
+  const { selectedRecipeId, openSidebar, closeSidebar } = useRecipeSidebar();
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -63,6 +73,7 @@ export function DashboardClient({
               onOpenCreateModal={openCreateModal}
               onOpenEditModal={openEditModal}
               onDeleteRecipe={(recipe) => setRecipeToDelete(recipe)}
+              onViewRecipe={(recipe) => openSidebar(recipe.id)}
             />
           ) : (
             <PlanningTab />
@@ -92,6 +103,19 @@ export function DashboardClient({
         }}
         onCancel={() => setRecipeToDelete(null)}
         isPending={deleteRecipe.isPending}
+      />
+
+      <RecipeDetailSidebar
+        recipeId={selectedRecipeId}
+        onClose={closeSidebar}
+        onEdit={(recipe) => {
+          closeSidebar();
+          openEditModal(recipe);
+        }}
+        onDelete={(recipe) => {
+          closeSidebar();
+          setRecipeToDelete(recipe);
+        }}
       />
     </div>
   );
