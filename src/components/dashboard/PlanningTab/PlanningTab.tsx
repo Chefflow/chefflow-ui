@@ -1,11 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { AddRecipeButton } from "@/components/planning/add-recipe-button";
-import { DayColumn } from "@/components/planning/day-column";
-import { PlanningHeader } from "@/components/planning/planning-header";
-import { WeekNavigation } from "@/components/planning/week-navigation";
-import { useWeekPlanning } from "@/hooks/use-week-planning";
+import { AddRecipeButton } from "@/components/planning/AddRecipeButton/AddRecipeButton";
+import { DayColumn } from "@/components/planning/DayColumn/DayColumn";
+import { PlanningHeader } from "@/components/planning/PlanningHeader/PlanningHeader";
+import { WeekNavigation } from "@/components/planning/WeekNavigation/WeekNavigation";
+import { useWeekPlanning } from "@/hooks/useWeekPlanning";
 
 export const PlanningTab = () => {
   const t = useTranslations("planning");

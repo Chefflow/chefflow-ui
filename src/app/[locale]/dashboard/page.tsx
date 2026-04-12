@@ -1,4 +1,4 @@
-import { DashboardClient } from "./dashboard-client";
+import { DashboardClient } from "./DashboardClient";
 
 interface DashboardPageProps {
   params: Promise<{ locale: string }>;

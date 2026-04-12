@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useRecipe } from "@/hooks/use-recipes";
+import { useRecipe } from "@/hooks/useRecipes";
 import type { Recipe, RecipeIngredient, RecipeStep } from "@/lib/api/interface";
 import { cn } from "@/lib/utils";
 

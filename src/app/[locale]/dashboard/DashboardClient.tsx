@@ -2,18 +2,20 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { DeleteConfirmDialog } from "@/components/dashboard/delete-confirm-dialog";
-import { RecipeModal } from "@/components/dashboard/recipe-modal";
-import { RecipesTab } from "@/components/dashboard/recipes-tab";
-import { TabNavigation } from "@/components/dashboard/tab-navigation";
-import { useRecipeModal } from "@/hooks/use-recipe-modal";
-import { useRecipeSidebar } from "@/hooks/use-recipe-sidebar";
-import { useDeleteRecipe } from "@/hooks/use-recipes";
+import { DeleteConfirmDialog } from "@/components/dashboard/DeleteConfirmDialog/DeleteConfirmDialog";
+import { RecipeModal } from "@/components/dashboard/RecipeModal/RecipeModal";
+import { RecipesTab } from "@/components/dashboard/RecipesTab/RecipesTab";
+import { TabNavigation } from "@/components/dashboard/TabNavigation/TabNavigation";
+import { useRecipeModal } from "@/hooks/useRecipeModal";
+import { useRecipeSidebar } from "@/hooks/useRecipeSidebar";
+import { useDeleteRecipe } from "@/hooks/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 
 const RecipeDetailSidebar = dynamic(
   () =>
-    import("@/components/dashboard/recipe-detail-sidebar").then((m) => ({
+    import(
+      "@/components/dashboard/RecipeDetailSidebar/RecipeDetailSidebar"
+    ).then((m) => ({
       default: m.RecipeDetailSidebar,
     })),
   { ssr: false },
@@ -21,7 +23,7 @@ const RecipeDetailSidebar = dynamic(
 
 const PlanningTab = dynamic(
   () =>
-    import("@/components/dashboard/planning-tab").then((m) => ({
+    import("@/components/dashboard/PlanningTab/PlanningTab").then((m) => ({
       default: m.PlanningTab,
     })),
   {

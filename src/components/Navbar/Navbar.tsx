@@ -3,7 +3,7 @@
 import { ChefHat, LogOut } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import LanguageSelector from "@/components/LanguageSelector";
+import LanguageSelector from "@/components/LanguageSelector/LanguageSelector";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,8 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/hooks/use-auth";
-import { useLogout } from "@/hooks/use-logout";
+import { useAuth } from "@/hooks/useAuth";
+import { useLogout } from "@/hooks/useLogout";
 import { Link } from "@/i18n/routing";
 
 export function Navbar() {

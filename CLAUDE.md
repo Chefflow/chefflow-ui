@@ -124,9 +124,12 @@ All shadcn components automatically use these CSS variables via Tailwind utiliti
 - Use const assertions for literal types
 
 **Naming**:
-- Directories: lowercase-with-dashes (e.g., `auth-wizard`, `date-helpers`)
-- Components: PascalCase files (e.g., `UserProfile.tsx`)
-- Utilities: camelCase files (e.g., `formatDate.ts`)
+- `.tsx` files → PascalCase (e.g., `RecipeCard.tsx`)
+- `.ts` files → camelCase (e.g., `useRecipes.ts`, `authClient.ts`)
+- Each React component lives in its own PascalCase subfolder matching the filename (e.g., `RecipeCard/RecipeCard.tsx`)
+- Route/section directories: lowercase (e.g., `dashboard/`, `auth/`, `planning/`)
+- Exception: `src/components/ui/` keeps kebab-case (shadcn auto-generated)
+- Exception: Next.js reserved files keep their names (`page.tsx`, `layout.tsx`, `error.tsx`, etc.)
 - Named exports preferred
 
 **Component Structure**:

@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { RECIPE_KEYS, useCreateRecipe } from "@/hooks/use-recipes";
+import { RECIPE_KEYS, useCreateRecipe } from "@/hooks/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
 import {

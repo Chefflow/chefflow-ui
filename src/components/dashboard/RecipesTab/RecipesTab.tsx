@@ -2,10 +2,10 @@
 
 import { ChefHat, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { RecipeCard } from "@/components/dashboard/recipe-card";
+import { RecipeCard } from "@/components/dashboard/RecipeCard/RecipeCard";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useRecipes } from "@/hooks/use-recipes";
+import { useRecipes } from "@/hooks/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 
 interface RecipesTabProps {

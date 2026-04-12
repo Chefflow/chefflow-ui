@@ -2,7 +2,7 @@ import { Crimson_Pro, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/Navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
 import { QueryProvider } from "@/providers/query-client-provider";
