@@ -1,8 +1,8 @@
 import { Eye, EyeOff, Lock } from "lucide-react";
 import type { InputHTMLAttributes, ReactNode } from "react";
+import { FormFieldError } from "@/components/auth/FormFieldError/FormFieldError";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FormFieldError } from "@/components/auth/FormFieldError/FormFieldError";
 
 interface PasswordInputFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
