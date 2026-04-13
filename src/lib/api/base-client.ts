@@ -8,7 +8,13 @@ import type { ApiError, ApiResponse } from "./interface";
 class BaseClient {
   private baseUrl: string;
   private _isRefreshing: boolean = false;
-  private readonly publicRoutes = ["/", "/login", "/signup", "/terms", "/privacy"];
+  private readonly publicRoutes = [
+    "/",
+    "/login",
+    "/signup",
+    "/terms",
+    "/privacy",
+  ];
 
   constructor() {
     this.baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
