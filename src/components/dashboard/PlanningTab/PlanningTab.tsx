@@ -96,7 +96,7 @@ export const PlanningTab = () => {
     setPendingSlot(null);
 
     if (currentPlanning) {
-      assignSlot({ day, slot: slotNumber, recipeId: Number(recipe.id) });
+      assignSlot({ day, slot: slotNumber, recipeId: recipe.id });
     } else {
       createPlanning(
         { weekStart: weekStartISO },
@@ -108,7 +108,7 @@ export const PlanningTab = () => {
                 day,
                 slotNumber,
                 {
-                  recipeId: Number(recipe.id),
+                  recipeId: recipe.id,
                 },
               );
               queryClient.invalidateQueries({ queryKey: PLANNING_KEYS.all });
@@ -167,7 +167,7 @@ export const PlanningTab = () => {
                   slotLabel={t("slot")}
                   recipe={
                     slot?.recipe
-                      ? { id: Number(slot.recipe.id), title: slot.recipe.title }
+                      ? { id: slot.recipe.id, title: slot.recipe.title }
                       : null
                   }
                   isPast={isDayPast(dayIndex)}

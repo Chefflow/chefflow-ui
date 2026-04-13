@@ -19,12 +19,12 @@ class RecipeClient {
     return baseClient.post<Recipe>("/recipes", data);
   }
 
-  async getRecipe(id: string): Promise<ApiResponse<Recipe>> {
+  async getRecipe(id: string | number): Promise<ApiResponse<Recipe>> {
     return baseClient.get<Recipe>(`/recipes/${id}`);
   }
 
   async addIngredient(
-    recipeId: string,
+    recipeId: string | number,
     data: AddIngredientRequest,
   ): Promise<ApiResponse<RecipeIngredient>> {
     return baseClient.post<RecipeIngredient>(
@@ -34,26 +34,26 @@ class RecipeClient {
   }
 
   async createStep(
-    recipeId: string,
+    recipeId: string | number,
     data: CreateStepRequest,
   ): Promise<ApiResponse<RecipeStep>> {
     return baseClient.post<RecipeStep>(`/recipes/${recipeId}/steps`, data);
   }
 
   async updateRecipe(
-    id: string,
+    id: string | number,
     data: UpdateRecipeRequest,
   ): Promise<ApiResponse<Recipe>> {
     return baseClient.patch<Recipe>(`/recipes/${id}`, data);
   }
 
-  async deleteRecipe(id: string): Promise<ApiResponse<void>> {
+  async deleteRecipe(id: string | number): Promise<ApiResponse<void>> {
     return baseClient.delete<void>(`/recipes/${id}`);
   }
 
   async deleteIngredient(
-    recipeId: string,
-    ingredientId: string,
+    recipeId: string | number,
+    ingredientId: string | number,
   ): Promise<ApiResponse<void>> {
     return baseClient.delete<void>(
       `/recipes/${recipeId}/ingredients/${ingredientId}`,
@@ -61,8 +61,8 @@ class RecipeClient {
   }
 
   async deleteStep(
-    recipeId: string,
-    stepId: string,
+    recipeId: string | number,
+    stepId: string | number,
   ): Promise<ApiResponse<void>> {
     return baseClient.delete<void>(`/recipes/${recipeId}/steps/${stepId}`);
   }

@@ -10,7 +10,7 @@ import { recipeClient } from "@/lib/api/recipe-client";
 
 export const RECIPE_KEYS = {
   all: ["recipes"] as const,
-  detail: (id: string) => ["recipes", id] as const,
+  detail: (id: string | number) => ["recipes", id] as const,
 };
 
 export const useRecipes = () => {
@@ -29,7 +29,7 @@ export const useRecipes = () => {
   return { recipes: data ?? [], isLoading, error, refetch };
 };
 
-export const useRecipe = (id: string) => {
+export const useRecipe = (id: string | number) => {
   const { data, isLoading, error } = useQuery({
     queryKey: RECIPE_KEYS.detail(id),
     queryFn: async () => {
@@ -69,7 +69,7 @@ export const useDeleteRecipe = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => recipeClient.deleteRecipe(id),
+    mutationFn: (id: string | number) => recipeClient.deleteRecipe(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: RECIPE_KEYS.all });
       toast.success("Recipe deleted");

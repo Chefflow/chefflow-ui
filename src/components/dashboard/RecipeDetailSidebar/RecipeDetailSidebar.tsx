@@ -10,7 +10,7 @@ import type { Recipe, RecipeIngredient, RecipeStep } from "@/lib/api/interface";
 import { cn } from "@/lib/utils";
 
 interface RecipeDetailSidebarProps {
-  recipeId: string | null;
+  recipeId: number | null;
   onClose: () => void;
   onEdit: (recipe: Recipe) => void;
   onDelete: (recipe: Recipe) => void;
@@ -191,7 +191,7 @@ export const RecipeDetailSidebar = ({
   onDelete,
 }: RecipeDetailSidebarProps) => {
   const isOpen = recipeId !== null;
-  const { recipe, isLoading } = useRecipe(recipeId ?? "");
+  const { recipe, isLoading } = useRecipe(recipeId ?? 0);
 
   return (
     <>

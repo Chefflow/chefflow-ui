@@ -46,7 +46,7 @@ export interface UpdateProfileRequest {
 }
 
 export interface Recipe {
-  id: string;
+  id: number;
   title: string;
   description?: string;
   servings: number;
@@ -62,17 +62,18 @@ export interface Recipe {
 }
 
 export interface RecipeIngredient {
-  id: string;
-  recipeId: string;
+  id: number;
+  recipeId: number;
   ingredientName: string;
   quantity: number;
   unit: IngredientUnit;
+  notes?: string;
   order: number;
 }
 
 export interface RecipeStep {
-  id: string;
-  recipeId: string;
+  id: number;
+  recipeId: number;
   instruction: string;
   duration?: number;
   order: number;
