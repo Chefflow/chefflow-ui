@@ -157,7 +157,16 @@
     "title": "Weekly Planning",
     "generateShoppingList": "Generate Shopping List",
     "analyzePlanning": "Analyze Planning",
-    "addRecipe": "Add recipe"
+    "addRecipe": "Add recipe",
+    "changeRecipe": "Change recipe",
+    "removeRecipe": "Remove recipe",
+    "selectRecipe": "Select a recipe",
+    "searchRecipes": "Search recipes...",
+    "noRecipes": "You have no recipes yet",
+    "noResults": "No recipes match your search",
+    "pastDay": "Past days cannot be edited",
+    "slot": "Slot",
+    "weekOf": "Week of"
   },
   "metadata": {
     "home": {

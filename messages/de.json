@@ -157,7 +157,16 @@
     "title": "Wochenplanung",
     "generateShoppingList": "Einkaufsliste Erstellen",
     "analyzePlanning": "Planung Analysieren",
-    "addRecipe": "Rezept Hinzufügen"
+    "addRecipe": "Rezept Hinzufügen",
+    "changeRecipe": "Rezept ändern",
+    "removeRecipe": "Rezept entfernen",
+    "selectRecipe": "Rezept auswählen",
+    "searchRecipes": "Rezepte suchen...",
+    "noRecipes": "Sie haben noch keine Rezepte",
+    "noResults": "Keine Rezepte entsprechen Ihrer Suche",
+    "pastDay": "Vergangene Tage können nicht bearbeitet werden",
+    "slot": "Slot",
+    "weekOf": "Woche vom"
   },
   "metadata": {
     "home": {

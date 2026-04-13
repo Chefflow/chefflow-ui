@@ -157,7 +157,16 @@
     "title": "Planificación Semanal",
     "generateShoppingList": "Generar Lista de Compra",
     "analyzePlanning": "Analizar Planificación",
-    "addRecipe": "Agregar receta"
+    "addRecipe": "Agregar receta",
+    "changeRecipe": "Cambiar receta",
+    "removeRecipe": "Eliminar receta",
+    "selectRecipe": "Seleccionar una receta",
+    "searchRecipes": "Buscar recetas...",
+    "noRecipes": "Aún no tienes recetas",
+    "noResults": "Ninguna receta coincide con tu búsqueda",
+    "pastDay": "Los días pasados no se pueden editar",
+    "slot": "Espacio",
+    "weekOf": "Semana del"
   },
   "metadata": {
     "home": {

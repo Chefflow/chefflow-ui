@@ -157,7 +157,16 @@
     "title": "Pianificazione Settimanale",
     "generateShoppingList": "Genera Lista della Spesa",
     "analyzePlanning": "Analizza Pianificazione",
-    "addRecipe": "Aggiungi ricetta"
+    "addRecipe": "Aggiungi ricetta",
+    "changeRecipe": "Cambia ricetta",
+    "removeRecipe": "Rimuovi ricetta",
+    "selectRecipe": "Seleziona una ricetta",
+    "searchRecipes": "Cerca ricette...",
+    "noRecipes": "Non hai ancora nessuna ricetta",
+    "noResults": "Nessuna ricetta corrisponde alla tua ricerca",
+    "pastDay": "I giorni passati non possono essere modificati",
+    "slot": "Slot",
+    "weekOf": "Settimana del"
   },
   "metadata": {
     "home": {

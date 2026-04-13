@@ -33,6 +33,13 @@ export function useWeekPlanning({ locale }: UseWeekPlanningProps) {
     [weekRange.start, weekRange.end, locale],
   );
 
+  const weekStartISO: string = useMemo(() => {
+    const d = weekRange.start;
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${d.getFullYear()}-${mm}-${dd}`;
+  }, [weekRange.start]);
+
   const goToPreviousWeek = (): void => {
     setCurrentDate((prev) => addWeeks(prev, -1));
   };
@@ -46,9 +53,11 @@ export function useWeekPlanning({ locale }: UseWeekPlanningProps) {
   };
 
   return {
+    currentDate,
     weekRange,
     weekDays,
     weekRangeText,
+    weekStartISO,
     goToPreviousWeek,
     goToNextWeek,
     goToToday,

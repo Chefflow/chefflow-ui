@@ -9,19 +9,7 @@ export interface WeekRange {
   end: Date;
 }
 
-export interface MealSlot {
-  id: string;
-  recipeId?: string;
-  recipeName?: string;
-}
-
-export interface DayPlan {
-  date: string;
-  meals: MealSlot[];
-}
-
-export interface WeekPlan {
-  weekStart: Date;
-  weekEnd: Date;
-  days: DayPlan[];
+export interface DayPlanningSlot {
+  slotNumber: 1 | 2 | 3;
+  recipe: { id: number; title: string; imageUrl?: string | null } | null;
 }

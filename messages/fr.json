@@ -157,7 +157,16 @@
     "title": "Planification Hebdomadaire",
     "generateShoppingList": "Générer Liste de Courses",
     "analyzePlanning": "Analyser Planification",
-    "addRecipe": "Ajouter recette"
+    "addRecipe": "Ajouter recette",
+    "changeRecipe": "Changer de recette",
+    "removeRecipe": "Supprimer la recette",
+    "selectRecipe": "Sélectionner une recette",
+    "searchRecipes": "Rechercher des recettes...",
+    "noRecipes": "Vous n'avez pas encore de recettes",
+    "noResults": "Aucune recette ne correspond à votre recherche",
+    "pastDay": "Les jours passés ne peuvent pas être modifiés",
+    "slot": "Créneau",
+    "weekOf": "Semaine du"
   },
   "metadata": {
     "home": {
