@@ -8,9 +8,23 @@ import type { ApiError, ApiResponse } from "./interface";
 class BaseClient {
   private baseUrl: string;
   private _isRefreshing: boolean = false;
+  private readonly publicRoutes = ["/", "/login", "/signup", "/terms", "/privacy"];
 
   constructor() {
     this.baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  }
+
+  private isPublicRoute(): boolean {
+    if (typeof window === "undefined") return false;
+    const pathnameWithoutLocale = window.location.pathname.replace(
+      /^\/[a-z]{2}(\/|$)/,
+      "/",
+    );
+    return this.publicRoutes.some(
+      (route) =>
+        pathnameWithoutLocale === route ||
+        pathnameWithoutLocale.startsWith(`${route}/`),
+    );
   }
 
   private async refreshTokens(): Promise<boolean> {
@@ -26,11 +40,7 @@ class BaseClient {
   }
 
   private redirectToLogin(): void {
-    if (
-      typeof window !== "undefined" &&
-      !window.location.pathname.includes("/login") &&
-      !window.location.pathname.includes("/signup")
-    ) {
+    if (typeof window !== "undefined" && !this.isPublicRoute()) {
       window.location.href = "/en/login";
     }
   }
