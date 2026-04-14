@@ -34,10 +34,12 @@ export const PlanningHeader = ({
           <ShoppingCart className="h-4 w-4" />
           {generateShoppingListLabel}
         </Button>
+        {/* 
+        // TODO: Uncomment when analyze planning is implemented
         <Button onClick={onAnalyzePlanning} size="sm" className="gap-2">
           <Sparkles className="h-4 w-4" />
           {analyzePlanningLabel}
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
