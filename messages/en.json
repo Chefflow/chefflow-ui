@@ -166,7 +166,14 @@
     "noResults": "No recipes match your search",
     "pastDay": "Past days cannot be edited",
     "slot": "Slot",
-    "weekOf": "Week of"
+    "weekOf": "Week of",
+    "shoppingList": {
+      "title": "Shopping List",
+      "subtitle": "Week of {weekRange}",
+      "empty": "No recipes planned for this week",
+      "close": "Close",
+      "ingredientsCount": "{count} ingredients"
+    }
   },
   "metadata": {
     "home": {

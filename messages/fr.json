@@ -166,7 +166,14 @@
     "noResults": "Aucune recette ne correspond à votre recherche",
     "pastDay": "Les jours passés ne peuvent pas être modifiés",
     "slot": "Créneau",
-    "weekOf": "Semaine du"
+    "weekOf": "Semaine du",
+    "shoppingList": {
+      "title": "Liste de courses",
+      "subtitle": "Semaine du {weekRange}",
+      "empty": "Aucune recette planifiée cette semaine",
+      "close": "Fermer",
+      "ingredientsCount": "{count} ingrédients"
+    }
   },
   "metadata": {
     "home": {

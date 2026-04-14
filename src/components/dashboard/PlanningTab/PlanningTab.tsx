@@ -6,6 +6,7 @@ import { useState } from "react";
 import { DayColumn } from "@/components/planning/DayColumn/DayColumn";
 import { PlanningHeader } from "@/components/planning/PlanningHeader/PlanningHeader";
 import { RecipePickerModal } from "@/components/planning/RecipePickerModal/RecipePickerModal";
+import { ShoppingListPanel } from "@/components/planning/ShoppingListPanel/ShoppingListPanel";
 import { SlotCard } from "@/components/planning/SlotCard/SlotCard";
 import { WeekNavigation } from "@/components/planning/WeekNavigation/WeekNavigation";
 import {
@@ -17,6 +18,7 @@ import {
   useWeeklyPlannings,
 } from "@/hooks/usePlanning";
 import { useRecipes } from "@/hooks/useRecipes";
+import { useShoppingList } from "@/hooks/useShoppingList";
 import { useWeekPlanning } from "@/hooks/useWeekPlanning";
 import type {
   PlanningDayOfWeek,
@@ -81,6 +83,11 @@ export const PlanningTab = () => {
     dayIndex: number;
     slotNumber: 1 | 2 | 3;
   } | null>(null);
+  const [isShoppingListOpen, setIsShoppingListOpen] = useState(false);
+
+  const slots = planning?.slots ?? [];
+  const { ingredients: shoppingIngredients, isLoading: shoppingLoading } =
+    useShoppingList(slots);
 
   const isDayPast = (dayIndex: number): boolean => {
     const dayDate = new Date(weekRange.start);
@@ -120,7 +127,7 @@ export const PlanningTab = () => {
   };
 
   const handleGenerateShoppingList = (): void => {
-    console.log("Generate shopping list");
+    setIsShoppingListOpen(true);
   };
 
   const handleAnalyzePlanning = (): void => {
@@ -135,6 +142,9 @@ export const PlanningTab = () => {
         analyzePlanningLabel={t("analyzePlanning")}
         onGenerateShoppingList={handleGenerateShoppingList}
         onAnalyzePlanning={handleAnalyzePlanning}
+        isShoppingListDisabled={
+          slots.length === 0 || slots.every((s) => s.recipe === null)
+        }
       />
 
       <div className="flex items-center justify-center">
@@ -202,6 +212,19 @@ export const PlanningTab = () => {
         searchPlaceholder={t("searchRecipes")}
         noRecipesText={t("noRecipes")}
         noResultsText={t("noResults")}
+      />
+
+      <ShoppingListPanel
+        isOpen={isShoppingListOpen}
+        onClose={() => setIsShoppingListOpen(false)}
+        ingredients={shoppingIngredients}
+        isLoading={shoppingLoading}
+        title={t("shoppingList.title")}
+        subtitleText={t("shoppingList.subtitle", { weekRange: weekRangeText })}
+        emptyText={t("shoppingList.empty")}
+        ingredientsCountText={t("shoppingList.ingredientsCount", {
+          count: shoppingIngredients.length,
+        })}
       />
     </div>
   );

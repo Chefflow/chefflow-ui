@@ -7,6 +7,7 @@ interface PlanningHeaderProps {
   analyzePlanningLabel: string;
   onGenerateShoppingList: () => void;
   onAnalyzePlanning: () => void;
+  isShoppingListDisabled: boolean;
 }
 
 export const PlanningHeader = ({
@@ -15,6 +16,7 @@ export const PlanningHeader = ({
   analyzePlanningLabel,
   onGenerateShoppingList,
   onAnalyzePlanning,
+  isShoppingListDisabled,
 }: PlanningHeaderProps) => {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -27,6 +29,7 @@ export const PlanningHeader = ({
           onClick={onGenerateShoppingList}
           size="sm"
           className="gap-2"
+          disabled={isShoppingListDisabled}
         >
           <ShoppingCart className="h-4 w-4" />
           {generateShoppingListLabel}

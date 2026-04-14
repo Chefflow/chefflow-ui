@@ -166,7 +166,14 @@
     "noResults": "Nessuna ricetta corrisponde alla tua ricerca",
     "pastDay": "I giorni passati non possono essere modificati",
     "slot": "Slot",
-    "weekOf": "Settimana del"
+    "weekOf": "Settimana del",
+    "shoppingList": {
+      "title": "Lista della spesa",
+      "subtitle": "Settimana del {weekRange}",
+      "empty": "Nessuna ricetta pianificata per questa settimana",
+      "close": "Chiudi",
+      "ingredientsCount": "{count} ingredienti"
+    }
   },
   "metadata": {
     "home": {

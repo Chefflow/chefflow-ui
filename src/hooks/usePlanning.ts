@@ -31,10 +31,10 @@ export const useWeeklyPlannings = () => {
 
 export const useWeeklyPlanning = (id: number | undefined) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: PLANNING_KEYS.detail(id!),
+    queryKey: PLANNING_KEYS.detail(id ?? 0),
     enabled: id !== undefined,
     queryFn: async () => {
-      const response = await planningClient.getPlanningById(id!);
+      const response = await planningClient.getPlanningById(id ?? 0);
       if (response.error) {
         throw new Error(response.error.message[0]);
       }
