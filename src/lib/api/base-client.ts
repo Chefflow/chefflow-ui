@@ -7,7 +7,7 @@ import type { ApiError, ApiResponse } from "./interface";
 
 class BaseClient {
   private baseUrl: string;
-  private _isRefreshing: boolean = false;
+  private _refreshPromise: Promise<boolean> | null = null;
   private readonly publicRoutes = [
     "/",
     "/login",
@@ -33,16 +33,22 @@ class BaseClient {
     );
   }
 
-  private async refreshTokens(): Promise<boolean> {
-    try {
-      const response = await fetch(`${this.baseUrl}/auth/refresh`, {
-        method: "POST",
-        credentials: "include",
-      });
-      return response.ok;
-    } catch {
-      return false;
+  private refreshTokens(): Promise<boolean> {
+    if (this._refreshPromise) {
+      return this._refreshPromise;
     }
+
+    this._refreshPromise = fetch(`${this.baseUrl}/auth/refresh`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.ok)
+      .catch(() => false)
+      .finally(() => {
+        this._refreshPromise = null;
+      });
+
+    return this._refreshPromise;
   }
 
   private redirectToLogin(): void {
@@ -70,10 +76,8 @@ class BaseClient {
     try {
       const response = await fetch(url, config);
 
-      if (response.status === 401 && !isRetry && !this._isRefreshing) {
-        this._isRefreshing = true;
+      if (response.status === 401 && !isRetry) {
         const refreshed = await this.refreshTokens();
-        this._isRefreshing = false;
 
         if (refreshed) {
           return this.request<T>(endpoint, options, true);
