@@ -57,7 +57,7 @@ export default async function HomePage({
           </p>
 
           <div className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <Button asChild size="lg" className="min-w-[160px]">
+            <Button asChild size="lg" className="min-w-40">
               <Link href="/signup">
                 {t("hero.getStarted")}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -67,7 +67,7 @@ export default async function HomePage({
               asChild
               variant="outline"
               size="lg"
-              className="min-w-[160px]"
+              className="min-w-40"
             >
               <Link href="/login">{t("hero.signIn")}</Link>
             </Button>
@@ -239,7 +239,7 @@ export default async function HomePage({
               {t("cta.subtitle")}
             </p>
 
-            <Button asChild size="lg" className="min-w-[160px]">
+            <Button asChild size="lg" className="min-w-40">
               <Link href="/signup">
                 {t("cta.getStarted")}
                 <ArrowRight className="ml-2 h-4 w-4" />
