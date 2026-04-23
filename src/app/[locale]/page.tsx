@@ -63,12 +63,7 @@ export default async function HomePage({
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="min-w-40"
-            >
+            <Button asChild variant="outline" size="lg" className="min-w-40">
               <Link href="/login">{t("hero.signIn")}</Link>
             </Button>
           </div>
