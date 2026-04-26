@@ -45,6 +45,40 @@
       "instructionsPlaceholder": "Inserisci le istruzioni, passo dopo passo...",
       "cancel": "Annulla",
       "save": "Salva Ricetta"
+    },
+    "recipeModal": {
+      "createTitle": "Crea Ricetta",
+      "editTitle": "Modifica Ricetta",
+      "titleLabel": "Titolo",
+      "titlePlaceholder": "es. Spaghetti alla Carbonara",
+      "servings": "Porzioni",
+      "prepTime": "Tempo Prep (min)",
+      "cookTime": "Tempo Cottura (min)",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Una breve descrizione della ricetta…",
+      "ingredients": "Ingredienti",
+      "add": "+ Aggiungi",
+      "ingredientNamePlaceholder": "Nome ingrediente",
+      "quantityPlaceholder": "Qtà",
+      "unitPlaceholder": "Unità",
+      "steps": "Passaggi",
+      "stepPlaceholder": "Descrivi questo passaggio…",
+      "durationPlaceholder": "Min",
+      "cancel": "Annulla",
+      "save": "Salva Ricetta",
+      "saving": "Salvataggio…",
+      "units": {
+        "GRAM": "Grammo",
+        "KILOGRAM": "Chilogrammo",
+        "MILLILITER": "Millilitro",
+        "LITER": "Litro",
+        "TEASPOON": "Cucchiaino",
+        "TABLESPOON": "Cucchiaio",
+        "CUP": "Tazza",
+        "UNIT": "Unità",
+        "PINCH": "Pizzico",
+        "TO_TASTE": "Quanto basta"
+      }
     }
   },
   "home": {

@@ -1,6 +1,7 @@
 "use client";
 
 import { Loader2, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { UseFieldArrayReturn, UseFormReturn } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,20 +24,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import type { RecipeFormValues } from "@/lib/validations/recipe.schema";
 
-const UNIT_LABELS: Record<string, string> = {
-  GRAM: "Gram",
-  KILOGRAM: "Kilogram",
-  MILLILITER: "Milliliter",
-  LITER: "Liter",
-  TEASPOON: "Teaspoon",
-  TABLESPOON: "Tablespoon",
-  CUP: "Cup",
-  UNIT: "Unit",
-  PINCH: "Pinch",
-  TO_TASTE: "To Taste",
-};
-
-const UNITS = Object.keys(UNIT_LABELS) as (keyof typeof UNIT_LABELS)[];
+const UNITS = [
+  "GRAM",
+  "KILOGRAM",
+  "MILLILITER",
+  "LITER",
+  "TEASPOON",
+  "TABLESPOON",
+  "CUP",
+  "UNIT",
+  "PINCH",
+  "TO_TASTE",
+] as const;
 
 interface RecipeModalProps {
   isOpen: boolean;
@@ -59,6 +58,7 @@ export const RecipeModal = ({
   onClose,
   isPending,
 }: RecipeModalProps) => {
+  const t = useTranslations("dashboard.recipeModal");
   const {
     register,
     handleSubmit,
@@ -76,7 +76,7 @@ export const RecipeModal = ({
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold tracking-tight">
-            {mode === "create" ? "Create Recipe" : "Edit Recipe"}
+            {mode === "create" ? t("createTitle") : t("editTitle")}
           </DialogTitle>
         </DialogHeader>
 
@@ -84,11 +84,11 @@ export const RecipeModal = ({
           <div className="space-y-4">
             <div className="space-y-1">
               <Label htmlFor="title">
-                Title <span className="text-destructive">*</span>
+                {t("titleLabel")} <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="title"
-                placeholder="e.g. Spaghetti Carbonara"
+                placeholder={t("titlePlaceholder")}
                 className={cn(errors.title && "border-destructive")}
                 {...register("title")}
               />
@@ -102,7 +102,7 @@ export const RecipeModal = ({
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
                 <Label htmlFor="servings">
-                  Servings <span className="text-destructive">*</span>
+                  {t("servings")} <span className="text-destructive">*</span>
                 </Label>
                 <Input
                   id="servings"
@@ -119,7 +119,7 @@ export const RecipeModal = ({
 
               <div className="space-y-1">
                 <Label htmlFor="prepTime">
-                  Prep Time (min) <span className="text-destructive">*</span>
+                  {t("prepTime")} <span className="text-destructive">*</span>
                 </Label>
                 <Input
                   id="prepTime"
@@ -136,7 +136,7 @@ export const RecipeModal = ({
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="cookTime">Cook Time (min)</Label>
+              <Label htmlFor="cookTime">{t("cookTime")}</Label>
               <Input
                 id="cookTime"
                 type="number"
@@ -151,10 +151,10 @@ export const RecipeModal = ({
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description">{t("description")}</Label>
               <Textarea
                 id="description"
-                placeholder="A brief description of the recipe…"
+                placeholder={t("descriptionPlaceholder")}
                 className="resize-none min-h-[72px]"
                 {...register("description")}
               />
@@ -168,7 +168,7 @@ export const RecipeModal = ({
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold">Ingredients</h3>
+              <h3 className="text-sm font-semibold">{t("ingredients")}</h3>
               <Button
                 type="button"
                 variant="outline"
@@ -181,7 +181,7 @@ export const RecipeModal = ({
                   })
                 }
               >
-                + Add
+                {t("add")}
               </Button>
             </div>
 
@@ -190,7 +190,7 @@ export const RecipeModal = ({
                 <div key={field.id} className="flex items-start gap-2">
                   <div className="flex-1 space-y-1">
                     <Input
-                      placeholder="Ingredient name"
+                      placeholder={t("ingredientNamePlaceholder")}
                       {...register(`ingredients.${index}.ingredientName`)}
                     />
                     {errors.ingredients?.[index]?.ingredientName && (
@@ -205,7 +205,7 @@ export const RecipeModal = ({
                       type="number"
                       min={0.01}
                       step={0.01}
-                      placeholder="Qty"
+                      placeholder={t("quantityPlaceholder")}
                       {...register(`ingredients.${index}.quantity`, {
                         valueAsNumber: true,
                       })}
@@ -224,12 +224,12 @@ export const RecipeModal = ({
                       }
                     >
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Unit" />
+                        <SelectValue placeholder={t("unitPlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
                         {UNITS.map((unit) => (
                           <SelectItem key={unit} value={unit}>
-                            {UNIT_LABELS[unit]}
+                            {t(`units.${unit}`)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -255,7 +255,7 @@ export const RecipeModal = ({
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold">Steps</h3>
+              <h3 className="text-sm font-semibold">{t("steps")}</h3>
               <Button
                 type="button"
                 variant="outline"
@@ -264,7 +264,7 @@ export const RecipeModal = ({
                   stepsField.append({ instruction: "", duration: undefined })
                 }
               >
-                + Add
+                {t("add")}
               </Button>
             </div>
 
@@ -277,7 +277,7 @@ export const RecipeModal = ({
 
                   <div className="flex-1 space-y-1">
                     <Textarea
-                      placeholder="Describe this step…"
+                      placeholder={t("stepPlaceholder")}
                       className="resize-none min-h-[72px]"
                       {...register(`steps.${index}.instruction`)}
                     />
@@ -292,7 +292,7 @@ export const RecipeModal = ({
                     <Input
                       type="number"
                       min={1}
-                      placeholder="Min"
+                      placeholder={t("durationPlaceholder")}
                       {...register(`steps.${index}.duration`, {
                         valueAsNumber: true,
                       })}
@@ -323,11 +323,11 @@ export const RecipeModal = ({
               onClick={onClose}
               disabled={isPending}
             >
-              Cancel
+              {t("cancel")}
             </Button>
             <Button type="submit" disabled={isPending} className="gap-2">
               {isPending && <Loader2 className="size-4 animate-spin" />}
-              {isPending ? "Saving…" : "Save Recipe"}
+              {isPending ? t("saving") : t("save")}
             </Button>
           </DialogFooter>
         </form>

@@ -45,6 +45,40 @@
       "instructionsPlaceholder": "Ingresa las instrucciones, paso a paso...",
       "cancel": "Cancelar",
       "save": "Guardar Receta"
+    },
+    "recipeModal": {
+      "createTitle": "Crear Receta",
+      "editTitle": "Editar Receta",
+      "titleLabel": "Título",
+      "titlePlaceholder": "ej. Espaguetis a la Carbonara",
+      "servings": "Porciones",
+      "prepTime": "Tiempo Prep (min)",
+      "cookTime": "Tiempo Cocción (min)",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Una breve descripción de la receta…",
+      "ingredients": "Ingredientes",
+      "add": "+ Añadir",
+      "ingredientNamePlaceholder": "Nombre del ingrediente",
+      "quantityPlaceholder": "Cant.",
+      "unitPlaceholder": "Unidad",
+      "steps": "Pasos",
+      "stepPlaceholder": "Describe este paso…",
+      "durationPlaceholder": "Min",
+      "cancel": "Cancelar",
+      "save": "Guardar Receta",
+      "saving": "Guardando…",
+      "units": {
+        "GRAM": "Gramo",
+        "KILOGRAM": "Kilogramo",
+        "MILLILITER": "Mililitro",
+        "LITER": "Litro",
+        "TEASPOON": "Cucharadita",
+        "TABLESPOON": "Cucharada",
+        "CUP": "Taza",
+        "UNIT": "Unidad",
+        "PINCH": "Pizca",
+        "TO_TASTE": "Al gusto"
+      }
     }
   },
   "home": {
