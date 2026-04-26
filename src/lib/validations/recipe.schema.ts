@@ -33,7 +33,7 @@ export const recipeFormSchema = z.object({
     .max(100, "Title must be at most 100 characters"),
   description: z
     .string()
-    .max(500, "Description must be at most 500 characters")
+    .max(2000, "Description must be at most 500 characters")
     .optional(),
   servings: z
     .number()
