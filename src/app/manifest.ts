@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "ChefFlow",
     short_name: "ChefFlow",
-    description: "Manage your recipes, plan weekly meals, and generate smart shopping lists.",
+    description:
+      "Manage your recipes, plan weekly meals, and generate smart shopping lists.",
     start_url: "/en",
     scope: "/",
     display: "standalone",

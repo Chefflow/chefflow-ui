@@ -3,7 +3,7 @@ const PRECACHE_URLS = ["/en", "/en/dashboard"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)),
   );
   self.skipWaiting();
 });
@@ -14,9 +14,9 @@ self.addEventListener("activate", (event) => {
       .keys()
       .then((keys) =>
         Promise.all(
-          keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))
-        )
-      )
+          keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)),
+        ),
+      ),
   );
   self.clients.claim();
 });
@@ -36,10 +36,12 @@ self.addEventListener("fetch", (event) => {
     fetch(event.request)
       .then((response) => {
         const clone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        caches
+          .open(CACHE_NAME)
+          .then((cache) => cache.put(event.request, clone));
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(() => caches.match(event.request)),
   );
 });
 
@@ -52,7 +54,7 @@ self.addEventListener("push", (event) => {
       icon: data.icon || "/icons/icon-192x192.png",
       badge: "/icons/icon-192x192.png",
       vibrate: [100, 50, 100],
-    })
+    }),
   );
 });
 

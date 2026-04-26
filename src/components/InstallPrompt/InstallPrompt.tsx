@@ -66,8 +66,7 @@ export const InstallPrompt = () => {
           </p>
           {state === "ios" ? (
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Toca{" "}
-              <Share className="inline h-3 w-3" /> y luego{" "}
+              Toca <Share className="inline h-3 w-3" /> y luego{" "}
               <strong>Añadir a pantalla de inicio</strong> para instalar la app.
             </p>
           ) : (
@@ -78,6 +77,7 @@ export const InstallPrompt = () => {
           )}
           {state === "android" && (
             <button
+              type="button"
               onClick={install}
               className="mt-2 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary/90 transition-colors"
             >
@@ -86,6 +86,7 @@ export const InstallPrompt = () => {
           )}
         </div>
         <button
+          type="button"
           onClick={dismiss}
           className="shrink-0 text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Cerrar"
