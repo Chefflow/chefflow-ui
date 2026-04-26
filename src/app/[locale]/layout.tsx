@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
+import { InstallPrompt } from "@/components/InstallPrompt/InstallPrompt";
+import { PwaRegister } from "@/components/PwaRegister/PwaRegister";
 import { routing } from "@/i18n/routing";
 import { QueryProvider } from "@/providers/query-client-provider";
 import "../globals.css";
@@ -48,6 +50,8 @@ export default async function LocaleLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Toaster />
+            <InstallPrompt />
+            <PwaRegister />
           </NextIntlClientProvider>
         </QueryProvider>
       </body>

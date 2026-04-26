@@ -1,21 +1,17 @@
-import { ShoppingCart, Sparkles } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PlanningHeaderProps {
   title: string;
   generateShoppingListLabel: string;
-  analyzePlanningLabel: string;
   onGenerateShoppingList: () => void;
-  onAnalyzePlanning: () => void;
   isShoppingListDisabled: boolean;
 }
 
 export const PlanningHeader = ({
   title,
   generateShoppingListLabel,
-  analyzePlanningLabel,
   onGenerateShoppingList,
-  onAnalyzePlanning,
   isShoppingListDisabled,
 }: PlanningHeaderProps) => {
   return (
