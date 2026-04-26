@@ -79,6 +79,17 @@
         "PINCH": "Pincée",
         "TO_TASTE": "À volonté"
       }
+    },
+    "recipeCard": {
+      "servings": "{count, plural, one {# portion} other {# portions}}",
+      "totalTime": "{count} min",
+      "cookTime": "Cuisson {count}m",
+      "ingredients": "{count, plural, one {# ingrédient} other {# ingrédients}}",
+      "steps": "{count, plural, one {# étape} other {# étapes}}",
+      "viewRecipe": "Voir la recette →",
+      "editRecipe": "Modifier la recette",
+      "deleteRecipe": "Supprimer la recette",
+      "recipeActions": "Actions sur la recette"
     }
   },
   "home": {

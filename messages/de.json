@@ -79,6 +79,17 @@
         "PINCH": "Prise",
         "TO_TASTE": "Nach Geschmack"
       }
+    },
+    "recipeCard": {
+      "servings": "{count, plural, one {# Portion} other {# Portionen}}",
+      "totalTime": "{count} min",
+      "cookTime": "Kochen {count}m",
+      "ingredients": "{count, plural, one {# Zutat} other {# Zutaten}}",
+      "steps": "{count, plural, one {# Schritt} other {# Schritte}}",
+      "viewRecipe": "Rezept ansehen →",
+      "editRecipe": "Rezept bearbeiten",
+      "deleteRecipe": "Rezept löschen",
+      "recipeActions": "Rezeptaktionen"
     }
   },
   "home": {

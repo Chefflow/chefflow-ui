@@ -1,6 +1,7 @@
 "use client";
 
 import { Clock, Flame, Pencil, Trash2, Users } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import type { Recipe } from "@/lib/api/interface";
 import { cn } from "@/lib/utils";
@@ -18,6 +19,7 @@ export const RecipeCard = ({
   onDelete,
   onView,
 }: RecipeCardProps) => {
+  const t = useTranslations("dashboard.recipeCard");
   const totalTime = recipe.prepTime + (recipe.cookTime ?? 0);
   const ingredientCount = recipe.ingredients?.length ?? 0;
   const stepCount = recipe.steps?.length ?? 0;
@@ -59,16 +61,16 @@ export const RecipeCard = ({
       <div className="flex flex-wrap gap-1.5">
         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-secondary border border-border rounded-full px-2.5 py-0.5">
           <Users className="w-3 h-3 opacity-65" />
-          {recipe.servings} servings
+          {t("servings", { count: recipe.servings })}
         </span>
         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-secondary border border-border rounded-full px-2.5 py-0.5">
           <Clock className="w-3 h-3 opacity-65" />
-          {totalTime} min
+          {t("totalTime", { count: totalTime })}
         </span>
         {recipe.cookTime ? (
           <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-secondary border border-border rounded-full px-2.5 py-0.5">
             <Flame className="w-3 h-3 opacity-65" />
-            Cook {recipe.cookTime}m
+            {t("cookTime", { count: recipe.cookTime })}
           </span>
         ) : null}
       </div>
@@ -77,12 +79,12 @@ export const RecipeCard = ({
         <div className="flex gap-1.5">
           {ingredientCount > 0 && (
             <span className="text-[11px] font-medium text-muted-foreground border border-border rounded-full px-2.5 py-0.5">
-              {ingredientCount} ingredients
+              {t("ingredients", { count: ingredientCount })}
             </span>
           )}
           {stepCount > 0 && (
             <span className="text-[11px] font-medium text-muted-foreground border border-border rounded-full px-2.5 py-0.5">
-              {stepCount} steps
+              {t("steps", { count: stepCount })}
             </span>
           )}
         </div>
@@ -98,21 +100,21 @@ export const RecipeCard = ({
               "transition-all duration-200",
             )}
           >
-            View recipe →
+            {t("viewRecipe")}
           </span>
         ) : (
           <span />
         )}
         <fieldset
           className="flex gap-0.5 border-0 p-0 m-0"
-          aria-label="Recipe actions"
+          aria-label={t("recipeActions")}
         >
           <Button
             variant="ghost"
             size="icon"
             className="h-7 w-7 text-muted-foreground hover:text-foreground"
             onClick={() => onEdit(recipe)}
-            aria-label="Edit recipe"
+            aria-label={t("editRecipe")}
           >
             <Pencil className="w-3.5 h-3.5" />
           </Button>
@@ -121,7 +123,7 @@ export const RecipeCard = ({
             size="icon"
             className="h-7 w-7 text-muted-foreground hover:text-destructive"
             onClick={() => onDelete(recipe)}
-            aria-label="Delete recipe"
+            aria-label={t("deleteRecipe")}
           >
             <Trash2 className="w-3.5 h-3.5" />
           </Button>

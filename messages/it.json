@@ -79,6 +79,17 @@
         "PINCH": "Pizzico",
         "TO_TASTE": "Quanto basta"
       }
+    },
+    "recipeCard": {
+      "servings": "{count, plural, one {# porzione} other {# porzioni}}",
+      "totalTime": "{count} min",
+      "cookTime": "Cottura {count}m",
+      "ingredients": "{count, plural, one {# ingrediente} other {# ingredienti}}",
+      "steps": "{count, plural, one {# passaggio} other {# passaggi}}",
+      "viewRecipe": "Vedi ricetta →",
+      "editRecipe": "Modifica ricetta",
+      "deleteRecipe": "Elimina ricetta",
+      "recipeActions": "Azioni ricetta"
     }
   },
   "home": {

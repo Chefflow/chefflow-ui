@@ -79,6 +79,17 @@
         "PINCH": "Pinch",
         "TO_TASTE": "To Taste"
       }
+    },
+    "recipeCard": {
+      "servings": "{count, plural, one {# serving} other {# servings}}",
+      "totalTime": "{count} min",
+      "cookTime": "Cook {count}m",
+      "ingredients": "{count, plural, one {# ingredient} other {# ingredients}}",
+      "steps": "{count, plural, one {# step} other {# steps}}",
+      "viewRecipe": "View recipe →",
+      "editRecipe": "Edit recipe",
+      "deleteRecipe": "Delete recipe",
+      "recipeActions": "Recipe actions"
     }
   },
   "home": {

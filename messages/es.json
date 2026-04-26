@@ -79,6 +79,17 @@
         "PINCH": "Pizca",
         "TO_TASTE": "Al gusto"
       }
+    },
+    "recipeCard": {
+      "servings": "{count, plural, one {# porción} other {# porciones}}",
+      "totalTime": "{count} min",
+      "cookTime": "Cocción {count}m",
+      "ingredients": "{count, plural, one {# ingrediente} other {# ingredientes}}",
+      "steps": "{count, plural, one {# paso} other {# pasos}}",
+      "viewRecipe": "Ver receta →",
+      "editRecipe": "Editar receta",
+      "deleteRecipe": "Eliminar receta",
+      "recipeActions": "Acciones de receta"
     }
   },
   "home": {
