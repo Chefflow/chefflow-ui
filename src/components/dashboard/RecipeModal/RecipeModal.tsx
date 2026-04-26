@@ -39,7 +39,11 @@ export const RecipeModal = ({
     control,
   } = form;
 
-  const watchedIngredients = useWatch({ control, name: "ingredients", defaultValue: [] });
+  const watchedIngredients = useWatch({
+    control,
+    name: "ingredients",
+    defaultValue: [],
+  });
   const ingredientUnits = watchedIngredients.map((ing) => ing?.unit ?? "UNIT");
 
   const handleUnitChange = (index: number, value: string) => {

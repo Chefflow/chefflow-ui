@@ -2,7 +2,11 @@
 
 import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import type { FieldArrayWithId, FieldErrors, UseFormRegister } from "react-hook-form";
+import type {
+  FieldArrayWithId,
+  FieldErrors,
+  UseFormRegister,
+} from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
