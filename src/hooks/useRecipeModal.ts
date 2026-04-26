@@ -71,7 +71,6 @@ export const useRecipeModal = () => {
     setMode("edit");
     setIsOpen(true);
 
-    // Fetch full recipe to populate ingredients and steps asynchronously.
     const response = await recipeClient.getRecipe(recipe.id);
     if (response.data) {
       const full = response.data;
@@ -106,7 +105,6 @@ export const useRecipeModal = () => {
     if (mode === "edit" && editingRecipe) {
       setIsEditSubmitting(true);
       try {
-        // 1. PATCH base recipe fields
         const updateRes = await recipeClient.updateRecipe(editingRecipe.id, {
           title: data.title,
           description: data.description,
@@ -119,7 +117,6 @@ export const useRecipeModal = () => {
           return;
         }
 
-        // 2. Replace ingredients: delete all existing, then add current form values
         await Promise.all(
           editingRecipe.ingredients.map((ing) =>
             recipeClient.deleteIngredient(editingRecipe.id, ing.id),
@@ -135,7 +132,6 @@ export const useRecipeModal = () => {
           ),
         );
 
-        // 3. Replace steps: delete all existing, then add current form values
         await Promise.all(
           editingRecipe.steps.map((step) =>
             recipeClient.deleteStep(editingRecipe.id, step.id),

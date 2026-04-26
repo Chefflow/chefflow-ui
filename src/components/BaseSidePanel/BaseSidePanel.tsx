@@ -19,7 +19,6 @@ export const BaseSidePanel = ({
 }: BaseSidePanelProps): React.ReactElement => {
   return (
     <>
-      {/* Backdrop */}
       <div
         aria-hidden="true"
         className={cn(
@@ -45,7 +44,6 @@ export const BaseSidePanel = ({
           isOpen ? "translate-x-0" : "translate-x-full",
         )}
       >
-        {/* Top bar */}
         <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-3.5">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             {label}
@@ -72,7 +70,6 @@ export const BaseSidePanel = ({
           </Button>
         </div>
 
-        {/* Scrollable content */}
         <ScrollArea className="flex-1">
           <div className="px-6 py-5 pb-12">{children}</div>
         </ScrollArea>

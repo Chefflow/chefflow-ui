@@ -71,7 +71,6 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
 
   return (
     <div>
-      {/* Header */}
       <div className="mb-5">
         <h2 className="mb-2 font-serif text-[1.875rem] font-semibold leading-tight tracking-tight text-foreground">
           {recipe.title}
@@ -82,7 +81,6 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
           </p>
         )}
 
-        {/* Stat pills */}
         <div className="mb-4 flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-[var(--shadow-subtle)]">
             <Users className="h-3.5 w-3.5 text-primary" />
@@ -100,7 +98,6 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
           ) : null}
         </div>
 
-        {/* Actions */}
         <div className="mt-4 flex gap-2">
           <Button variant="outline" size="sm" onClick={() => onEdit(recipe)}>
             Edit recipe
@@ -118,7 +115,6 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
 
       <Separator className="mb-5" />
 
-      {/* Ingredients */}
       {sortedIngredients.length > 0 && (
         <div className="mb-5">
           <div className="mb-3 flex items-center gap-2">
@@ -148,7 +144,6 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
 
       <Separator className="mb-5" />
 
-      {/* Steps */}
       {sortedSteps.length > 0 && (
         <div>
           <div className="mb-3 flex items-center gap-2">

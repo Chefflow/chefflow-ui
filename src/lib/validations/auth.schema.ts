@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Shared field schemas
 const usernameSchema = z
   .string()
   .min(3, "Username must be at least 3 characters")
@@ -30,7 +29,6 @@ const passwordSchema = z
   .regex(/[a-z]/, "Password must contain at least one lowercase letter")
   .regex(/[0-9]/, "Password must contain at least one number");
 
-// Signup schema with password confirmation
 export const signupSchema = z
   .object({
     username: usernameSchema,
@@ -47,13 +45,11 @@ export const signupSchema = z
     path: ["confirmPassword"],
   });
 
-// Login schema (simple)
 export const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
   password: z.string().min(1, "Password is required"),
 });
 
-// Inferred TypeScript types
 export type SignupInput = z.infer<typeof signupSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 

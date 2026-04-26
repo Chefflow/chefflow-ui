@@ -1,8 +1,3 @@
-/**
- * Authentication client for ChefFlow API
- * Handles login, register, profile, and logout operations
- */
-
 import { baseClient } from "./base-client";
 import type {
   ApiUser,

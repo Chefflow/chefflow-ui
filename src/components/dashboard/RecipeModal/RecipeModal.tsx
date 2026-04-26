@@ -81,7 +81,6 @@ export const RecipeModal = ({
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Basic info */}
           <div className="space-y-4">
             <div className="space-y-1">
               <Label htmlFor="title">
@@ -167,7 +166,6 @@ export const RecipeModal = ({
             </div>
           </div>
 
-          {/* Ingredients */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold">Ingredients</h3>
@@ -255,7 +253,6 @@ export const RecipeModal = ({
             </div>
           </div>
 
-          {/* Steps */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold">Steps</h3>

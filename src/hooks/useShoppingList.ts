@@ -37,7 +37,6 @@ export const useShoppingList = (
   const ingredients = useMemo<AggregatedIngredient[]>(() => {
     if (isLoading) return [];
 
-    // Map recipeId → fetched Recipe
     const recipeById = new Map<number, Recipe | null>();
     uniqueRecipeIds.forEach((id, index) => {
       recipeById.set(id, recipeQueries[index]?.data ?? null);

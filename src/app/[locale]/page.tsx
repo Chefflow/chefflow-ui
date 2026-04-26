@@ -40,7 +40,6 @@ export default async function HomePage({
   const t = await getTranslations({ locale, namespace: "home" });
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Hero Section - Vercel style */}
       <section className="container mx-auto px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-foreground">
@@ -85,7 +84,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Features Section - Notion style grid */}
       <section className="border-y border-border bg-secondary/30 py-20 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
@@ -165,7 +163,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* How it Works - Clean minimal */}
       <section className="py-20 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
@@ -217,7 +214,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* CTA Section - Vercel inspired */}
       <section className="border-t border-border py-20 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -248,7 +244,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Footer - Minimal */}
       <footer className="border-t border-border py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">

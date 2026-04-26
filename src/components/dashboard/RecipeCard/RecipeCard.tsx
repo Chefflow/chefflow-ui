@@ -45,7 +45,6 @@ export const RecipeCard = ({
         "hover:border-l-primary",
       )}
     >
-      {/* Title + description */}
       <div className="space-y-1.5">
         <h3 className="font-serif text-[1.1rem] font-semibold text-foreground leading-snug tracking-tight">
           {recipe.title}
@@ -57,7 +56,6 @@ export const RecipeCard = ({
         )}
       </div>
 
-      {/* Stats pills */}
       <div className="flex flex-wrap gap-1.5">
         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-secondary border border-border rounded-full px-2.5 py-0.5">
           <Users className="w-3 h-3 opacity-65" />
@@ -75,7 +73,6 @@ export const RecipeCard = ({
         ) : null}
       </div>
 
-      {/* Ingredient + step counts */}
       {(ingredientCount > 0 || stepCount > 0) && (
         <div className="flex gap-1.5">
           {ingredientCount > 0 && (
@@ -91,7 +88,6 @@ export const RecipeCard = ({
         </div>
       )}
 
-      {/* Footer */}
       <div className="mt-auto flex items-center justify-between border-t border-border pt-2.5">
         {onView ? (
           <span
