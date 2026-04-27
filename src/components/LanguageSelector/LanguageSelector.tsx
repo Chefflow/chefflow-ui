@@ -33,13 +33,15 @@ export default function LanguageSelector() {
         disabled={isPending}
       >
         <SelectTrigger
-          className="w-[180px] bg-secondary border-2 border-primary hover:bg-primary hover:text-primary transition-all duration-200"
+          className="w-auto sm:w-[180px] bg-secondary border-2 border-primary hover:bg-primary hover:text-primary transition-all duration-200"
           aria-label="Select language"
         >
           <SelectValue>
             <span className="flex items-center gap-2">
               <span>{localeFlags[locale as Locale]}</span>
-              <span className="font-bold">{localeNames[locale as Locale]}</span>
+              <span className="hidden sm:inline font-bold">
+                {localeNames[locale as Locale]}
+              </span>
             </span>
           </SelectValue>
         </SelectTrigger>
