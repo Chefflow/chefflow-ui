@@ -130,18 +130,12 @@ export const PlanningTab = () => {
     setIsShoppingListOpen(true);
   };
 
-  const handleAnalyzePlanning = (): void => {
-    console.log("Analyze planning");
-  };
-
   return (
     <div className="space-y-8">
       <PlanningHeader
         title={t("title")}
         generateShoppingListLabel={t("generateShoppingList")}
-        analyzePlanningLabel={t("analyzePlanning")}
         onGenerateShoppingList={handleGenerateShoppingList}
-        onAnalyzePlanning={handleAnalyzePlanning}
         isShoppingListDisabled={
           slots.length === 0 || slots.every((s) => s.recipe === null)
         }
