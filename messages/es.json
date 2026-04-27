@@ -120,7 +120,8 @@
       },
       "aiAnalysis": {
         "title": "Análisis con IA",
-        "description": "Obtén sugerencias inteligentes, información nutricional y recomendaciones de comidas personalizadas."
+        "description": "Obtén sugerencias inteligentes, información nutricional y recomendaciones de comidas personalizadas.",
+        "comingSoon": "Próximamente"
       }
     },
     "howItWorks": {

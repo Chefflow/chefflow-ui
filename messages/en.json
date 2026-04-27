@@ -120,7 +120,8 @@
       },
       "aiAnalysis": {
         "title": "AI Analysis",
-        "description": "Get intelligent suggestions, nutrition insights, and personalized meal recommendations."
+        "description": "Get intelligent suggestions, nutrition insights, and personalized meal recommendations.",
+        "comingSoon": "Coming soon"
       }
     },
     "howItWorks": {

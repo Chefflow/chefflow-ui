@@ -120,7 +120,8 @@
       },
       "aiAnalysis": {
         "title": "Analyse IA",
-        "description": "Obtenez des suggestions intelligentes, des informations nutritionnelles et des recommandations de repas personnalisées."
+        "description": "Obtenez des suggestions intelligentes, des informations nutritionnelles et des recommandations de repas personnalisées.",
+        "comingSoon": "Bientôt disponible"
       }
     },
     "howItWorks": {

@@ -144,7 +144,11 @@ export default async function HomePage({
               </CardContent>
             </Card>
 
-            <Card className="group border-border bg-background transition-all hover:border-primary/20 hover:shadow-md">
+            <Card className="group relative overflow-hidden border-border bg-background transition-all hover:border-primary/20 hover:shadow-md">
+              <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary shadow-[0_0_10px_0_oklch(72%_0.19_30_/_0.35)] ring-1 ring-primary/30">
+                <Sparkles className="h-3 w-3" />
+                {t("features.aiAnalysis.comingSoon")}
+              </span>
               <CardContent className="flex flex-col items-start gap-4 p-6">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
                   <Sparkles className="h-5 w-5" />

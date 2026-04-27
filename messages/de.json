@@ -120,7 +120,8 @@
       },
       "aiAnalysis": {
         "title": "KI-Analyse",
-        "description": "Erhalten Sie intelligente Vorschläge, Nährwertinformationen und personalisierte Mahlzeitenempfehlungen."
+        "description": "Erhalten Sie intelligente Vorschläge, Nährwertinformationen und personalisierte Mahlzeitenempfehlungen.",
+        "comingSoon": "Demnächst verfügbar"
       }
     },
     "howItWorks": {

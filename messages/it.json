@@ -120,7 +120,8 @@
       },
       "aiAnalysis": {
         "title": "Analisi AI",
-        "description": "Ottieni suggerimenti intelligenti, informazioni nutrizionali e raccomandazioni personalizzate sui pasti."
+        "description": "Ottieni suggerimenti intelligenti, informazioni nutrizionali e raccomandazioni personalizzate sui pasti.",
+        "comingSoon": "Prossimamente"
       }
     },
     "howItWorks": {
