@@ -26,8 +26,12 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(event.request.url);
 
-  // Never cache API calls or next internals
-  if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/_next/")) {
+  // Never cache API calls, next internals, or cross-origin requests
+  if (
+    url.origin !== self.location.origin ||
+    url.pathname.startsWith("/api/") ||
+    url.pathname.startsWith("/_next/")
+  ) {
     return;
   }
 
