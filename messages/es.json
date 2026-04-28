@@ -67,6 +67,21 @@
       "cancel": "Cancelar",
       "save": "Guardar Receta",
       "saving": "Guardando…",
+      "errors": {
+        "titleRequired": "El título es obligatorio",
+        "titleMaxLength": "El título no puede superar los 100 caracteres",
+        "descriptionMaxLength": "La descripción no puede superar los 2000 caracteres",
+        "servingsRequired": "Las porciones son obligatorias",
+        "servingsMin": "Debe ser al menos 1",
+        "servingsMax": "No puede superar 100",
+        "prepTimeRequired": "El tiempo de preparación es obligatorio",
+        "prepTimeMin": "Debe ser al menos 1 minuto",
+        "ingredientNameRequired": "El nombre del ingrediente es obligatorio",
+        "quantityMin": "La cantidad debe ser al menos 0.01",
+        "unitInvalid": "Selecciona una unidad válida",
+        "instructionMin": "El paso debe tener al menos 5 caracteres",
+        "durationMin": "La duración debe ser al menos 1 minuto"
+      },
       "units": {
         "GRAM": "Gramo",
         "KILOGRAM": "Kilogramo",

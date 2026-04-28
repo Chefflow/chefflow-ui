@@ -67,6 +67,21 @@
       "cancel": "Annulla",
       "save": "Salva Ricetta",
       "saving": "Salvataggio…",
+      "errors": {
+        "titleRequired": "Il titolo è obbligatorio",
+        "titleMaxLength": "Il titolo non può superare i 100 caratteri",
+        "descriptionMaxLength": "La descrizione non può superare i 2000 caratteri",
+        "servingsRequired": "Le porzioni sono obbligatorie",
+        "servingsMin": "Deve essere almeno 1",
+        "servingsMax": "Non può superare 100",
+        "prepTimeRequired": "Il tempo di preparazione è obbligatorio",
+        "prepTimeMin": "Deve essere almeno 1 minuto",
+        "ingredientNameRequired": "Il nome dell'ingrediente è obbligatorio",
+        "quantityMin": "La quantità deve essere almeno 0.01",
+        "unitInvalid": "Seleziona un'unità valida",
+        "instructionMin": "Il passaggio deve avere almeno 5 caratteri",
+        "durationMin": "La durata deve essere almeno 1 minuto"
+      },
       "units": {
         "GRAM": "Grammo",
         "KILOGRAM": "Chilogrammo",

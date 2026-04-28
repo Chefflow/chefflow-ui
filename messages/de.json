@@ -67,6 +67,21 @@
       "cancel": "Abbrechen",
       "save": "Rezept Speichern",
       "saving": "Speichern…",
+      "errors": {
+        "titleRequired": "Titel ist erforderlich",
+        "titleMaxLength": "Titel darf maximal 100 Zeichen haben",
+        "descriptionMaxLength": "Beschreibung darf maximal 2000 Zeichen haben",
+        "servingsRequired": "Portionen ist erforderlich",
+        "servingsMin": "Muss mindestens 1 sein",
+        "servingsMax": "Darf höchstens 100 sein",
+        "prepTimeRequired": "Vorbereitungszeit ist erforderlich",
+        "prepTimeMin": "Muss mindestens 1 Minute sein",
+        "ingredientNameRequired": "Zutatname ist erforderlich",
+        "quantityMin": "Menge muss mindestens 0.01 sein",
+        "unitInvalid": "Bitte eine gültige Einheit auswählen",
+        "instructionMin": "Der Schritt muss mindestens 5 Zeichen haben",
+        "durationMin": "Dauer muss mindestens 1 Minute sein"
+      },
       "units": {
         "GRAM": "Gramm",
         "KILOGRAM": "Kilogramm",

@@ -13,38 +13,51 @@ const INGREDIENT_UNITS = [
   "TO_TASTE",
 ] as const;
 
-export const ingredientSchema = z.object({
-  ingredientName: z.string().min(1, "Ingredient name is required"),
-  quantity: z.number().min(0.01, "Quantity must be at least 0.01"),
-  unit: z.enum(INGREDIENT_UNITS, {
-    error: "Please select a valid unit",
-  }),
-});
+export interface RecipeSchemaMessages {
+  titleRequired: string;
+  titleMaxLength: string;
+  descriptionMaxLength: string;
+  servingsRequired: string;
+  servingsMin: string;
+  servingsMax: string;
+  prepTimeRequired: string;
+  prepTimeMin: string;
+  ingredientsRequired: string;
+  ingredientNameRequired: string;
+  quantityMin: string;
+  unitInvalid: string;
+  stepsRequired: string;
+  instructionMin: string;
+  durationMin: string;
+}
 
-export const stepSchema = z.object({
-  instruction: z.string().min(5, "Instruction must be at least 5 characters"),
-  duration: z.number().min(1, "Duration must be at least 1 minute").optional(),
-});
+export const createRecipeFormSchema = (msg: RecipeSchemaMessages) => {
+  const ingredientSchema = z.object({
+    ingredientName: z.string().min(1, msg.ingredientNameRequired),
+    quantity: z.number().min(0.01, msg.quantityMin),
+    unit: z.enum(INGREDIENT_UNITS, { error: msg.unitInvalid }),
+  });
 
-export const recipeFormSchema = z.object({
-  title: z
-    .string()
-    .min(1, "Title is required")
-    .max(100, "Title must be at most 100 characters"),
-  description: z
-    .string()
-    .max(2000, "Description must be at most 500 characters")
-    .optional(),
-  servings: z
-    .number()
-    .min(1, "Servings must be at least 1")
-    .max(100, "Servings must be at most 100"),
-  prepTime: z.number().min(1, "Prep time must be at least 1 minute"),
-  cookTime: z.number().min(1, "Cook time must be at least 1 minute").optional(),
-  ingredients: z.array(ingredientSchema),
-  steps: z.array(stepSchema),
-});
+  const stepSchema = z.object({
+    instruction: z.string().min(5, msg.instructionMin),
+    duration: z.number().min(1, msg.durationMin).optional(),
+  });
 
-export type RecipeFormValues = z.infer<typeof recipeFormSchema>;
-export type IngredientFormValues = z.infer<typeof ingredientSchema>;
-export type StepFormValues = z.infer<typeof stepSchema>;
+  return z.object({
+    title: z.string().min(1, msg.titleRequired).max(100, msg.titleMaxLength),
+    description: z.string().max(2000, msg.descriptionMaxLength).optional(),
+    servings: z
+      .number({ error: msg.servingsRequired })
+      .min(1, msg.servingsMin)
+      .max(100, msg.servingsMax),
+    prepTime: z
+      .number({ error: msg.prepTimeRequired })
+      .min(1, msg.prepTimeMin),
+    ingredients: z.array(ingredientSchema).min(1, msg.ingredientsRequired),
+    steps: z.array(stepSchema).min(1, msg.stepsRequired),
+  });
+};
+
+export type RecipeFormValues = z.infer<ReturnType<typeof createRecipeFormSchema>>;
+export type IngredientFormValues = RecipeFormValues["ingredients"][number];
+export type StepFormValues = RecipeFormValues["steps"][number];

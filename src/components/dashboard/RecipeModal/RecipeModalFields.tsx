@@ -57,9 +57,7 @@ export const RecipeModalFields = ({
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="prepTime">
-            {t("prepTime")} <span className="text-destructive">*</span>
-          </Label>
+          <Label htmlFor="prepTime">{t("prepTime")}</Label>
           <Input
             id="prepTime"
             type="number"
@@ -72,21 +70,6 @@ export const RecipeModalFields = ({
             </p>
           )}
         </div>
-      </div>
-
-      <div className="space-y-1">
-        <Label htmlFor="cookTime">{t("cookTime")}</Label>
-        <Input
-          id="cookTime"
-          type="number"
-          min={1}
-          {...register("cookTime", { valueAsNumber: true })}
-        />
-        {errors.cookTime && (
-          <p className="text-destructive text-xs mt-1">
-            {errors.cookTime.message}
-          </p>
-        )}
       </div>
 
       <div className="space-y-1">

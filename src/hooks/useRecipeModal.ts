@@ -2,7 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { useMemo, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { RECIPE_KEYS, useCreateRecipe } from "@/hooks/useRecipes";
@@ -10,7 +11,7 @@ import type { Recipe } from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
 import {
   type RecipeFormValues,
-  recipeFormSchema,
+  createRecipeFormSchema,
 } from "@/lib/validations/recipe.schema";
 
 const DEFAULT_VALUES: RecipeFormValues = {
@@ -18,7 +19,6 @@ const DEFAULT_VALUES: RecipeFormValues = {
   description: undefined,
   servings: 2,
   prepTime: 15,
-  cookTime: undefined,
   ingredients: [{ ingredientName: "", quantity: 1, unit: "UNIT" }],
   steps: [{ instruction: "", duration: undefined }],
 };
@@ -33,8 +33,31 @@ export const useRecipeModal = () => {
 
   const createRecipe = useCreateRecipe();
 
+  const t = useTranslations("dashboard.recipeModal");
+  const schema = useMemo(
+    () =>
+      createRecipeFormSchema({
+        titleRequired: t("errors.titleRequired"),
+        titleMaxLength: t("errors.titleMaxLength"),
+        descriptionMaxLength: t("errors.descriptionMaxLength"),
+        servingsRequired: t("errors.servingsRequired"),
+        servingsMin: t("errors.servingsMin"),
+        servingsMax: t("errors.servingsMax"),
+        prepTimeRequired: t("errors.prepTimeRequired"),
+        prepTimeMin: t("errors.prepTimeMin"),
+        ingredientsRequired: t("errors.ingredientsRequired"),
+        ingredientNameRequired: t("errors.ingredientNameRequired"),
+        quantityMin: t("errors.quantityMin"),
+        unitInvalid: t("errors.unitInvalid"),
+        stepsRequired: t("errors.stepsRequired"),
+        instructionMin: t("errors.instructionMin"),
+        durationMin: t("errors.durationMin"),
+      }),
+    [t],
+  );
+
   const form = useForm<RecipeFormValues>({
-    resolver: zodResolver(recipeFormSchema),
+    resolver: zodResolver(schema),
     defaultValues: DEFAULT_VALUES,
   });
 
@@ -63,7 +86,6 @@ export const useRecipeModal = () => {
       description: recipe.description,
       servings: recipe.servings,
       prepTime: recipe.prepTime,
-      cookTime: recipe.cookTime,
       ingredients: [],
       steps: [],
     });
@@ -91,7 +113,6 @@ export const useRecipeModal = () => {
         })),
       );
       form.setValue("description", full.description);
-      form.setValue("cookTime", full.cookTime);
     }
   };
 
@@ -110,7 +131,6 @@ export const useRecipeModal = () => {
           description: data.description,
           servings: data.servings,
           prepTime: data.prepTime,
-          cookTime: data.cookTime,
         });
         if (updateRes.error) {
           toast.error(updateRes.error.message[0] ?? "Failed to update recipe");
@@ -164,7 +184,6 @@ export const useRecipeModal = () => {
           description: data.description,
           servings: data.servings,
           prepTime: data.prepTime,
-          cookTime: data.cookTime,
           ingredients: data.ingredients,
           steps: data.steps,
         },
