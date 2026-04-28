@@ -76,9 +76,11 @@
         "servingsMax": "Must be at most 100",
         "prepTimeRequired": "Prep time is required",
         "prepTimeMin": "Must be at least 1 minute",
+        "ingredientsRequired": "At least 1 ingredient is required",
         "ingredientNameRequired": "Ingredient name is required",
         "quantityMin": "Quantity must be at least 0.01",
         "unitInvalid": "Please select a valid unit",
+        "stepsRequired": "At least 1 step is required",
         "instructionMin": "Instruction must be at least 5 characters",
         "durationMin": "Duration must be at least 1 minute"
       },

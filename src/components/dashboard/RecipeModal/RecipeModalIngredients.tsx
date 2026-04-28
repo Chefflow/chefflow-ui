@@ -63,7 +63,9 @@ export const RecipeModalIngredients = ({
         </Button>
       </div>
       {errors.ingredients?.root?.message && (
-        <p className="text-destructive text-xs">{errors.ingredients.root.message}</p>
+        <p className="text-destructive text-xs">
+          {errors.ingredients.root.message}
+        </p>
       )}
 
       <div className="space-y-2">

@@ -76,9 +76,11 @@
         "servingsMax": "Non può superare 100",
         "prepTimeRequired": "Il tempo di preparazione è obbligatorio",
         "prepTimeMin": "Deve essere almeno 1 minuto",
+        "ingredientsRequired": "È richiesto almeno 1 ingrediente",
         "ingredientNameRequired": "Il nome dell'ingrediente è obbligatorio",
         "quantityMin": "La quantità deve essere almeno 0.01",
         "unitInvalid": "Seleziona un'unità valida",
+        "stepsRequired": "È richiesto almeno 1 passaggio",
         "instructionMin": "Il passaggio deve avere almeno 5 caratteri",
         "durationMin": "La durata deve essere almeno 1 minuto"
       },

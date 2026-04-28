@@ -50,14 +50,14 @@ export const createRecipeFormSchema = (msg: RecipeSchemaMessages) => {
       .number({ error: msg.servingsRequired })
       .min(1, msg.servingsMin)
       .max(100, msg.servingsMax),
-    prepTime: z
-      .number({ error: msg.prepTimeRequired })
-      .min(1, msg.prepTimeMin),
+    prepTime: z.number({ error: msg.prepTimeRequired }).min(1, msg.prepTimeMin),
     ingredients: z.array(ingredientSchema).min(1, msg.ingredientsRequired),
     steps: z.array(stepSchema).min(1, msg.stepsRequired),
   });
 };
 
-export type RecipeFormValues = z.infer<ReturnType<typeof createRecipeFormSchema>>;
+export type RecipeFormValues = z.infer<
+  ReturnType<typeof createRecipeFormSchema>
+>;
 export type IngredientFormValues = RecipeFormValues["ingredients"][number];
 export type StepFormValues = RecipeFormValues["steps"][number];
