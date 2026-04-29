@@ -113,7 +113,10 @@ export const RecipeCard = ({
             variant="ghost"
             size="icon"
             className="h-7 w-7 text-muted-foreground hover:text-foreground"
-            onClick={(e) => { e.stopPropagation(); onEdit(recipe); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit(recipe);
+            }}
             aria-label={t("editRecipe")}
           >
             <Pencil className="w-3.5 h-3.5" />
@@ -122,7 +125,10 @@ export const RecipeCard = ({
             variant="ghost"
             size="icon"
             className="h-7 w-7 text-muted-foreground hover:text-destructive"
-            onClick={(e) => { e.stopPropagation(); onDelete(recipe); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(recipe);
+            }}
             aria-label={t("deleteRecipe")}
           >
             <Trash2 className="w-3.5 h-3.5" />
