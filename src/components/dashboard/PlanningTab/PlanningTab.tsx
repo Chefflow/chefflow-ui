@@ -16,10 +16,10 @@ import {
   useDeleteSlot,
   useWeeklyPlanning,
   useWeeklyPlannings,
-} from "@/hooks/usePlanning";
-import { useRecipes } from "@/hooks/useRecipes";
-import { useShoppingList } from "@/hooks/useShoppingList";
-import { useWeekPlanning } from "@/hooks/useWeekPlanning";
+} from "@/hooks/usePlanning/usePlanning";
+import { useRecipes } from "@/hooks/useRecipes/useRecipes";
+import { useShoppingList } from "@/hooks/useShoppongList/useShoppingList";
+import { useWeekPlanning } from "@/hooks/useWeekPlanning/useWeekPlanning";
 import type {
   PlanningDayOfWeek,
   PlanningSlot,

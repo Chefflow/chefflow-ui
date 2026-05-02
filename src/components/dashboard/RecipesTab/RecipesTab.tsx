@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { RecipeCard } from "@/components/dashboard/RecipeCard/RecipeCard";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useRecipes } from "@/hooks/useRecipes";
+import { useRecipes } from "@/hooks/useRecipes/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 
 interface RecipesTabProps {

@@ -6,9 +6,9 @@ import { DeleteConfirmDialog } from "@/components/dashboard/DeleteConfirmDialog/
 import { RecipeModal } from "@/components/dashboard/RecipeModal/RecipeModal";
 import { RecipesTab } from "@/components/dashboard/RecipesTab/RecipesTab";
 import { TabNavigation } from "@/components/dashboard/TabNavigation/TabNavigation";
-import { useRecipeModal } from "@/hooks/useRecipeModal";
-import { useRecipeSidebar } from "@/hooks/useRecipeSidebar";
-import { useDeleteRecipe } from "@/hooks/useRecipes";
+import { useRecipeModal } from "@/hooks/useRecipeModal/useRecipeModal";
+import { useRecipeSidebar } from "@/hooks/useRecipeSidebar/useRecipeSidebar";
+import { useDeleteRecipe } from "@/hooks/useRecipes/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 
 const RecipeDetailSidebar = dynamic(

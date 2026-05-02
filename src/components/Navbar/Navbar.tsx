@@ -13,8 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/hooks/useAuth";
-import { useLogout } from "@/hooks/useLogout";
+import { useAuth } from "@/hooks/useAuth/useAuth";
+import { useLogout } from "@/hooks/useLogout/useLogout";
 import { Link } from "@/i18n/routing";
 
 export function Navbar() {

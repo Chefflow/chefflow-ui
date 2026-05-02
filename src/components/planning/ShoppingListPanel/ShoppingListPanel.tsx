@@ -3,7 +3,7 @@
 import { BaseSidePanel } from "@/components/BaseSidePanel/BaseSidePanel";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { AggregatedIngredient } from "@/hooks/useShoppingList";
+import type { AggregatedIngredient } from "@/hooks/useShoppongList/useShoppingList";
 import type { IngredientUnit } from "@/lib/api/interface";
 
 const UNIT_LABELS: Record<IngredientUnit, string> = {

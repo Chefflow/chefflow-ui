@@ -5,7 +5,7 @@ import { BaseSidePanel } from "@/components/BaseSidePanel/BaseSidePanel";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useRecipe } from "@/hooks/useRecipes";
+import { useRecipe } from "@/hooks/useRecipes/useRecipes";
 import type { Recipe, RecipeIngredient, RecipeStep } from "@/lib/api/interface";
 
 interface RecipeDetailSidebarProps {

@@ -11,8 +11,8 @@ import { PasswordStrengthMeter } from "@/components/auth/PasswordStrengthMeter/P
 import { TermsCheckbox } from "@/components/auth/TermsCheckbox/TermsCheckbox";
 import { TextInputField } from "@/components/auth/TextInputField/TextInputField";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { usePasswordVisibility } from "@/hooks/usePasswordVisibility";
-import { useSignup } from "@/hooks/useSignup";
+import { usePasswordVisibility } from "@/hooks/usePasswordVisibility/usePasswordVisibility";
+import { useSignup } from "@/hooks/useSignup/useSignup";
 import { Link } from "@/i18n/routing";
 import { getRedirectUrl } from "@/lib/auth/redirect";
 import { type SignupInput, signupSchema } from "@/lib/validations/auth.schema";
