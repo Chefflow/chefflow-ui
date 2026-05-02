@@ -92,7 +92,7 @@ export const SlotCard = ({
   return (
     <div
       className={cn(
-        "group flex h-20 w-full items-start rounded-[var(--radius-md)]",
+        "group flex h-20 w-full items-stretch rounded-[var(--radius-md)]",
         "border border-border bg-secondary/50 px-3 py-2.5",
         "transition-all hover:shadow-sm",
       )}
@@ -105,28 +105,28 @@ export const SlotCard = ({
           {recipe.title}
         </p>
       </div>
-      <div className="ml-2 flex shrink-0 flex-col gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+      <div className="ml-2 flex w-9 shrink-0 flex-col gap-1">
         <button
           type="button"
           onClick={onAdd}
           aria-label={changeLabel}
           className={cn(
-            "flex h-6 w-6 items-center justify-center rounded-[var(--radius-sm)]",
+            "flex flex-1 items-center justify-center rounded-[var(--radius-sm)]",
             "text-muted-foreground transition-colors hover:bg-secondary hover:text-primary",
           )}
         >
-          <Pencil className="h-3 w-3" />
+          <Pencil className="h-4 w-4" />
         </button>
         <button
           type="button"
           onClick={onRemove}
           aria-label={removeLabel}
           className={cn(
-            "flex h-6 w-6 items-center justify-center rounded-[var(--radius-sm)]",
+            "flex flex-1 items-center justify-center rounded-[var(--radius-sm)]",
             "text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive",
           )}
         >
-          <Trash2 className="h-3 w-3" />
+          <Trash2 className="h-4 w-4" />
         </button>
       </div>
     </div>
