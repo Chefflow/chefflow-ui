@@ -260,6 +260,68 @@
       "keywords": "Dashboard, Rezepte, Mahlzeitenplanung"
     }
   },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "lastUpdated": "Zuletzt aktualisiert: Mai 2026",
+    "introduction": "Bei ChefFlow legen wir Wert auf deine Privatsphäre. Diese Erklärung beschreibt, welche Daten wir erheben, wie wir sie verwenden und welche Rechte du in Bezug auf deine personenbezogenen Daten hast.",
+    "dataCollection": {
+      "title": "Daten, die wir erheben",
+      "content": "Wir erheben nur die für die Funktion des Dienstes notwendigen Informationen:",
+      "points": {
+        "account": "Kontodaten: Name und E-Mail-Adresse zur Erstellung und Verwaltung deiner Sitzung",
+        "recipes": "Rezepte und Zutaten, die du selbst erstellst oder speicherst",
+        "planning": "Wochenpläne und Einkaufslisten, die du in der App erstellst",
+        "usage": "Grundlegende technische Daten (Gerätetyp, Sprache), um den Dienst stabil zu halten"
+      }
+    },
+    "dataUse": {
+      "title": "Wie wir deine Daten verwenden",
+      "content": "Deine Daten werden ausschließlich zur Bereitstellung des Dienstes verwendet: Authentifizierung, Anzeige deiner Rezepte und Pläne sowie Verbesserung des Erlebnisses innerhalb von ChefFlow.",
+      "noCommercial": "Wir verwenden deine Daten nicht für kommerzielle Zwecke. Wir verkaufen, vermieten oder übertragen sie nicht an Dritte zu Werbe- oder Marketingzwecken."
+    },
+    "dataSharing": {
+      "title": "Weitergabe an Dritte",
+      "content": "Wir geben deine personenbezogenen Daten nicht an Dritte weiter, außer wenn dies für den Betrieb des Dienstes unbedingt erforderlich ist (z. B. Hosting-Anbieter) oder gesetzlich vorgeschrieben. Diese Anbieter handeln als Auftragsverarbeiter und sind zur Vertraulichkeit verpflichtet."
+    },
+    "dataRetention": {
+      "title": "Aufbewahrung der Daten",
+      "content": "Wir bewahren deine Informationen auf, solange dein Konto aktiv ist. Wenn du dein Konto löschst, entfernen wir deine personenbezogenen Daten und zugehörigen Ressourcen (Rezepte, Pläne, Listen) dauerhaft, mit Ausnahme der Daten, die wir aufgrund gesetzlicher Verpflichtungen aufbewahren müssen."
+    },
+    "security": {
+      "title": "Sicherheit",
+      "content": "Wir wenden angemessene technische und organisatorische Maßnahmen zum Schutz deiner Informationen an: Verschlüsselung bei der Übertragung (HTTPS), sichere Speicherung von Passwörtern und Zugriffskontrolle für die Datenbank. Kein System ist zu 100 % sicher, aber wir minimieren die Risiken."
+    },
+    "cookies": {
+      "title": "Cookies und lokaler Speicher",
+      "content": "Wir verwenden Cookies und lokalen Speicher ausschließlich, um dich angemeldet zu halten und grundlegende Einstellungen (z. B. Sprache) zu merken. Wir verwenden keine Tracking- oder Werbe-Cookies von Drittanbietern."
+    },
+    "userRights": {
+      "title": "Deine Rechte",
+      "content": "Gemäß den geltenden Datenschutzgesetzen (einschließlich der DSGVO in der Europäischen Union) hast du folgende Rechte in Bezug auf deine personenbezogenen Daten:",
+      "points": {
+        "access": "Auskunft: Eine Kopie der über dich gespeicherten Daten anfordern",
+        "rectification": "Berichtigung: Falsche oder veraltete Informationen korrigieren",
+        "deletion": "Löschung: Wir löschen dein Konto und alle deine Daten auf Anfrage",
+        "portability": "Datenübertragbarkeit: Deine Daten in einem strukturierten, lesbaren Format erhalten"
+      },
+      "contact": "Um eines dieser Rechte auszuüben, schreibe uns an",
+      "contactSuffix": " und wir antworten innerhalb von 30 Tagen."
+    },
+    "children": {
+      "title": "Minderjährige",
+      "content": "ChefFlow richtet sich nicht an Kinder unter 14 Jahren. Wir erheben wissentlich keine Daten von Minderjährigen. Wenn du der Meinung bist, dass ein Minderjähriger uns personenbezogene Daten übermittelt hat, kontaktiere uns, und wir werden sie löschen."
+    },
+    "changes": {
+      "title": "Änderungen dieser Erklärung",
+      "content": "Wir können diese Erklärung aktualisieren, um Änderungen am Dienst oder an den Vorschriften widerzuspiegeln. Bei wesentlichen Änderungen informieren wir dich vorher per E-Mail oder in der App."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "content": "Wenn du Fragen zu dieser Erklärung oder zur Verarbeitung deiner Daten hast, kontaktiere uns unter"
+    },
+    "backToHome": "Zurück zur Startseite",
+    "footer": "Deine Privatsphäre ist uns wichtig. Danke, dass du ChefFlow vertraust."
+  },
   "terms": {
     "title": "Geschäftsbedingungen",
     "lastUpdated": "Zuletzt aktualisiert: März 2025",

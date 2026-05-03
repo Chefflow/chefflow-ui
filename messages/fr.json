@@ -260,6 +260,68 @@
       "keywords": "tableau de bord, recettes, planification des repas"
     }
   },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : Mai 2026",
+    "introduction": "Chez ChefFlow, nous accordons de l'importance à votre vie privée. Cette politique explique quelles données nous collectons, comment nous les utilisons et les droits dont vous disposez sur vos informations personnelles.",
+    "dataCollection": {
+      "title": "Données que Nous Collectons",
+      "content": "Nous collectons uniquement les informations nécessaires au fonctionnement du service :",
+      "points": {
+        "account": "Données de compte : nom et e-mail pour créer et gérer votre session",
+        "recipes": "Recettes et ingrédients que vous créez ou enregistrez",
+        "planning": "Plans hebdomadaires et listes de courses générés dans l'application",
+        "usage": "Données techniques de base (type d'appareil, langue) pour maintenir la stabilité du service"
+      }
+    },
+    "dataUse": {
+      "title": "Comment Nous Utilisons Vos Données",
+      "content": "Vos données sont utilisées uniquement pour fournir le service : vous authentifier, afficher vos recettes et plans, et améliorer l'expérience dans ChefFlow.",
+      "noCommercial": "Nous n'utilisons pas vos données à des fins commerciales. Nous ne les vendons, louons ni cédons à des tiers pour la publicité ou le marketing."
+    },
+    "dataSharing": {
+      "title": "Partage avec des Tiers",
+      "content": "Nous ne partageons pas vos données personnelles avec des tiers, sauf lorsque cela est strictement nécessaire au fonctionnement du service (par exemple, les hébergeurs) ou requis par la loi. Ces prestataires agissent en tant que sous-traitants et sont soumis à des obligations de confidentialité."
+    },
+    "dataRetention": {
+      "title": "Conservation des Données",
+      "content": "Nous conservons vos informations tant que votre compte est actif. Si vous supprimez votre compte, nous effaçons définitivement vos données personnelles et les ressources associées (recettes, plans, listes), sauf celles que nous devons conserver pour des obligations légales."
+    },
+    "security": {
+      "title": "Sécurité",
+      "content": "Nous appliquons des mesures techniques et organisationnelles raisonnables pour protéger vos informations : chiffrement en transit (HTTPS), stockage sécurisé des mots de passe et contrôle d'accès à la base de données. Aucun système n'est sûr à 100 %, mais nous œuvrons à minimiser les risques."
+    },
+    "cookies": {
+      "title": "Cookies et Stockage Local",
+      "content": "Nous utilisons les cookies et le stockage local uniquement pour maintenir votre session ouverte et mémoriser des préférences de base (comme la langue). Nous n'utilisons pas de cookies de suivi ou de publicité tiers."
+    },
+    "userRights": {
+      "title": "Vos Droits",
+      "content": "Conformément à la législation applicable en matière de protection des données (RGPD dans l'Union européenne), vous disposez des droits suivants sur vos données personnelles :",
+      "points": {
+        "access": "Accès : demander une copie des données que nous détenons sur vous",
+        "rectification": "Rectification : corriger toute information incorrecte ou obsolète",
+        "deletion": "Effacement : demander la suppression de votre compte et de toutes vos données",
+        "portability": "Portabilité : recevoir vos données dans un format structuré et lisible"
+      },
+      "contact": "Pour exercer l'un de ces droits, écrivez-nous à",
+      "contactSuffix": " et nous répondrons sous 30 jours."
+    },
+    "children": {
+      "title": "Mineurs",
+      "content": "ChefFlow n'est pas destiné aux enfants de moins de 14 ans. Nous ne collectons pas sciemment de données auprès de mineurs. Si vous pensez qu'un mineur nous a transmis des informations personnelles, contactez-nous et nous les supprimerons."
+    },
+    "changes": {
+      "title": "Modifications de cette Politique",
+      "content": "Nous pouvons mettre à jour cette politique pour refléter des changements dans le service ou la réglementation. Si les changements sont importants, nous vous informerons par e-mail ou dans l'application avant leur entrée en vigueur."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Si vous avez des questions sur cette politique ou le traitement de vos données, contactez-nous à"
+    },
+    "backToHome": "Retour à l'accueil",
+    "footer": "Votre vie privée compte. Merci de faire confiance à ChefFlow."
+  },
   "terms": {
     "title": "Termes & Conditions",
     "lastUpdated": "Dernière mise à jour : Mars 2025",

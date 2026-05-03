@@ -260,6 +260,68 @@
       "keywords": "dashboard, recipes, meal planning"
     }
   },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: May 2026",
+    "introduction": "At ChefFlow we value your privacy. This policy explains what data we collect, how we use it, and the rights you have over your personal information.",
+    "dataCollection": {
+      "title": "Data We Collect",
+      "content": "We only collect the information needed to make the service work:",
+      "points": {
+        "account": "Account data: name and email to create and manage your session",
+        "recipes": "Recipes and ingredients you create or save yourself",
+        "planning": "Weekly plans and shopping lists you generate in the app",
+        "usage": "Basic technical data (device type, language) to keep the service stable"
+      }
+    },
+    "dataUse": {
+      "title": "How We Use Your Data",
+      "content": "Your data is used solely to deliver the service: authenticating you, showing your recipes and plans, and improving the experience inside ChefFlow.",
+      "noCommercial": "We do not use your data for commercial purposes. We do not sell, rent, or transfer it to third parties for advertising or marketing."
+    },
+    "dataSharing": {
+      "title": "Sharing with Third Parties",
+      "content": "We do not share your personal data with third parties, except when strictly necessary for the operation of the service (for example, hosting providers) or when required by law. These providers act as data processors and are bound by confidentiality obligations."
+    },
+    "dataRetention": {
+      "title": "Data Retention",
+      "content": "We keep your information while your account is active. If you delete your account, we permanently remove your personal data and associated resources (recipes, plans, lists), except for what we must keep due to legal obligations."
+    },
+    "security": {
+      "title": "Security",
+      "content": "We apply reasonable technical and organizational measures to protect your information: encryption in transit (HTTPS), secure password storage, and database access control. No system is 100% secure, but we work to minimize risks."
+    },
+    "cookies": {
+      "title": "Cookies and Local Storage",
+      "content": "We use cookies and local storage only to keep you logged in and remember basic preferences (such as language). We do not use third-party tracking or advertising cookies."
+    },
+    "userRights": {
+      "title": "Your Rights",
+      "content": "Under applicable data protection laws (including GDPR in the European Union), you have the following rights over your personal data:",
+      "points": {
+        "access": "Access: request a copy of the data we hold about you",
+        "rectification": "Rectification: correct any incorrect or outdated information",
+        "deletion": "Erasure: ask us to delete your account and all your data",
+        "portability": "Portability: receive your data in a structured, readable format"
+      },
+      "contact": "To exercise any of these rights, write to us at",
+      "contactSuffix": " and we will respond within 30 days."
+    },
+    "children": {
+      "title": "Minors",
+      "content": "ChefFlow is not intended for children under 14. We do not knowingly collect data from minors. If you believe a minor has provided us with personal information, contact us and we will delete it."
+    },
+    "changes": {
+      "title": "Changes to this Policy",
+      "content": "We may update this policy to reflect changes in the service or in regulations. If the changes are significant, we will notify you by email or within the app before they take effect."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "If you have questions about this policy or the processing of your data, contact us at"
+    },
+    "backToHome": "Back to home",
+    "footer": "Your privacy matters. Thank you for trusting ChefFlow."
+  },
   "terms": {
     "title": "Terms & Conditions",
     "lastUpdated": "Last updated: March 2025",

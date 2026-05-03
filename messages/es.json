@@ -260,6 +260,68 @@
       "keywords": "dashboard, recetas, planificación de comidas"
     }
   },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: Mayo 2026",
+    "introduction": "En ChefFlow valoramos tu privacidad. Esta política explica qué datos recopilamos, cómo los usamos y los derechos que tienes sobre tu información personal.",
+    "dataCollection": {
+      "title": "Datos que Recopilamos",
+      "content": "Recopilamos únicamente la información necesaria para que el servicio funcione:",
+      "points": {
+        "account": "Datos de cuenta: nombre y correo electrónico para crear y gestionar tu sesión",
+        "recipes": "Recetas e ingredientes que tú mismo creas o guardas",
+        "planning": "Planes semanales y listas de la compra que generes en la app",
+        "usage": "Datos técnicos básicos (tipo de dispositivo, idioma) para mantener el servicio estable"
+      }
+    },
+    "dataUse": {
+      "title": "Cómo Usamos Tus Datos",
+      "content": "Tus datos se usan exclusivamente para ofrecerte el servicio: autenticarte, mostrarte tus recetas y planes, y mejorar la experiencia dentro de ChefFlow.",
+      "noCommercial": "No usamos tus datos para fines comerciales. No los vendemos, alquilamos ni cedemos a terceros con fines publicitarios o de marketing."
+    },
+    "dataSharing": {
+      "title": "Compartición con Terceros",
+      "content": "No compartimos tus datos personales con terceros, salvo cuando sea estrictamente necesario para el funcionamiento del servicio (por ejemplo, proveedores de hosting) o cuando una obligación legal lo requiera. Estos proveedores actúan como encargados de tratamiento y están sujetos a obligaciones de confidencialidad."
+    },
+    "dataRetention": {
+      "title": "Conservación de los Datos",
+      "content": "Conservamos tu información mientras tu cuenta esté activa. Si eliminas tu cuenta, borramos tus datos personales y los recursos asociados (recetas, planes, listas) de forma permanente, salvo aquellos que debamos conservar por obligaciones legales."
+    },
+    "security": {
+      "title": "Seguridad",
+      "content": "Aplicamos medidas técnicas y organizativas razonables para proteger tu información: cifrado en tránsito (HTTPS), almacenamiento seguro de contraseñas y control de acceso a la base de datos. Ningún sistema es 100% seguro, pero trabajamos para minimizar los riesgos."
+    },
+    "cookies": {
+      "title": "Cookies y Almacenamiento Local",
+      "content": "Usamos cookies y almacenamiento local únicamente para mantener tu sesión iniciada y recordar preferencias básicas (como el idioma). No usamos cookies de seguimiento ni de publicidad de terceros."
+    },
+    "userRights": {
+      "title": "Tus Derechos",
+      "content": "De acuerdo con la normativa de protección de datos aplicable (incluido el RGPD en la Unión Europea), tienes los siguientes derechos sobre tus datos personales:",
+      "points": {
+        "access": "Acceso: solicitar una copia de los datos que tenemos sobre ti",
+        "rectification": "Rectificación: corregir cualquier dato incorrecto o desactualizado",
+        "deletion": "Supresión: pedir que borremos tu cuenta y todos tus datos",
+        "portability": "Portabilidad: recibir tus datos en un formato estructurado y legible"
+      },
+      "contact": "Para ejercer cualquiera de estos derechos, escríbenos a",
+      "contactSuffix": " y atenderemos tu solicitud en un plazo máximo de 30 días."
+    },
+    "children": {
+      "title": "Menores de Edad",
+      "content": "ChefFlow no está dirigido a menores de 14 años. No recopilamos conscientemente datos de menores. Si crees que un menor nos ha facilitado información personal, contáctanos y la eliminaremos."
+    },
+    "changes": {
+      "title": "Cambios en esta Política",
+      "content": "Podemos actualizar esta política para reflejar cambios en el servicio o en la normativa. Si los cambios son significativos, te avisaremos por email o dentro de la app antes de que entren en vigor."
+    },
+    "contact": {
+      "title": "Contacto",
+      "content": "Si tienes dudas sobre esta política o sobre el tratamiento de tus datos, contáctanos en"
+    },
+    "backToHome": "Volver al inicio",
+    "footer": "Tu privacidad importa. Gracias por confiar en ChefFlow."
+  },
   "terms": {
     "title": "Términos y Condiciones",
     "lastUpdated": "Última actualización: Marzo 2026",
