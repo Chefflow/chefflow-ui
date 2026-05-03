@@ -1,6 +1,7 @@
 {
   "common": {
     "loading": "Caricamento...",
+    "closePanel": "Chiudi pannello",
     "error": {
       "title": "Qualcosa è andato storto",
       "description": "Ci scusiamo per l'inconveniente.",
@@ -95,7 +96,9 @@
         "UNIT": "Unità",
         "PINCH": "Pizzico",
         "TO_TASTE": "Quanto basta"
-      }
+      },
+      "removeIngredient": "Rimuovi ingrediente",
+      "removeStep": "Rimuovi passaggio"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# porzione} other {# porzioni}}",
@@ -107,7 +110,23 @@
       "editRecipe": "Modifica ricetta",
       "deleteRecipe": "Elimina ricetta",
       "recipeActions": "Azioni ricetta"
-    }
+    },
+    "recipeDetail": {
+      "label": "Dettaglio Ricetta",
+      "minTotal": "{count} min totali",
+      "delete": "Elimina",
+      "ingredients": "Ingredienti",
+      "steps": "Passaggi"
+    },
+    "deleteConfirm": {
+      "title": "Elimina Ricetta",
+      "description": "Sei sicuro di voler eliminare \"{title}\"? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "delete": "Elimina",
+      "deleting": "Eliminazione…"
+    },
+    "errorLoadingRecipes": "Impossibile caricare le ricette",
+    "retry": "Riprova"
   },
   "home": {
     "hero": {
@@ -229,13 +248,16 @@
     "noResults": "Nessuna ricetta corrisponde alla tua ricerca",
     "pastDay": "I giorni passati non possono essere modificati",
     "slot": "Slot",
+    "prevWeek": "Settimana precedente",
+    "nextWeek": "Settimana successiva",
     "weekOf": "Settimana del",
     "shoppingList": {
       "title": "Lista della spesa",
       "subtitle": "Settimana del {weekRange}",
       "empty": "Nessuna ricetta pianificata per questa settimana",
       "close": "Chiudi",
-      "ingredientsCount": "{count} ingredienti"
+      "ingredientsCount": "{count} ingredienti",
+      "ingredients": "Ingredienti"
     }
   },
   "metadata": {
@@ -259,6 +281,38 @@
       "description": "Gestisci le tue ricette e piani pasti in un unico posto.",
       "keywords": "dashboard, ricette, pianificazione pasti"
     }
+  },
+  "auth": {
+    "hidePassword": "Nascondi password",
+    "showPassword": "Mostra password",
+    "passwordStrength": {
+      "label": "Sicurezza della password:",
+      "requirements": "Requisiti:",
+      "allMet": "La password soddisfa tutti i requisiti!",
+      "enterPassword": "Inserisci password",
+      "veryWeak": "Molto debole",
+      "weak": "Debole",
+      "fair": "Sufficiente",
+      "good": "Buona",
+      "strong": "Forte",
+      "feedback": {
+        "length": "Almeno 8 caratteri",
+        "uppercase": "Una lettera maiuscola",
+        "lowercase": "Una lettera minuscola",
+        "number": "Un numero",
+        "special": "Un carattere speciale (!@#$%^&*)"
+      }
+    }
+  },
+  "install": {
+    "title": "Installa ChefFlow",
+    "iosInstructions": "Tocca <shareIcon/> e poi <strong>Aggiungi alla schermata Home</strong> per installare l'app.",
+    "androidInstructions": "Aggiungi ChefFlow alla schermata Home per un accesso rapido senza browser.",
+    "install": "Installa",
+    "close": "Chiudi"
+  },
+  "languageSelector": {
+    "ariaLabel": "Seleziona lingua"
   },
   "privacy": {
     "title": "Informativa sulla Privacy",

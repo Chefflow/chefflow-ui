@@ -1,6 +1,7 @@
 {
   "common": {
     "loading": "Loading...",
+    "closePanel": "Close panel",
     "error": {
       "title": "Something went wrong",
       "description": "We're sorry for the inconvenience.",
@@ -95,7 +96,9 @@
         "UNIT": "Unit",
         "PINCH": "Pinch",
         "TO_TASTE": "To Taste"
-      }
+      },
+      "removeIngredient": "Remove ingredient",
+      "removeStep": "Remove step"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# serving} other {# servings}}",
@@ -107,7 +110,23 @@
       "editRecipe": "Edit recipe",
       "deleteRecipe": "Delete recipe",
       "recipeActions": "Recipe actions"
-    }
+    },
+    "recipeDetail": {
+      "label": "Recipe Detail",
+      "minTotal": "{count} min total",
+      "delete": "Delete",
+      "ingredients": "Ingredients",
+      "steps": "Steps"
+    },
+    "deleteConfirm": {
+      "title": "Delete Recipe",
+      "description": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleting": "Deleting…"
+    },
+    "errorLoadingRecipes": "Failed to load recipes",
+    "retry": "Retry"
   },
   "home": {
     "hero": {
@@ -229,13 +248,16 @@
     "noResults": "No recipes match your search",
     "pastDay": "Past days cannot be edited",
     "slot": "Slot",
+    "prevWeek": "Previous week",
+    "nextWeek": "Next week",
     "weekOf": "Week of",
     "shoppingList": {
       "title": "Shopping List",
       "subtitle": "Week of {weekRange}",
       "empty": "No recipes planned for this week",
       "close": "Close",
-      "ingredientsCount": "{count} ingredients"
+      "ingredientsCount": "{count} ingredients",
+      "ingredients": "Ingredients"
     }
   },
   "metadata": {
@@ -259,6 +281,38 @@
       "description": "Manage your recipes and meal plans in one place.",
       "keywords": "dashboard, recipes, meal planning"
     }
+  },
+  "auth": {
+    "hidePassword": "Hide password",
+    "showPassword": "Show password",
+    "passwordStrength": {
+      "label": "Password strength:",
+      "requirements": "Requirements:",
+      "allMet": "Password meets all requirements!",
+      "enterPassword": "Enter password",
+      "veryWeak": "Very Weak",
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong",
+      "feedback": {
+        "length": "At least 8 characters",
+        "uppercase": "One uppercase letter",
+        "lowercase": "One lowercase letter",
+        "number": "One number",
+        "special": "One special character (!@#$%^&*)"
+      }
+    }
+  },
+  "install": {
+    "title": "Install ChefFlow",
+    "iosInstructions": "Tap <shareIcon/> and then <strong>Add to Home Screen</strong> to install the app.",
+    "androidInstructions": "Add ChefFlow to your home screen for quick access without a browser.",
+    "install": "Install",
+    "close": "Close"
+  },
+  "languageSelector": {
+    "ariaLabel": "Select language"
   },
   "privacy": {
     "title": "Privacy Policy",

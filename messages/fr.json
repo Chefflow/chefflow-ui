@@ -1,6 +1,7 @@
 {
   "common": {
     "loading": "Chargement...",
+    "closePanel": "Fermer le panneau",
     "error": {
       "title": "Une erreur s'est produite",
       "description": "Nous sommes désolés pour la gêne occasionnée.",
@@ -95,7 +96,9 @@
         "UNIT": "Unité",
         "PINCH": "Pincée",
         "TO_TASTE": "À volonté"
-      }
+      },
+      "removeIngredient": "Supprimer l'ingrédient",
+      "removeStep": "Supprimer l'étape"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# portion} other {# portions}}",
@@ -107,7 +110,23 @@
       "editRecipe": "Modifier la recette",
       "deleteRecipe": "Supprimer la recette",
       "recipeActions": "Actions sur la recette"
-    }
+    },
+    "recipeDetail": {
+      "label": "Détail de la Recette",
+      "minTotal": "{count} min au total",
+      "delete": "Supprimer",
+      "ingredients": "Ingrédients",
+      "steps": "Étapes"
+    },
+    "deleteConfirm": {
+      "title": "Supprimer la Recette",
+      "description": "Êtes-vous sûr de vouloir supprimer \"{title}\" ? Cette action est irréversible.",
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "deleting": "Suppression…"
+    },
+    "errorLoadingRecipes": "Échec du chargement des recettes",
+    "retry": "Réessayer"
   },
   "home": {
     "hero": {
@@ -229,13 +248,16 @@
     "noResults": "Aucune recette ne correspond à votre recherche",
     "pastDay": "Les jours passés ne peuvent pas être modifiés",
     "slot": "Créneau",
+    "prevWeek": "Semaine précédente",
+    "nextWeek": "Semaine suivante",
     "weekOf": "Semaine du",
     "shoppingList": {
       "title": "Liste de courses",
       "subtitle": "Semaine du {weekRange}",
       "empty": "Aucune recette planifiée cette semaine",
       "close": "Fermer",
-      "ingredientsCount": "{count} ingrédients"
+      "ingredientsCount": "{count} ingrédients",
+      "ingredients": "Ingrédients"
     }
   },
   "metadata": {
@@ -259,6 +281,38 @@
       "description": "Gérez vos recettes et plans de repas en un seul endroit.",
       "keywords": "tableau de bord, recettes, planification des repas"
     }
+  },
+  "auth": {
+    "hidePassword": "Masquer le mot de passe",
+    "showPassword": "Afficher le mot de passe",
+    "passwordStrength": {
+      "label": "Force du mot de passe :",
+      "requirements": "Exigences :",
+      "allMet": "Le mot de passe répond à toutes les exigences !",
+      "enterPassword": "Saisir le mot de passe",
+      "veryWeak": "Très faible",
+      "weak": "Faible",
+      "fair": "Correct",
+      "good": "Bien",
+      "strong": "Fort",
+      "feedback": {
+        "length": "Au moins 8 caractères",
+        "uppercase": "Une lettre majuscule",
+        "lowercase": "Une lettre minuscule",
+        "number": "Un chiffre",
+        "special": "Un caractère spécial (!@#$%^&*)"
+      }
+    }
+  },
+  "install": {
+    "title": "Installer ChefFlow",
+    "iosInstructions": "Appuyez sur <shareIcon/> puis sur <strong>Ajouter à l'écran d'accueil</strong> pour installer l'app.",
+    "androidInstructions": "Ajoutez ChefFlow à votre écran d'accueil pour un accès rapide sans navigateur.",
+    "install": "Installer",
+    "close": "Fermer"
+  },
+  "languageSelector": {
+    "ariaLabel": "Sélectionner la langue"
   },
   "privacy": {
     "title": "Politique de Confidentialité",

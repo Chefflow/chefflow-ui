@@ -1,6 +1,7 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -25,19 +26,20 @@ export const DeleteConfirmDialog = ({
   onCancel,
   isPending,
 }: DeleteConfirmDialogProps) => {
+  const t = useTranslations("dashboard.deleteConfirm");
+
   return (
     <Dialog open={recipe !== null} onOpenChange={(open) => !open && onCancel()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete Recipe</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete &quot;{recipe?.title}&quot;? This
-            action cannot be undone.
+            {t("description", { title: recipe?.title ?? "" })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="ghost" onClick={onCancel} disabled={isPending}>
-            Cancel
+            {t("cancel")}
           </Button>
           <Button
             variant="destructive"
@@ -46,7 +48,7 @@ export const DeleteConfirmDialog = ({
             className="gap-2"
           >
             {isPending && <Loader2 className="size-4 animate-spin" />}
-            {isPending ? "Deleting…" : "Delete"}
+            {isPending ? t("deleting") : t("delete")}
           </Button>
         </DialogFooter>
       </DialogContent>

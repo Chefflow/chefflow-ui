@@ -1,6 +1,7 @@
 {
   "common": {
     "loading": "Lädt...",
+    "closePanel": "Bereich schließen",
     "error": {
       "title": "Etwas ist schief gelaufen",
       "description": "Wir entschuldigen uns für die Unannehmlichkeiten.",
@@ -95,7 +96,9 @@
         "UNIT": "Einheit",
         "PINCH": "Prise",
         "TO_TASTE": "Nach Geschmack"
-      }
+      },
+      "removeIngredient": "Zutat entfernen",
+      "removeStep": "Schritt entfernen"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# Portion} other {# Portionen}}",
@@ -107,7 +110,23 @@
       "editRecipe": "Rezept bearbeiten",
       "deleteRecipe": "Rezept löschen",
       "recipeActions": "Rezeptaktionen"
-    }
+    },
+    "recipeDetail": {
+      "label": "Rezeptdetail",
+      "minTotal": "{count} min gesamt",
+      "delete": "Löschen",
+      "ingredients": "Zutaten",
+      "steps": "Schritte"
+    },
+    "deleteConfirm": {
+      "title": "Rezept löschen",
+      "description": "Möchten Sie \"{title}\" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "delete": "Löschen",
+      "deleting": "Wird gelöscht…"
+    },
+    "errorLoadingRecipes": "Rezepte konnten nicht geladen werden",
+    "retry": "Erneut versuchen"
   },
   "home": {
     "hero": {
@@ -229,13 +248,16 @@
     "noResults": "Keine Rezepte entsprechen Ihrer Suche",
     "pastDay": "Vergangene Tage können nicht bearbeitet werden",
     "slot": "Slot",
+    "prevWeek": "Vorherige Woche",
+    "nextWeek": "Nächste Woche",
     "weekOf": "Woche vom",
     "shoppingList": {
       "title": "Einkaufsliste",
       "subtitle": "Woche vom {weekRange}",
       "empty": "Keine Rezepte für diese Woche geplant",
       "close": "Schließen",
-      "ingredientsCount": "{count} Zutaten"
+      "ingredientsCount": "{count} Zutaten",
+      "ingredients": "Zutaten"
     }
   },
   "metadata": {
@@ -259,6 +281,38 @@
       "description": "Verwalten Sie Ihre Rezepte und Mahlzeitenpläne an einem Ort.",
       "keywords": "Dashboard, Rezepte, Mahlzeitenplanung"
     }
+  },
+  "auth": {
+    "hidePassword": "Passwort ausblenden",
+    "showPassword": "Passwort anzeigen",
+    "passwordStrength": {
+      "label": "Passwortstärke:",
+      "requirements": "Anforderungen:",
+      "allMet": "Das Passwort erfüllt alle Anforderungen!",
+      "enterPassword": "Passwort eingeben",
+      "veryWeak": "Sehr schwach",
+      "weak": "Schwach",
+      "fair": "Mäßig",
+      "good": "Gut",
+      "strong": "Stark",
+      "feedback": {
+        "length": "Mindestens 8 Zeichen",
+        "uppercase": "Ein Großbuchstabe",
+        "lowercase": "Ein Kleinbuchstabe",
+        "number": "Eine Zahl",
+        "special": "Ein Sonderzeichen (!@#$%^&*)"
+      }
+    }
+  },
+  "install": {
+    "title": "ChefFlow installieren",
+    "iosInstructions": "Tippe auf <shareIcon/> und dann auf <strong>Zum Home-Bildschirm</strong> um die App zu installieren.",
+    "androidInstructions": "Füge ChefFlow zu deinem Startbildschirm hinzu für schnellen Zugriff ohne Browser.",
+    "install": "Installieren",
+    "close": "Schließen"
+  },
+  "languageSelector": {
+    "ariaLabel": "Sprache auswählen"
   },
   "privacy": {
     "title": "Datenschutzerklärung",

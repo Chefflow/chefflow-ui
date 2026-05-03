@@ -1,6 +1,7 @@
 "use client";
 
 import { Share, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 type InstallState = "idle" | "ios" | "android";
@@ -13,6 +14,7 @@ interface BeforeInstallPromptEvent extends Event {
 const DISMISSED_KEY = "chefflow-pwa-dismissed";
 
 export const InstallPrompt = () => {
+  const t = useTranslations("install");
   const [state, setState] = useState<InstallState>("idle");
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
@@ -61,18 +63,17 @@ export const InstallPrompt = () => {
           <Share className="h-5 w-5" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-foreground">
-            Instalar ChefFlow
-          </p>
+          <p className="text-sm font-semibold text-foreground">{t("title")}</p>
           {state === "ios" ? (
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Toca <Share className="inline h-3 w-3" /> y luego{" "}
-              <strong>Añadir a pantalla de inicio</strong> para instalar la app.
+              {t.rich("iosInstructions", {
+                shareIcon: () => <Share className="inline h-3 w-3" />,
+                strong: (chunks) => <strong>{chunks}</strong>,
+              })}
             </p>
           ) : (
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Añade ChefFlow a tu pantalla de inicio para acceso rápido sin
-              navegador.
+              {t("androidInstructions")}
             </p>
           )}
           {state === "android" && (
@@ -81,7 +82,7 @@ export const InstallPrompt = () => {
               onClick={install}
               className="mt-2 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary/90 transition-colors"
             >
-              Instalar
+              {t("install")}
             </button>
           )}
         </div>
@@ -89,7 +90,7 @@ export const InstallPrompt = () => {
           type="button"
           onClick={dismiss}
           className="shrink-0 text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="Cerrar"
+          aria-label={t("close")}
         >
           <X className="h-4 w-4" />
         </button>

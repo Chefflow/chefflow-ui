@@ -2,6 +2,7 @@
 
 import { CheckCircle2, XCircle } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { calculatePasswordStrength } from "@/lib/validations/password-strength";
 
 interface PasswordStrengthMeterProps {
@@ -13,6 +14,7 @@ export function PasswordStrengthMeter({
   password,
   showFeedback = true,
 }: PasswordStrengthMeterProps) {
+  const t = useTranslations("auth.passwordStrength");
   const strength = calculatePasswordStrength(password);
 
   if (!password) {
@@ -22,14 +24,14 @@ export function PasswordStrengthMeter({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs">
-        <span className="text-muted-foreground">Password strength:</span>
+        <span className="text-muted-foreground">{t("label")}</span>
         <motion.span
-          key={strength.label}
+          key={strength.labelKey}
           initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
           className="font-medium"
         >
-          {strength.label}
+          {t(strength.labelKey)}
         </motion.span>
       </div>
 
@@ -42,24 +44,24 @@ export function PasswordStrengthMeter({
         />
       </div>
 
-      {showFeedback && strength.feedback.length > 0 && (
+      {showFeedback && strength.feedbackKeys.length > 0 && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           className="space-y-1 pt-1"
         >
-          <p className="text-xs text-muted-foreground">Requirements:</p>
+          <p className="text-xs text-muted-foreground">{t("requirements")}</p>
           <ul className="space-y-1">
-            {strength.feedback.map((item) => (
+            {strength.feedbackKeys.map((key) => (
               <motion.li
-                key={item}
+                key={key}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="flex items-center gap-2 text-xs text-muted-foreground"
               >
                 <XCircle className="h-3 w-3 text-red-500" />
-                {item}
+                {t(`feedback.${key}`)}
               </motion.li>
             ))}
           </ul>
@@ -73,7 +75,7 @@ export function PasswordStrengthMeter({
           className="flex items-center gap-2 text-xs text-green-600 pt-1"
         >
           <CheckCircle2 className="h-3 w-3" />
-          <span>Password meets all requirements!</span>
+          <span>{t("allMet")}</span>
         </motion.div>
       )}
     </div>

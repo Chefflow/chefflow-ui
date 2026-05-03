@@ -1,6 +1,7 @@
 {
   "common": {
     "loading": "Cargando...",
+    "closePanel": "Cerrar panel",
     "error": {
       "title": "Algo salió mal",
       "description": "Lamentamos las molestias.",
@@ -95,7 +96,9 @@
         "UNIT": "Unidad",
         "PINCH": "Pizca",
         "TO_TASTE": "Al gusto"
-      }
+      },
+      "removeIngredient": "Eliminar ingrediente",
+      "removeStep": "Eliminar paso"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# porción} other {# porciones}}",
@@ -107,7 +110,23 @@
       "editRecipe": "Editar receta",
       "deleteRecipe": "Eliminar receta",
       "recipeActions": "Acciones de receta"
-    }
+    },
+    "recipeDetail": {
+      "label": "Detalle de Receta",
+      "minTotal": "{count} min en total",
+      "delete": "Eliminar",
+      "ingredients": "Ingredientes",
+      "steps": "Pasos"
+    },
+    "deleteConfirm": {
+      "title": "Eliminar Receta",
+      "description": "¿Estás seguro de que deseas eliminar \"{title}\"? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "deleting": "Eliminando…"
+    },
+    "errorLoadingRecipes": "Error al cargar las recetas",
+    "retry": "Reintentar"
   },
   "home": {
     "hero": {
@@ -229,13 +248,16 @@
     "noResults": "Ninguna receta coincide con tu búsqueda",
     "pastDay": "Los días pasados no se pueden editar",
     "slot": "Espacio",
+    "prevWeek": "Semana anterior",
+    "nextWeek": "Semana siguiente",
     "weekOf": "Semana del",
     "shoppingList": {
       "title": "Lista de la compra",
       "subtitle": "Semana del {weekRange}",
       "empty": "No hay recetas planificadas esta semana",
       "close": "Cerrar",
-      "ingredientsCount": "{count} ingredientes"
+      "ingredientsCount": "{count} ingredientes",
+      "ingredients": "Ingredientes"
     }
   },
   "metadata": {
@@ -259,6 +281,38 @@
       "description": "Gestiona tus recetas y planes de comidas en un solo lugar.",
       "keywords": "dashboard, recetas, planificación de comidas"
     }
+  },
+  "auth": {
+    "hidePassword": "Ocultar contraseña",
+    "showPassword": "Mostrar contraseña",
+    "passwordStrength": {
+      "label": "Seguridad de la contraseña:",
+      "requirements": "Requisitos:",
+      "allMet": "¡La contraseña cumple todos los requisitos!",
+      "enterPassword": "Ingresa contraseña",
+      "veryWeak": "Muy débil",
+      "weak": "Débil",
+      "fair": "Regular",
+      "good": "Buena",
+      "strong": "Fuerte",
+      "feedback": {
+        "length": "Al menos 8 caracteres",
+        "uppercase": "Una letra mayúscula",
+        "lowercase": "Una letra minúscula",
+        "number": "Un número",
+        "special": "Un carácter especial (!@#$%^&*)"
+      }
+    }
+  },
+  "install": {
+    "title": "Instalar ChefFlow",
+    "iosInstructions": "Toca <shareIcon/> y luego <strong>Añadir a pantalla de inicio</strong> para instalar la app.",
+    "androidInstructions": "Añade ChefFlow a tu pantalla de inicio para acceso rápido sin navegador.",
+    "install": "Instalar",
+    "close": "Cerrar"
+  },
+  "languageSelector": {
+    "ariaLabel": "Seleccionar idioma"
   },
   "privacy": {
     "title": "Política de Privacidad",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
@@ -18,6 +19,8 @@ export const BaseSidePanel = ({
   label,
   children,
 }: BaseSidePanelProps): React.ReactElement => {
+  const t = useTranslations("common");
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -61,7 +64,7 @@ export const BaseSidePanel = ({
             size="icon"
             className="h-7 w-7 text-muted-foreground"
             onClick={onClose}
-            aria-label="Close panel"
+            aria-label={t("closePanel")}
           >
             <svg
               width="14"

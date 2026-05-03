@@ -83,7 +83,7 @@ export const RecipeModalSteps = ({
               onClick={() => onRemove(index)}
             >
               <Trash2 className="size-4" />
-              <span className="sr-only">Remove step</span>
+              <span className="sr-only">{t("removeStep")}</span>
             </Button>
           </div>
         ))}

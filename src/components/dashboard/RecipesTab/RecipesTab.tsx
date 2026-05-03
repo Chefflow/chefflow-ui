@@ -72,10 +72,10 @@ export const RecipesTab = ({
             <p className="mb-4 text-sm text-destructive">
               {error instanceof Error
                 ? error.message
-                : "Failed to load recipes"}
+                : t("errorLoadingRecipes")}
             </p>
             <Button variant="outline" onClick={() => refetch()}>
-              Retry
+              {t("retry")}
             </Button>
           </div>
         </div>

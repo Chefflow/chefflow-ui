@@ -121,7 +121,7 @@ export const RecipeModalIngredients = ({
               onClick={() => onRemove(index)}
             >
               <Trash2 className="size-4" />
-              <span className="sr-only">Remove ingredient</span>
+              <span className="sr-only">{t("removeIngredient")}</span>
             </Button>
           </div>
         ))}

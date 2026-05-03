@@ -1,7 +1,7 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
 import {
   Select,
@@ -14,6 +14,7 @@ import { type Locale, localeFlags, localeNames, locales } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/routing";
 
 export default function LanguageSelector() {
+  const t = useTranslations("languageSelector");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -34,7 +35,7 @@ export default function LanguageSelector() {
       >
         <SelectTrigger
           className="w-auto sm:w-[180px] bg-secondary border-2 border-primary hover:bg-primary hover:text-primary transition-all duration-200"
-          aria-label="Select language"
+          aria-label={t("ariaLabel")}
         >
           <SelectValue>
             <span className="flex items-center gap-2">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { BaseSidePanel } from "@/components/BaseSidePanel/BaseSidePanel";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -80,6 +81,8 @@ export const ShoppingListPanel = ({
   emptyText,
   ingredientsCountText,
 }: ShoppingListPanelProps): React.ReactElement => {
+  const t = useTranslations("planning.shoppingList");
+
   return (
     <BaseSidePanel isOpen={isOpen} onClose={onClose} label={title}>
       <p className="mb-5 text-sm text-muted-foreground">{subtitleText}</p>
@@ -88,7 +91,7 @@ export const ShoppingListPanel = ({
 
       <div className="mb-3 flex items-center gap-2">
         <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-          Ingredients
+          {t("ingredients")}
         </span>
         <span className="rounded-full bg-border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
           {ingredientsCountText}

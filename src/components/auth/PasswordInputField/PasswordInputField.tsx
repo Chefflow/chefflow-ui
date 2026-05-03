@@ -1,4 +1,7 @@
+"use client";
+
 import { Eye, EyeOff, Lock } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { InputHTMLAttributes, ReactNode } from "react";
 import { FormFieldError } from "@/components/auth/FormFieldError/FormFieldError";
 import { Input } from "@/components/ui/input";
@@ -25,6 +28,8 @@ export const PasswordInputField = ({
   className = "",
   ...inputProps
 }: PasswordInputFieldProps) => {
+  const t = useTranslations("auth");
+
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>{label}</Label>
@@ -41,7 +46,7 @@ export const PasswordInputField = ({
           type="button"
           onClick={onToggleVisibility}
           className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-          aria-label={showPassword ? "Hide password" : "Show password"}
+          aria-label={showPassword ? t("hidePassword") : t("showPassword")}
         >
           {showPassword ? (
             <EyeOff className="h-4 w-4" />

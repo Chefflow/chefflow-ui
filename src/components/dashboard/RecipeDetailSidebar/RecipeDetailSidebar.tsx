@@ -1,6 +1,7 @@
 "use client";
 
 import { Clock, Flame, Users } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { BaseSidePanel } from "@/components/BaseSidePanel/BaseSidePanel";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -61,6 +62,7 @@ interface SidebarContentProps {
 }
 
 const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
+  const t = useTranslations("dashboard");
   const totalTime = recipe.prepTime + (recipe.cookTime ?? 0);
   const sortedIngredients = [...(recipe.ingredients ?? [])].sort(
     (a, b) => a.order - b.order,
@@ -84,23 +86,23 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
         <div className="mb-4 flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-[var(--shadow-subtle)]">
             <Users className="h-3.5 w-3.5 text-primary" />
-            {recipe.servings} servings
+            {t("recipeCard.servings", { count: recipe.servings })}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-[var(--shadow-subtle)]">
             <Clock className="h-3.5 w-3.5 text-primary" />
-            {totalTime} min total
+            {t("recipeDetail.minTotal", { count: totalTime })}
           </span>
           {recipe.cookTime ? (
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-[var(--shadow-subtle)]">
               <Flame className="h-3.5 w-3.5 text-primary" />
-              Cook {recipe.cookTime}m
+              {t("recipeCard.cookTime", { count: recipe.cookTime })}
             </span>
           ) : null}
         </div>
 
         <div className="mt-4 flex gap-2">
           <Button variant="outline" size="sm" onClick={() => onEdit(recipe)}>
-            Edit recipe
+            {t("recipeCard.editRecipe")}
           </Button>
           <Button
             variant="ghost"
@@ -108,7 +110,7 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
             className="text-destructive hover:bg-destructive/10 hover:text-destructive"
             onClick={() => onDelete(recipe)}
           >
-            Delete
+            {t("recipeDetail.delete")}
           </Button>
         </div>
       </div>
@@ -119,7 +121,7 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
         <div className="mb-5">
           <div className="mb-3 flex items-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-              Ingredients
+              {t("recipeDetail.ingredients")}
             </span>
             <span className="rounded-full bg-border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
               {sortedIngredients.length}
@@ -148,7 +150,7 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
         <div>
           <div className="mb-3 flex items-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-              Steps
+              {t("recipeDetail.steps")}
             </span>
             <span className="rounded-full bg-border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
               {sortedSteps.length}
@@ -184,11 +186,12 @@ export const RecipeDetailSidebar = ({
   onEdit,
   onDelete,
 }: RecipeDetailSidebarProps) => {
+  const t = useTranslations("dashboard");
   const isOpen = recipeId !== null;
   const { recipe, isLoading } = useRecipe(recipeId ?? 0);
 
   return (
-    <BaseSidePanel isOpen={isOpen} onClose={onClose} label="Recipe Detail">
+    <BaseSidePanel isOpen={isOpen} onClose={onClose} label={t("recipeDetail.label")}>
       {isOpen && (isLoading || !recipe) ? (
         <SidebarSkeleton />
       ) : isOpen && recipe ? (
