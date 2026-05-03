@@ -191,7 +191,11 @@ export const RecipeDetailSidebar = ({
   const { recipe, isLoading } = useRecipe(recipeId ?? 0);
 
   return (
-    <BaseSidePanel isOpen={isOpen} onClose={onClose} label={t("recipeDetail.label")}>
+    <BaseSidePanel
+      isOpen={isOpen}
+      onClose={onClose}
+      label={t("recipeDetail.label")}
+    >
       {isOpen && (isLoading || !recipe) ? (
         <SidebarSkeleton />
       ) : isOpen && recipe ? (

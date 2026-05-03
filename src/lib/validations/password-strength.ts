@@ -51,7 +51,12 @@ export function calculatePasswordStrength(password: string): PasswordStrength {
   }
 
   const configs = [
-    { score: 0, labelKey: "enterPassword", color: "bg-gray-300", percentage: 0 },
+    {
+      score: 0,
+      labelKey: "enterPassword",
+      color: "bg-gray-300",
+      percentage: 0,
+    },
     { score: 1, labelKey: "veryWeak", color: "bg-red-500", percentage: 20 },
     { score: 2, labelKey: "weak", color: "bg-orange-500", percentage: 40 },
     { score: 3, labelKey: "fair", color: "bg-yellow-500", percentage: 60 },
