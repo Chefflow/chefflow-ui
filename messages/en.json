@@ -98,7 +98,8 @@
         "TO_TASTE": "To Taste"
       },
       "removeIngredient": "Remove ingredient",
-      "removeStep": "Remove step"
+      "removeStep": "Remove step",
+      "noStepsYet": "No steps added (optional)"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# serving} other {# servings}}",

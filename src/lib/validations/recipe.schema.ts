@@ -52,7 +52,7 @@ export const createRecipeFormSchema = (msg: RecipeSchemaMessages) => {
       .max(100, msg.servingsMax),
     prepTime: z.number({ error: msg.prepTimeRequired }).min(1, msg.prepTimeMin),
     ingredients: z.array(ingredientSchema).min(1, msg.ingredientsRequired),
-    steps: z.array(stepSchema).min(1, msg.stepsRequired),
+    steps: z.array(stepSchema),
   });
 };
 

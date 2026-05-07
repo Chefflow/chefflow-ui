@@ -20,7 +20,7 @@ const DEFAULT_VALUES: RecipeFormValues = {
   servings: 2,
   prepTime: 15,
   ingredients: [{ ingredientName: "", quantity: 1, unit: "UNIT" }],
-  steps: [{ instruction: "", duration: undefined }],
+  steps: [],
 };
 
 export const useRecipeModal = () => {
