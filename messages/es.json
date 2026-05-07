@@ -114,6 +114,7 @@
     "recipeDetail": {
       "label": "Detalle de Receta",
       "minTotal": "{count} min en total",
+      "stepDurationMinutes": "{count} min",
       "delete": "Eliminar",
       "ingredients": "Ingredientes",
       "steps": "Pasos"
