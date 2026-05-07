@@ -78,7 +78,7 @@ export function DashboardClient({
               onViewRecipe={(recipe) => openSidebar(recipe.id)}
             />
           ) : (
-            <PlanningTab />
+            <PlanningTab onOpenCreateModal={openCreateModal} />
           )}
         </div>
       </div>

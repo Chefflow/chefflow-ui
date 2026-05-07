@@ -248,6 +248,7 @@
     "searchRecipes": "Search recipes...",
     "noRecipes": "You have no recipes yet",
     "noResults": "No recipes match your search",
+    "createNewRecipe": "Create new recipe",
     "pastDay": "Past days cannot be edited",
     "slot": "Slot",
     "prevWeek": "Previous week",
