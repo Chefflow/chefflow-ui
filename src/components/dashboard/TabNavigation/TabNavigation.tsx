@@ -19,7 +19,9 @@ export const TabNavigation = ({
             <span
               aria-hidden="true"
               className={`pointer-events-none absolute top-1 bottom-1 rounded-full bg-primary shadow-sm transition-all duration-300 ease-in-out ${
-                activeTab === "recipes" ? "left-1 right-1/2" : "left-1/2 right-1"
+                activeTab === "recipes"
+                  ? "left-1 right-1/2"
+                  : "left-1/2 right-1"
               }`}
             />
             <button
