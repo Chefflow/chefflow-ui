@@ -12,37 +12,41 @@ export const TabNavigation = ({
   const t = useTranslations("dashboard.tabs");
 
   return (
-    <div className="bg-background">
+    <div className="sticky top-16 z-40 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-8 pt-6">
-          <button
-            type="button"
-            onClick={() => onTabChange("recipes")}
-            className={`relative pb-3 text-sm font-medium transition-colors ${
-              activeTab === "recipes"
-                ? "text-foreground"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {t("recipes")}
-            {activeTab === "recipes" && (
-              <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-foreground" />
-            )}
-          </button>
-          <button
-            type="button"
-            onClick={() => onTabChange("planning")}
-            className={`relative pb-3 text-sm font-medium transition-colors ${
-              activeTab === "planning"
-                ? "text-foreground"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {t("planning")}
-            {activeTab === "planning" && (
-              <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-foreground" />
-            )}
-          </button>
+        <div className="py-3">
+          <div className="relative inline-grid grid-cols-2 rounded-full bg-secondary p-1">
+            <span
+              aria-hidden="true"
+              className={`pointer-events-none absolute top-1 bottom-1 rounded-full bg-primary shadow-sm transition-all duration-300 ease-in-out ${
+                activeTab === "recipes"
+                  ? "left-1 right-1/2"
+                  : "left-1/2 right-1"
+              }`}
+            />
+            <button
+              type="button"
+              onClick={() => onTabChange("recipes")}
+              className={`relative z-10 rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
+                activeTab === "recipes"
+                  ? "text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t("recipes")}
+            </button>
+            <button
+              type="button"
+              onClick={() => onTabChange("planning")}
+              className={`relative z-10 rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
+                activeTab === "planning"
+                  ? "text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t("planning")}
+            </button>
+          </div>
         </div>
       </div>
     </div>

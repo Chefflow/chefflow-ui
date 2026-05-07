@@ -32,9 +32,7 @@ export const RecipeModalSteps = ({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold">
-          {t("steps")} <span className="text-destructive">*</span>
-        </h3>
+        <h3 className="text-sm font-semibold">{t("steps")}</h3>
         <Button type="button" variant="outline" size="sm" onClick={onAppend}>
           {t("add")}
         </Button>
@@ -43,6 +41,9 @@ export const RecipeModalSteps = ({
         <p className="text-destructive text-xs">{errors.steps.root.message}</p>
       )}
 
+      {fields.length === 0 && (
+        <p className="text-muted-foreground text-xs">{t("noStepsYet")}</p>
+      )}
       <div className="space-y-3">
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-start gap-2">

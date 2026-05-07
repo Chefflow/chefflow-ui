@@ -49,7 +49,11 @@ function getSlotsForDay(
   );
 }
 
-export const PlanningTab = () => {
+interface PlanningTabProps {
+  onOpenCreateModal: (onCreated?: (recipe: Recipe) => void) => void;
+}
+
+export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
   const t = useTranslations("planning");
   const locale = useLocale();
   const queryClient = useQueryClient();
@@ -96,11 +100,12 @@ export const PlanningTab = () => {
     return dayDate < new Date();
   };
 
-  const handleRecipeSelect = (recipe: Recipe): void => {
-    if (!pendingSlot) return;
-    const { dayIndex, slotNumber } = pendingSlot;
+  const assignRecipeToSlot = (
+    slot: { dayIndex: number; slotNumber: 1 | 2 | 3 },
+    recipe: Recipe,
+  ): void => {
+    const { dayIndex, slotNumber } = slot;
     const day = DAY_OF_WEEK[dayIndex];
-    setPendingSlot(null);
 
     if (currentPlanning) {
       assignSlot({ day, slot: slotNumber, recipeId: recipe.id });
@@ -124,6 +129,22 @@ export const PlanningTab = () => {
         },
       );
     }
+  };
+
+  const handleRecipeSelect = (recipe: Recipe): void => {
+    if (!pendingSlot) return;
+    const slotSnapshot = pendingSlot;
+    setPendingSlot(null);
+    assignRecipeToSlot(slotSnapshot, recipe);
+  };
+
+  const handleCreateNewRecipe = (): void => {
+    const slotSnapshot = pendingSlot;
+    if (!slotSnapshot) return;
+    setPendingSlot(null);
+    onOpenCreateModal((createdRecipe) => {
+      assignRecipeToSlot(slotSnapshot, createdRecipe);
+    });
   };
 
   const handleGenerateShoppingList = (): void => {
@@ -200,12 +221,14 @@ export const PlanningTab = () => {
         isOpen={pendingSlot !== null}
         onClose={() => setPendingSlot(null)}
         onSelect={handleRecipeSelect}
+        onCreateNew={handleCreateNewRecipe}
         recipes={recipes}
         isLoading={recipesLoading}
         title={t("selectRecipe")}
         searchPlaceholder={t("searchRecipes")}
         noRecipesText={t("noRecipes")}
         noResultsText={t("noResults")}
+        createNewLabel={t("createNewRecipe")}
       />
 
       <ShoppingListPanel

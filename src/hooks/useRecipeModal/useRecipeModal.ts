@@ -20,13 +20,16 @@ const DEFAULT_VALUES: RecipeFormValues = {
   servings: 2,
   prepTime: 15,
   ingredients: [{ ingredientName: "", quantity: 1, unit: "UNIT" }],
-  steps: [{ instruction: "", duration: undefined }],
+  steps: [],
 };
 
 export const useRecipeModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<"create" | "edit">("create");
   const [editingRecipe, setEditingRecipe] = useState<Recipe | null>(null);
+  const [onCreatedCallback, setOnCreatedCallback] = useState<
+    ((recipe: Recipe) => void) | null
+  >(null);
 
   const [isEditSubmitting, setIsEditSubmitting] = useState(false);
   const queryClient = useQueryClient();
@@ -71,10 +74,11 @@ export const useRecipeModal = () => {
     name: "steps",
   });
 
-  const openCreateModal = (): void => {
+  const openCreateModal = (onCreated?: (recipe: Recipe) => void): void => {
     form.reset(DEFAULT_VALUES);
     setEditingRecipe(null);
     setMode("create");
+    setOnCreatedCallback(() => onCreated ?? null);
     setIsOpen(true);
   };
 
@@ -120,6 +124,7 @@ export const useRecipeModal = () => {
     setIsOpen(false);
     form.reset(DEFAULT_VALUES);
     setEditingRecipe(null);
+    setOnCreatedCallback(null);
   };
 
   const onSubmit = async (data: RecipeFormValues): Promise<void> => {
@@ -189,7 +194,10 @@ export const useRecipeModal = () => {
         },
         {
           onSuccess: (response) => {
-            if (!response.error) {
+            if (!response.error && response.data) {
+              const created = response.data;
+              onCreatedCallback?.(created);
+              setOnCreatedCallback(null);
               closeModal();
             }
           },

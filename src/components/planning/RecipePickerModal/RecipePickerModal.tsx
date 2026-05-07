@@ -1,7 +1,8 @@
 "use client";
 
-import { Clock, Search, Users } from "lucide-react";
+import { Clock, Plus, Search, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +18,8 @@ interface RecipePickerModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelect: (recipe: Recipe) => void;
+  onCreateNew: () => void;
+  createNewLabel: string;
   title: string;
   searchPlaceholder: string;
   noRecipesText: string;
@@ -40,6 +43,8 @@ export const RecipePickerModal = ({
   isOpen,
   onClose,
   onSelect,
+  onCreateNew,
+  createNewLabel,
   title,
   searchPlaceholder,
   noRecipesText,
@@ -81,7 +86,7 @@ export const RecipePickerModal = ({
           </DialogTitle>
         </DialogHeader>
 
-        <div className="px-6 py-4">
+        <div className="flex flex-col gap-3 px-6 py-4">
           <div className="relative">
             <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
@@ -92,6 +97,15 @@ export const RecipePickerModal = ({
               autoFocus={false}
             />
           </div>
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full justify-start gap-2"
+            onClick={onCreateNew}
+          >
+            <Plus className="size-4" />
+            {createNewLabel}
+          </Button>
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 pb-6">

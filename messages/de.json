@@ -98,7 +98,8 @@
         "TO_TASTE": "Nach Geschmack"
       },
       "removeIngredient": "Zutat entfernen",
-      "removeStep": "Schritt entfernen"
+      "removeStep": "Schritt entfernen",
+      "noStepsYet": "Keine Schritte hinzugefügt (optional)"
     },
     "recipeCard": {
       "servings": "{count, plural, one {# Portion} other {# Portionen}}",
@@ -114,6 +115,7 @@
     "recipeDetail": {
       "label": "Rezeptdetail",
       "minTotal": "{count} min gesamt",
+      "stepDurationMinutes": "{count} Min.",
       "delete": "Löschen",
       "ingredients": "Zutaten",
       "steps": "Schritte"
@@ -246,6 +248,7 @@
     "searchRecipes": "Rezepte suchen...",
     "noRecipes": "Sie haben noch keine Rezepte",
     "noResults": "Keine Rezepte entsprechen Ihrer Suche",
+    "createNewRecipe": "Neues Rezept erstellen",
     "pastDay": "Vergangene Tage können nicht bearbeitet werden",
     "slot": "Slot",
     "prevWeek": "Vorherige Woche",
