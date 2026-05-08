@@ -23,7 +23,7 @@ export const WeekNavigation = ({
         variant="outline"
         size="icon"
         onClick={onPreviousWeek}
-        className="h-9 w-9 rounded-lg"
+        className="h-9 w-9 rounded-lg hover:border-primary hover:text-primary"
         aria-label={t("prevWeek")}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -39,7 +39,7 @@ export const WeekNavigation = ({
         variant="outline"
         size="icon"
         onClick={onNextWeek}
-        className="h-9 w-9 rounded-lg"
+        className="h-9 w-9 rounded-lg hover:border-primary hover:text-primary"
         aria-label={t("nextWeek")}
       >
         <ChevronRight className="h-4 w-4" />

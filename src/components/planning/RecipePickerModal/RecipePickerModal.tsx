@@ -100,7 +100,7 @@ export const RecipePickerModal = ({
           <Button
             type="button"
             variant="outline"
-            className="w-full justify-start gap-2"
+            className="w-full justify-start gap-2 hover:border-primary hover:text-primary"
             onClick={onCreateNew}
           >
             <Plus className="size-4" />
