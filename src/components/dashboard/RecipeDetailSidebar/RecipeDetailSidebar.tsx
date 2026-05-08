@@ -101,7 +101,12 @@ const SidebarContent = ({ recipe, onEdit, onDelete }: SidebarContentProps) => {
         </div>
 
         <div className="mt-4 flex gap-2">
-          <Button variant="outline" size="sm" className="hover:border-primary hover:text-primary" onClick={() => onEdit(recipe)}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="hover:border-primary hover:text-primary"
+            onClick={() => onEdit(recipe)}
+          >
             {t("recipeCard.editRecipe")}
           </Button>
           <Button
