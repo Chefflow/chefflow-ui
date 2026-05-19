@@ -61,7 +61,7 @@ export const RecipePickerModal = ({
   useEffect(() => {
     if (!isOpen) {
       setSearch("");
-        }
+    }
   }, [isOpen]);
 
   const availableRecipes = recipes.filter(

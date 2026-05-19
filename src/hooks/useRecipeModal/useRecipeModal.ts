@@ -76,7 +76,8 @@ export const useRecipeModal = () => {
     form.reset(DEFAULT_VALUES);
     setEditingRecipe(null);
     setMode("create");
-    onCreatedCallbackRef.current = typeof onCreated === "function" ? onCreated : null;
+    onCreatedCallbackRef.current =
+      typeof onCreated === "function" ? onCreated : null;
     setIsOpen(true);
   };
 
