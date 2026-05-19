@@ -54,7 +54,7 @@ export const RecipesTab = ({
             {t("myRecipesSubtitle")}
           </p>
         </div>
-        <Button onClick={onOpenCreateModal} size="lg" className="gap-2">
+        <Button onClick={() => onOpenCreateModal()} size="lg" className="gap-2">
           <Plus className="h-4 w-4" />
           {t("newRecipe")}
         </Button>
@@ -91,7 +91,7 @@ export const RecipesTab = ({
             <p className="mb-6 text-sm text-muted-foreground">
               {t("empty.description")}
             </p>
-            <Button onClick={onOpenCreateModal} size="lg" className="gap-2">
+            <Button onClick={() => onOpenCreateModal()} size="lg" className="gap-2">
               <Plus className="h-4 w-4" />
               {t("empty.createFirst")}
             </Button>

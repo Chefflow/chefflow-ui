@@ -22,7 +22,8 @@
   "dashboard": {
     "tabs": {
       "recipes": "Recettes",
-      "planning": "Planification"
+      "planning": "Planification",
+      "settings": "Paramètres"
     },
     "myRecipes": "Mes Recettes",
     "myRecipesSubtitle": "Organisez et gérez vos créations culinaires",
@@ -242,8 +243,16 @@
     "generateShoppingList": "Générer Liste de Courses",
     "analyzePlanning": "Analyser Planification",
     "addRecipe": "Ajouter recette",
+    "addAnotherRecipe": "Ajouter une autre recette",
     "changeRecipe": "Changer de recette",
     "removeRecipe": "Supprimer la recette",
+    "clearSlot": "Vider le créneau",
+    "slotFull": "Créneau plein (max. {max} recettes)",
+    "noAvailableRecipes": "Toutes vos recettes sont déjà dans ce créneau",
+    "confirmClearSlotTitle": "Vider toutes les recettes ?",
+    "confirmClearSlotMessage": "Les {count} recettes seront retirées de ce créneau.",
+    "confirmClearSlotConfirm": "Vider",
+    "confirmClearSlotCancel": "Annuler",
     "selectRecipe": "Sélectionner une recette",
     "searchRecipes": "Rechercher des recettes...",
     "noRecipes": "Vous n'avez pas encore de recettes",
@@ -316,6 +325,22 @@
   },
   "languageSelector": {
     "ariaLabel": "Sélectionner la langue"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "planning": {
+      "title": "Préférences de planification",
+      "slotsPerDay": "Repas par jour",
+      "slotsPerDayHelp": "S'applique aux semaines que vous planifiez à partir de maintenant. Les semaines déjà enregistrées conservent leur configuration.",
+      "save": "Enregistrer",
+      "saved": "Enregistré",
+      "rangeError": "Doit être entre 1 et 6"
+    }
+  },
+  "errors": {
+    "slotFull": "Créneau plein",
+    "recipeDuplicate": "La recette est déjà dans ce créneau",
+    "slotOutOfRange": "Ce créneau n'est plus disponible"
   },
   "privacy": {
     "title": "Politique de Confidentialité",

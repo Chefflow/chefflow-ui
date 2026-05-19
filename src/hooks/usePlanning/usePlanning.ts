@@ -1,8 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { RECIPE_KEYS } from "@/hooks/useRecipes/useRecipes";
 import type {
   CreatePlanningRequest,
   PlanningDayOfWeek,
+  PlanningSlot,
+  Recipe,
+  WeeklyPlanning,
 } from "@/lib/api/interface";
 import { CACHE_CONFIG } from "@/lib/api/interface";
 import { planningClient } from "@/lib/api/planning-client";
@@ -69,43 +73,191 @@ export const useCreatePlanning = () => {
   return { createPlanning, isPending };
 };
 
-export const useAssignSlot = (planningId: number) => {
+interface SlotMutationVariables {
+  day: PlanningDayOfWeek;
+  slot: number;
+  recipeId: number;
+}
+
+interface SlotMutationContext {
+  previous: WeeklyPlanning | null | undefined;
+}
+
+export const useAddRecipeToSlot = (planningId: number) => {
   const queryClient = useQueryClient();
 
-  const { mutate: assignSlot, isPending } = useMutation({
-    mutationFn: ({
-      day,
-      slot,
-      recipeId,
-    }: {
-      day: PlanningDayOfWeek;
-      slot: 1 | 2 | 3;
-      recipeId: number;
-    }) => planningClient.assignSlot(planningId, day, slot, { recipeId }),
-    onSuccess: (response) => {
+  const { mutate: addRecipeToSlot, isPending } = useMutation<
+    Awaited<ReturnType<typeof planningClient.addRecipeToSlot>>,
+    Error,
+    SlotMutationVariables,
+    SlotMutationContext
+  >({
+    mutationFn: ({ day, slot, recipeId }) =>
+      planningClient.addRecipeToSlot(planningId, day, slot, { recipeId }),
+    onMutate: async ({ day, slot, recipeId }) => {
+      await queryClient.cancelQueries({
+        queryKey: PLANNING_KEYS.detail(planningId),
+      });
+
+      const previous = queryClient.getQueryData<WeeklyPlanning | null>(
+        PLANNING_KEYS.detail(planningId),
+      );
+
+      const cachedRecipe = queryClient.getQueryData<Recipe>(
+        RECIPE_KEYS.detail(recipeId),
+      );
+
+      const recipeObj: Recipe =
+        cachedRecipe ??
+        ({
+          id: recipeId,
+          title: "",
+          servings: 0,
+          prepTime: 0,
+          authorId: "",
+          ingredients: [],
+          steps: [],
+          createdAt: "",
+          updatedAt: "",
+        } as unknown as Recipe);
+
+      if (previous) {
+        const slots = previous.slots ?? [];
+        const existingIndex = slots.findIndex(
+          (s) => s.dayOfWeek === day && s.slotNumber === slot,
+        );
+
+        let nextSlots: PlanningSlot[];
+        if (existingIndex >= 0) {
+          nextSlots = slots.map((s, idx) =>
+            idx === existingIndex
+              ? { ...s, recipes: [...s.recipes, recipeObj] }
+              : s,
+          );
+        } else {
+          const tempSlot: PlanningSlot = {
+            id: -Date.now(),
+            weeklyPlanningId: planningId,
+            dayOfWeek: day,
+            slotNumber: slot,
+            recipes: [recipeObj],
+          };
+          nextSlots = [...slots, tempSlot];
+        }
+
+        queryClient.setQueryData<WeeklyPlanning>(
+          PLANNING_KEYS.detail(planningId),
+          { ...previous, slots: nextSlots },
+        );
+      }
+
+      return { previous };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previous !== undefined) {
+        queryClient.setQueryData(
+          PLANNING_KEYS.detail(planningId),
+          context.previous,
+        );
+      }
+      toast.error("Failed to add recipe");
+    },
+    onSuccess: (response, _variables, context) => {
       if (response.error) {
-        toast.error(response.error.message[0] ?? "Failed to assign slot");
+        if (context?.previous !== undefined) {
+          queryClient.setQueryData(
+            PLANNING_KEYS.detail(planningId),
+            context.previous,
+          );
+        }
+        toast.error(response.error.message[0] ?? "Failed to add recipe");
         return;
       }
+      toast.success("Recipe added!");
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: PLANNING_KEYS.detail(planningId),
       });
       queryClient.invalidateQueries({ queryKey: PLANNING_KEYS.all });
-      toast.success("Slot assigned!");
-    },
-    onError: () => {
-      toast.error("Failed to assign slot");
     },
   });
 
-  return { assignSlot, isPending };
+  return { addRecipeToSlot, isPending };
+};
+
+export const useRemoveRecipeFromSlot = (planningId: number) => {
+  const queryClient = useQueryClient();
+
+  const { mutate: removeRecipeFromSlot, isPending } = useMutation<
+    Awaited<ReturnType<typeof planningClient.removeRecipeFromSlot>>,
+    Error,
+    SlotMutationVariables,
+    SlotMutationContext
+  >({
+    mutationFn: ({ day, slot, recipeId }) =>
+      planningClient.removeRecipeFromSlot(planningId, day, slot, recipeId),
+    onMutate: async ({ day, slot, recipeId }) => {
+      await queryClient.cancelQueries({
+        queryKey: PLANNING_KEYS.detail(planningId),
+      });
+
+      const previous = queryClient.getQueryData<WeeklyPlanning | null>(
+        PLANNING_KEYS.detail(planningId),
+      );
+
+      if (previous) {
+        const slots = previous.slots ?? [];
+        const nextSlots = slots.map((s) =>
+          s.dayOfWeek === day && s.slotNumber === slot
+            ? { ...s, recipes: s.recipes.filter((r) => r.id !== recipeId) }
+            : s,
+        );
+
+        queryClient.setQueryData<WeeklyPlanning>(
+          PLANNING_KEYS.detail(planningId),
+          { ...previous, slots: nextSlots },
+        );
+      }
+
+      return { previous };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previous !== undefined) {
+        queryClient.setQueryData(
+          PLANNING_KEYS.detail(planningId),
+          context.previous,
+        );
+      }
+      toast.error("Failed to remove recipe");
+    },
+    onSuccess: (response, _variables, context) => {
+      if (response.error) {
+        if (context?.previous !== undefined) {
+          queryClient.setQueryData(
+            PLANNING_KEYS.detail(planningId),
+            context.previous,
+          );
+        }
+        toast.error(response.error.message[0] ?? "Failed to remove recipe");
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: PLANNING_KEYS.detail(planningId),
+      });
+      queryClient.invalidateQueries({ queryKey: PLANNING_KEYS.all });
+    },
+  });
+
+  return { removeRecipeFromSlot, isPending };
 };
 
 export const useDeleteSlot = (planningId: number) => {
   const queryClient = useQueryClient();
 
   const { mutate: deleteSlot, isPending } = useMutation({
-    mutationFn: ({ day, slot }: { day: PlanningDayOfWeek; slot: 1 | 2 | 3 }) =>
+    mutationFn: ({ day, slot }: { day: PlanningDayOfWeek; slot: number }) =>
       planningClient.deleteSlot(planningId, day, slot),
     onSuccess: (response) => {
       if (response.error) {

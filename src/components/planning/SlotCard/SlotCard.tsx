@@ -1,30 +1,41 @@
 "use client";
 
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 interface SlotCardProps {
-  slotNumber: 1 | 2 | 3;
+  slotNumber: number;
   slotLabel: string;
-  recipe: { id: number; title: string } | null;
+  recipes: Array<{ id: number; title: string }>;
+  maxRecipes?: number;
   isPast: boolean;
   isLoading?: boolean;
-  onAdd: () => void;
-  onRemove: () => void;
-  changeLabel: string;
-  removeLabel: string;
+  onAddRecipe: () => void;
+  onRemoveRecipe: (recipeId: number) => void;
+  onClearSlot: () => void;
+  addRecipeLabel: string;
+  addAnotherRecipeLabel: string;
+  removeRecipeLabel: string;
+  clearSlotLabel: string;
+  slotFullLabel: string;
 }
 
 export const SlotCard = ({
   slotNumber,
   slotLabel,
-  recipe,
+  recipes,
+  maxRecipes = 5,
   isPast,
   isLoading = false,
-  onAdd,
-  onRemove,
-  changeLabel,
-  removeLabel,
+  onAddRecipe,
+  onRemoveRecipe,
+  onClearSlot,
+  addRecipeLabel,
+  addAnotherRecipeLabel,
+  removeRecipeLabel,
+  clearSlotLabel,
+  slotFullLabel,
 }: SlotCardProps) => {
   if (isLoading) {
     return (
@@ -32,11 +43,11 @@ export const SlotCard = ({
     );
   }
 
-  if (isPast && !recipe) {
+  if (isPast && recipes.length === 0) {
     return (
       <div
         className={cn(
-          "flex h-20 w-full items-center justify-center rounded-[var(--radius-md)]",
+          "flex min-h-20 w-full items-center justify-center rounded-[var(--radius-md)]",
           "border border-dashed border-border bg-background",
           "opacity-50 cursor-not-allowed",
         )}
@@ -48,34 +59,41 @@ export const SlotCard = ({
     );
   }
 
-  if (isPast && recipe) {
+  if (isPast && recipes.length > 0) {
     return (
       <div
         className={cn(
-          "flex h-20 w-full items-start rounded-[var(--radius-md)]",
+          "flex min-h-20 w-full flex-col gap-1.5 rounded-[var(--radius-md)]",
           "border border-border bg-secondary/50 px-3 py-2.5",
           "opacity-50 cursor-not-allowed",
         )}
       >
-        <div className="flex min-w-0 flex-col gap-0.5">
-          <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-            {slotLabel} {slotNumber}
-          </span>
-          <p className="line-clamp-2 text-xs font-medium text-foreground">
-            {recipe.title}
-          </p>
+        <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+          {slotLabel} {slotNumber}
+        </span>
+        <div className="flex flex-col gap-1">
+          {recipes.map((recipe) => (
+            <Badge
+              key={recipe.id}
+              variant="secondary"
+              className="max-w-full justify-start truncate px-2 py-1 text-xs font-medium"
+            >
+              <span className="truncate">{recipe.title}</span>
+            </Badge>
+          ))}
         </div>
       </div>
     );
   }
 
-  if (!recipe) {
+  if (recipes.length === 0) {
     return (
       <button
         type="button"
-        onClick={onAdd}
+        onClick={onAddRecipe}
+        aria-label={addRecipeLabel}
         className={cn(
-          "group flex h-20 w-full items-center justify-center gap-2 rounded-[var(--radius-md)]",
+          "group flex min-h-20 w-full items-center justify-center gap-2 rounded-[var(--radius-md)]",
           "border border-dashed border-border bg-background",
           "text-sm text-muted-foreground transition-all",
           "hover:border-primary hover:bg-secondary/50 hover:text-primary",
@@ -89,46 +107,82 @@ export const SlotCard = ({
     );
   }
 
+  const isFull = recipes.length >= maxRecipes;
+
   return (
     <div
       className={cn(
-        "group flex h-20 w-full items-stretch rounded-[var(--radius-md)]",
+        "group flex min-h-20 w-full flex-col rounded-[var(--radius-md)]",
         "border border-border bg-secondary/50 px-3 py-2.5",
         "transition-all hover:shadow-sm",
       )}
     >
-      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+      <div className="flex items-start justify-between gap-2">
         <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
           {slotLabel} {slotNumber}
         </span>
-        <p className="line-clamp-2 text-xs font-medium text-foreground">
-          {recipe.title}
-        </p>
-      </div>
-      <div className="ml-2 flex w-9 shrink-0 flex-col gap-1">
         <button
           type="button"
-          onClick={onAdd}
-          aria-label={changeLabel}
+          onClick={onClearSlot}
+          aria-label={clearSlotLabel}
           className={cn(
-            "flex flex-1 items-center justify-center rounded-[var(--radius-sm)]",
-            "text-muted-foreground transition-colors hover:bg-secondary hover:text-primary",
-          )}
-        >
-          <Pencil className="h-4 w-4" />
-        </button>
-        <button
-          type="button"
-          onClick={onRemove}
-          aria-label={removeLabel}
-          className={cn(
-            "flex flex-1 items-center justify-center rounded-[var(--radius-sm)]",
+            "flex h-5 w-5 shrink-0 items-center justify-center rounded-[var(--radius-sm)]",
             "text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive",
           )}
         >
-          <Trash2 className="h-4 w-4" />
+          <Trash2 className="h-3.5 w-3.5" />
         </button>
       </div>
+
+      <div className="mt-1.5 flex flex-col gap-1">
+        {recipes.map((recipe) => (
+          <Badge
+            key={recipe.id}
+            variant="secondary"
+            className={cn(
+              "max-w-full justify-between gap-1 px-2 py-1 text-xs font-medium",
+              "bg-background/70",
+            )}
+          >
+            <span className="truncate">{recipe.title}</span>
+            <button
+              type="button"
+              onClick={() => onRemoveRecipe(recipe.id)}
+              aria-label={removeRecipeLabel}
+              className={cn(
+                "flex h-4 w-4 shrink-0 items-center justify-center rounded-full",
+                "text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive",
+              )}
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </Badge>
+        ))}
+      </div>
+
+      {!isFull && (
+        <button
+          type="button"
+          onClick={onAddRecipe}
+          aria-label={addAnotherRecipeLabel}
+          title={addAnotherRecipeLabel}
+          className={cn(
+            "mt-2 flex w-full items-center justify-center gap-1 rounded-[var(--radius-sm)]",
+            "border border-dashed border-border bg-background/40 px-2 py-1",
+            "text-[11px] text-muted-foreground transition-all",
+            "hover:border-primary hover:bg-secondary/60 hover:text-primary",
+          )}
+        >
+          <Plus className="h-3 w-3" />
+          <span>{addAnotherRecipeLabel}</span>
+        </button>
+      )}
+
+      {isFull && (
+        <span className="sr-only" aria-live="polite">
+          {slotFullLabel}
+        </span>
+      )}
     </div>
   );
 };

@@ -36,16 +36,31 @@ const PlanningTab = dynamic(
   },
 );
 
+const SettingsTab = dynamic(
+  () =>
+    import("@/components/dashboard/SettingsTab/SettingsTab").then((m) => ({
+      default: m.SettingsTab,
+    })),
+  {
+    loading: () => (
+      <div className="container mx-auto px-4 py-8">
+        <div className="h-96 animate-pulse rounded-lg bg-muted" />
+      </div>
+    ),
+    ssr: false,
+  },
+);
+
 interface DashboardClientProps {
-  initialTab?: "recipes" | "planning";
+  initialTab?: "recipes" | "planning" | "settings";
 }
 
 export function DashboardClient({
   initialTab = "recipes",
 }: DashboardClientProps) {
-  const [activeTab, setActiveTab] = useState<"recipes" | "planning">(
-    initialTab,
-  );
+  const [activeTab, setActiveTab] = useState<
+    "recipes" | "planning" | "settings"
+  >(initialTab);
   const [recipeToDelete, setRecipeToDelete] = useState<Recipe | null>(null);
 
   const {
@@ -77,8 +92,10 @@ export function DashboardClient({
               onDeleteRecipe={(recipe) => setRecipeToDelete(recipe)}
               onViewRecipe={(recipe) => openSidebar(recipe.id)}
             />
-          ) : (
+          ) : activeTab === "planning" ? (
             <PlanningTab onOpenCreateModal={openCreateModal} />
+          ) : (
+            <SettingsTab />
           )}
         </div>
       </div>
