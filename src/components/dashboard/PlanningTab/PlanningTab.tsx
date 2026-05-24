@@ -2,7 +2,7 @@
 
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DayColumn } from "@/components/planning/DayColumn/DayColumn";
 import { PlanningHeader } from "@/components/planning/PlanningHeader/PlanningHeader";
 import { RecipePickerModal } from "@/components/planning/RecipePickerModal/RecipePickerModal";
@@ -10,10 +10,22 @@ import { ShoppingListPanel } from "@/components/planning/ShoppingListPanel/Shopp
 import { SlotCard } from "@/components/planning/SlotCard/SlotCard";
 import { WeekNavigation } from "@/components/planning/WeekNavigation/WeekNavigation";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useAuth } from "@/hooks/useAuth/useAuth";
+import {
   PLANNING_KEYS,
-  useAssignSlot,
+  useAddRecipeToSlot,
   useCreatePlanning,
   useDeleteSlot,
+  useRemoveRecipeFromSlot,
   useWeeklyPlanning,
   useWeeklyPlannings,
 } from "@/hooks/usePlanning/usePlanning";
@@ -37,11 +49,14 @@ const DAY_OF_WEEK: PlanningDayOfWeek[] = [
   "SUNDAY",
 ];
 
+const MAX_RECIPES_PER_SLOT = 5;
+
 function getSlotsForDay(
   slots: PlanningSlot[],
   dayOfWeek: PlanningDayOfWeek,
+  slotsPerDay: number,
 ): (PlanningSlot | null)[] {
-  return [1, 2, 3].map(
+  return Array.from({ length: slotsPerDay }, (_, i) => i + 1).map(
     (slotNumber) =>
       slots.find(
         (s) => s.dayOfWeek === dayOfWeek && s.slotNumber === slotNumber,
@@ -79,15 +94,38 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
 
   const { recipes, isLoading: recipesLoading } = useRecipes();
 
+  const { user } = useAuth();
+  const effectiveSlotsPerDay = planning?.slotsPerDay ?? user?.slotsPerDay ?? 3;
+  const slotNumbers = Array.from(
+    { length: effectiveSlotsPerDay },
+    (_, i) => i + 1,
+  );
+
   const { createPlanning } = useCreatePlanning();
-  const { assignSlot } = useAssignSlot(currentPlanning?.id ?? 0);
+  const { addRecipeToSlot } = useAddRecipeToSlot(currentPlanning?.id ?? 0);
+  const { removeRecipeFromSlot } = useRemoveRecipeFromSlot(
+    currentPlanning?.id ?? 0,
+  );
   const { deleteSlot } = useDeleteSlot(currentPlanning?.id ?? 0);
 
   const [pendingSlot, setPendingSlot] = useState<{
     dayIndex: number;
-    slotNumber: 1 | 2 | 3;
+    slotNumber: number;
+    existingRecipeIds: number[];
+  } | null>(null);
+  const [slotToClear, setSlotToClear] = useState<{
+    dayIndex: number;
+    slotNumber: number;
+    count: number;
   } | null>(null);
   const [isShoppingListOpen, setIsShoppingListOpen] = useState(false);
+
+  useEffect(() => {
+    if (weekStartISO) {
+      setPendingSlot(null);
+      setSlotToClear(null);
+    }
+  }, [weekStartISO]);
 
   const slots = planning?.slots ?? [];
   const { ingredients: shoppingIngredients, isLoading: shoppingLoading } =
@@ -100,28 +138,26 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
     return dayDate < new Date();
   };
 
-  const assignRecipeToSlot = (
-    slot: { dayIndex: number; slotNumber: 1 | 2 | 3 },
+  const handleAddRecipe = (
+    slot: { dayIndex: number; slotNumber: number },
     recipe: Recipe,
   ): void => {
     const { dayIndex, slotNumber } = slot;
     const day = DAY_OF_WEEK[dayIndex];
 
     if (currentPlanning) {
-      assignSlot({ day, slot: slotNumber, recipeId: recipe.id });
+      addRecipeToSlot({ day, slot: slotNumber, recipeId: recipe.id });
     } else {
       createPlanning(
         { weekStart: weekStartISO },
         {
           onSuccess: async (response) => {
             if (response?.data) {
-              await planningClient.assignSlot(
+              await planningClient.addRecipeToSlot(
                 response.data.id,
                 day,
                 slotNumber,
-                {
-                  recipeId: recipe.id,
-                },
+                { recipeId: recipe.id },
               );
               queryClient.invalidateQueries({ queryKey: PLANNING_KEYS.all });
             }
@@ -135,7 +171,7 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
     if (!pendingSlot) return;
     const slotSnapshot = pendingSlot;
     setPendingSlot(null);
-    assignRecipeToSlot(slotSnapshot, recipe);
+    handleAddRecipe(slotSnapshot, recipe);
   };
 
   const handleCreateNewRecipe = (): void => {
@@ -143,8 +179,20 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
     if (!slotSnapshot) return;
     setPendingSlot(null);
     onOpenCreateModal((createdRecipe) => {
-      assignRecipeToSlot(slotSnapshot, createdRecipe);
+      handleAddRecipe(slotSnapshot, createdRecipe);
     });
+  };
+
+  const handleConfirmClear = (): void => {
+    if (!slotToClear || !currentPlanning) {
+      setSlotToClear(null);
+      return;
+    }
+    deleteSlot({
+      day: DAY_OF_WEEK[slotToClear.dayIndex],
+      slot: slotToClear.slotNumber,
+    });
+    setSlotToClear(null);
   };
 
   const handleGenerateShoppingList = (): void => {
@@ -158,7 +206,7 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
         generateShoppingListLabel={t("generateShoppingList")}
         onGenerateShoppingList={handleGenerateShoppingList}
         isShoppingListDisabled={
-          slots.length === 0 || slots.every((s) => s.recipe === null)
+          slots.length === 0 || slots.every((s) => s.recipes.length === 0)
         }
       />
 
@@ -178,11 +226,12 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
             date={day.date}
             isPast={isDayPast(dayIndex)}
           >
-            {([1, 2, 3] as const).map((slotNumber) => {
+            {slotNumbers.map((slotNumber) => {
               const slot =
                 getSlotsForDay(
                   planning?.slots ?? [],
                   DAY_OF_WEEK[dayIndex],
+                  effectiveSlotsPerDay,
                 ).find((s) => s?.slotNumber === slotNumber) ?? null;
 
               return (
@@ -190,26 +239,51 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
                   key={slotNumber}
                   slotNumber={slotNumber}
                   slotLabel={t("slot")}
-                  recipe={
-                    slot?.recipe
-                      ? { id: slot.recipe.id, title: slot.recipe.title }
-                      : null
+                  recipes={
+                    slot?.recipes.map((r) => ({
+                      id: r.id,
+                      title: r.title,
+                    })) ?? []
                   }
+                  maxRecipes={MAX_RECIPES_PER_SLOT}
                   isPast={isDayPast(dayIndex)}
                   isLoading={planningLoading}
-                  onAdd={() => {
-                    setPendingSlot({ dayIndex, slotNumber });
+                  onAddRecipe={() => {
+                    setPendingSlot({
+                      dayIndex,
+                      slotNumber,
+                      existingRecipeIds: slot?.recipes.map((r) => r.id) ?? [],
+                    });
                   }}
-                  onRemove={() => {
+                  onRemoveRecipe={(recipeId) => {
                     if (slot && currentPlanning) {
+                      removeRecipeFromSlot({
+                        day: DAY_OF_WEEK[dayIndex],
+                        slot: slotNumber,
+                        recipeId,
+                      });
+                    }
+                  }}
+                  onClearSlot={() => {
+                    if (!slot || !currentPlanning) return;
+                    if (slot.recipes.length >= 2) {
+                      setSlotToClear({
+                        dayIndex,
+                        slotNumber,
+                        count: slot.recipes.length,
+                      });
+                    } else {
                       deleteSlot({
                         day: DAY_OF_WEEK[dayIndex],
                         slot: slotNumber,
                       });
                     }
                   }}
-                  changeLabel={t("changeRecipe")}
-                  removeLabel={t("removeRecipe")}
+                  addRecipeLabel={t("addRecipe")}
+                  addAnotherRecipeLabel={t("addAnotherRecipe")}
+                  removeRecipeLabel={t("removeRecipe")}
+                  clearSlotLabel={t("clearSlot")}
+                  slotFullLabel={t("slotFull", { max: MAX_RECIPES_PER_SLOT })}
                 />
               );
             })}
@@ -224,12 +298,41 @@ export const PlanningTab = ({ onOpenCreateModal }: PlanningTabProps) => {
         onCreateNew={handleCreateNewRecipe}
         recipes={recipes}
         isLoading={recipesLoading}
+        excludeRecipeIds={pendingSlot?.existingRecipeIds ?? []}
         title={t("selectRecipe")}
         searchPlaceholder={t("searchRecipes")}
         noRecipesText={t("noRecipes")}
         noResultsText={t("noResults")}
+        noAvailableRecipesText={t("noAvailableRecipes")}
         createNewLabel={t("createNewRecipe")}
       />
+
+      <AlertDialog
+        open={slotToClear !== null}
+        onOpenChange={(open) => {
+          if (!open) setSlotToClear(null);
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("confirmClearSlotTitle")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("confirmClearSlotMessage", {
+                count: slotToClear?.count ?? 0,
+              })}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("confirmClearSlotCancel")}</AlertDialogCancel>
+            <AlertDialogAction
+              variant="destructive"
+              onClick={handleConfirmClear}
+            >
+              {t("confirmClearSlotConfirm")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <ShoppingListPanel
         isOpen={isShoppingListOpen}

@@ -16,7 +16,7 @@ export const useShoppingList = (
   slots: PlanningSlot[],
 ): { ingredients: AggregatedIngredient[]; isLoading: boolean } => {
   const uniqueRecipeIds = useMemo(
-    () => [...new Set(slots.map((s) => s.recipeId))],
+    () => [...new Set(slots.flatMap((s) => s.recipes.map((r) => r.id)))],
     [slots],
   );
 
@@ -42,24 +42,25 @@ export const useShoppingList = (
       recipeById.set(id, recipeQueries[index]?.data ?? null);
     });
 
-    // Iterate ALL slots (not unique) — same recipe in 2 slots doubles quantities
     const aggregation = new Map<string, AggregatedIngredient>();
 
     for (const slot of slots) {
-      const recipe = recipeById.get(slot.recipeId);
-      if (!recipe) continue;
+      for (const slotRecipe of slot.recipes) {
+        const recipe = recipeById.get(slotRecipe.id);
+        if (!recipe) continue;
 
-      for (const ingredient of recipe.ingredients) {
-        const key = `${ingredient.ingredientName.toLowerCase().trim()}::${ingredient.unit}`;
-        const existing = aggregation.get(key);
-        if (existing) {
-          existing.quantity += ingredient.quantity;
-        } else {
-          aggregation.set(key, {
-            ingredientName: ingredient.ingredientName,
-            quantity: ingredient.quantity,
-            unit: ingredient.unit,
-          });
+        for (const ingredient of recipe.ingredients) {
+          const key = `${ingredient.ingredientName.toLowerCase().trim()}::${ingredient.unit}`;
+          const existing = aggregation.get(key);
+          if (existing) {
+            existing.quantity += ingredient.quantity;
+          } else {
+            aggregation.set(key, {
+              ingredientName: ingredient.ingredientName,
+              quantity: ingredient.quantity,
+              unit: ingredient.unit,
+            });
+          }
         }
       }
     }

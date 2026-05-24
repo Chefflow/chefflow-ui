@@ -24,7 +24,9 @@ interface RecipePickerModalProps {
   searchPlaceholder: string;
   noRecipesText: string;
   noResultsText: string;
+  noAvailableRecipesText: string;
   recipes: Recipe[];
+  excludeRecipeIds: number[];
   isLoading: boolean;
 }
 
@@ -49,7 +51,9 @@ export const RecipePickerModal = ({
   searchPlaceholder,
   noRecipesText,
   noResultsText,
+  noAvailableRecipesText,
   recipes,
+  excludeRecipeIds,
   isLoading,
 }: RecipePickerModalProps) => {
   const [search, setSearch] = useState("");
@@ -60,7 +64,11 @@ export const RecipePickerModal = ({
     }
   }, [isOpen]);
 
-  const filteredRecipes = recipes.filter((recipe) =>
+  const availableRecipes = recipes.filter(
+    (recipe) => !excludeRecipeIds.includes(recipe.id),
+  );
+
+  const filteredRecipes = availableRecipes.filter((recipe) =>
     recipe.title.toLowerCase().includes(search.toLowerCase()),
   );
 
@@ -69,10 +77,12 @@ export const RecipePickerModal = ({
     onClose();
   };
 
-  const showEmpty = !isLoading && recipes.length === 0;
+  const showNoRecipesAtAll = !isLoading && recipes.length === 0;
+  const showNoAvailable =
+    !isLoading && recipes.length > 0 && availableRecipes.length === 0;
   const showNoResults =
     !isLoading &&
-    recipes.length > 0 &&
+    availableRecipes.length > 0 &&
     filteredRecipes.length === 0 &&
     search.length > 0;
   const showList = !isLoading && filteredRecipes.length > 0;
@@ -100,7 +110,7 @@ export const RecipePickerModal = ({
           <Button
             type="button"
             variant="outline"
-            className="w-full justify-start gap-2"
+            className="w-full justify-start gap-2 hover:border-primary hover:text-primary"
             onClick={onCreateNew}
           >
             <Plus className="size-4" />
@@ -117,9 +127,17 @@ export const RecipePickerModal = ({
             </div>
           )}
 
-          {showEmpty && (
+          {showNoRecipesAtAll && (
             <div className="flex flex-col items-center justify-center gap-2 py-12 text-center">
               <p className="text-sm text-muted-foreground">{noRecipesText}</p>
+            </div>
+          )}
+
+          {showNoAvailable && (
+            <div className="flex flex-col items-center justify-center gap-2 py-12 text-center">
+              <p className="text-sm text-muted-foreground">
+                {noAvailableRecipesText}
+              </p>
             </div>
           )}
 

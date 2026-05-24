@@ -24,7 +24,7 @@ export const PlanningHeader = ({
           variant="outline"
           onClick={onGenerateShoppingList}
           size="sm"
-          className="gap-2"
+          className="gap-2 hover:border-primary hover:text-primary"
           disabled={isShoppingListDisabled}
         >
           <ShoppingCart className="h-4 w-4" />

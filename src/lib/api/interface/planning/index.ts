@@ -13,9 +13,8 @@ export interface PlanningSlot {
   id: number;
   weeklyPlanningId: number;
   dayOfWeek: PlanningDayOfWeek;
-  slotNumber: 1 | 2 | 3;
-  recipeId: number;
-  recipe: Recipe | null;
+  slotNumber: number;
+  recipes: Recipe[];
 }
 
 export interface WeeklyPlanning {
@@ -23,6 +22,7 @@ export interface WeeklyPlanning {
   userId: number;
   weekStart: string;
   weekEnd: string;
+  slotsPerDay: number;
   createdAt: string;
   updatedAt: string;
   slots?: PlanningSlot[];
@@ -36,6 +36,6 @@ export interface UpdatePlanningRequest {
   weekStart: string;
 }
 
-export interface AssignSlotRequest {
+export interface AddRecipeToSlotRequest {
   recipeId: number;
 }

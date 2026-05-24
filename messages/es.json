@@ -22,7 +22,8 @@
   "dashboard": {
     "tabs": {
       "recipes": "Recetas",
-      "planning": "Planificación"
+      "planning": "Planificación",
+      "settings": "Ajustes"
     },
     "myRecipes": "Mis Recetas",
     "myRecipesSubtitle": "Organiza y gestiona tus creaciones culinarias",
@@ -242,8 +243,16 @@
     "generateShoppingList": "Generar Lista de Compra",
     "analyzePlanning": "Analizar Planificación",
     "addRecipe": "Agregar receta",
+    "addAnotherRecipe": "Agregar otra receta",
     "changeRecipe": "Cambiar receta",
     "removeRecipe": "Eliminar receta",
+    "clearSlot": "Vaciar espacio",
+    "slotFull": "Espacio lleno (máximo {max} recetas)",
+    "noAvailableRecipes": "Todas tus recetas ya están en este espacio",
+    "confirmClearSlotTitle": "¿Vaciar todas las recetas?",
+    "confirmClearSlotMessage": "Se quitarán las {count} recetas de este espacio.",
+    "confirmClearSlotConfirm": "Vaciar",
+    "confirmClearSlotCancel": "Cancelar",
     "selectRecipe": "Seleccionar una receta",
     "searchRecipes": "Buscar recetas...",
     "noRecipes": "Aún no tienes recetas",
@@ -316,6 +325,22 @@
   },
   "languageSelector": {
     "ariaLabel": "Seleccionar idioma"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "planning": {
+      "title": "Preferencias de planificación",
+      "slotsPerDay": "Comidas por día",
+      "slotsPerDayHelp": "Se aplica a las semanas que planifiques a partir de ahora. Las semanas ya guardadas mantienen su configuración.",
+      "save": "Guardar",
+      "saved": "Guardado",
+      "rangeError": "Debe estar entre 1 y 6"
+    }
+  },
+  "errors": {
+    "slotFull": "Espacio lleno",
+    "recipeDuplicate": "La receta ya está en este espacio",
+    "slotOutOfRange": "Este espacio ya no está disponible"
   },
   "privacy": {
     "title": "Política de Privacidad",
