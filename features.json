@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "_status_values": ["pending", "spec_ready", "in_progress", "done"],
+  "_doc": "Backlog source of truth. Leader moves items pending -> spec_ready (specs/ written) -> in_progress (implementer) -> done (reviewer passed). One spec set lives in specs/ at a time; archive shipped specs under docs/tasks/.",
+  "features": [
+    {
+      "id": "configurable-multi-recipe-slots",
+      "title": "Configurable slots per day + multiple recipes per slot",
+      "status": "done",
+      "spec": "docs/tasks/configurable-multi-recipe-slots.md",
+      "notes": "Shipped in 29c5ac1."
+    },
+    {
+      "id": "recipe-creation-from-planning",
+      "title": "Create recipes from the planning tab",
+      "status": "done",
+      "spec": null,
+      "notes": "Shipped in b134e7e."
+    },
+    {
+      "id": "harness-setup",
+      "title": "Harness engineering scaffold (SDD workflow, agents, Guardian)",
+      "status": "done",
+      "spec": null,
+      "notes": "init.sh, specs/, features.json, .claude/agents/, docs/ reference set."
+    }
+  ]
+}
