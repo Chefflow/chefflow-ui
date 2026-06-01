@@ -331,7 +331,7 @@
     "planning": {
       "title": "Planungseinstellungen",
       "slotsPerDay": "Mahlzeiten pro Tag",
-      "slotsPerDayHelp": "Gilt für Wochen, die Sie ab jetzt planen. Bereits gespeicherte Wochen behalten ihre Konfiguration.",
+      "slotsPerDayHelp": "Gilt für Wochen, die Sie ab jetzt planen. Bereits gespeicherte Wochen und die aktuelle Woche behalten ihre Konfiguration.",
       "save": "Speichern",
       "saved": "Gespeichert",
       "rangeError": "Muss zwischen 1 und 6 liegen"

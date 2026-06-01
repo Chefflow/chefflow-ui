@@ -331,7 +331,7 @@
     "planning": {
       "title": "Planning preferences",
       "slotsPerDay": "Meals per day",
-      "slotsPerDayHelp": "Applies to weeks you plan from now on. Already-saved weeks keep their configuration.",
+      "slotsPerDayHelp": "Applies to weeks you plan from now on. Already-saved weeks and the current week keep their configuration.",
       "save": "Save",
       "saved": "Saved",
       "rangeError": "Must be between 1 and 6"

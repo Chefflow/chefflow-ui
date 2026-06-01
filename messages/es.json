@@ -331,7 +331,7 @@
     "planning": {
       "title": "Preferencias de planificación",
       "slotsPerDay": "Comidas por día",
-      "slotsPerDayHelp": "Se aplica a las semanas que planifiques a partir de ahora. Las semanas ya guardadas mantienen su configuración.",
+      "slotsPerDayHelp": "Se aplica a las semanas que planifiques a partir de ahora. Las semanas ya guardadas y la actual semana mantienen su configuración.",
       "save": "Guardar",
       "saved": "Guardado",
       "rangeError": "Debe estar entre 1 y 6"

@@ -331,7 +331,7 @@
     "planning": {
       "title": "Preferenze di pianificazione",
       "slotsPerDay": "Pasti al giorno",
-      "slotsPerDayHelp": "Si applica alle settimane che pianifichi da adesso. Le settimane già salvate mantengono la loro configurazione.",
+      "slotsPerDayHelp": "Si applica alle settimane che pianifichi da adesso. Le settimane già salvate e la settimana corrente mantengono la loro configurazione.",
       "save": "Salva",
       "saved": "Salvato",
       "rangeError": "Deve essere tra 1 e 6"
