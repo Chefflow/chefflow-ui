@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { RECIPE_KEYS } from "@/hooks/useRecipes/useRecipes";
 import type {
   CreatePlanningRequest,
   PlanningDayOfWeek,
@@ -10,11 +9,7 @@ import type {
 } from "@/lib/api/interface";
 import { CACHE_CONFIG } from "@/lib/api/interface";
 import { planningClient } from "@/lib/api/planning-client";
-
-export const PLANNING_KEYS = {
-  all: ["plannings"] as const,
-  detail: (id: number) => ["plannings", id] as const,
-};
+import { PLANNING_KEYS, RECIPE_KEYS } from "@/lib/query-keys";
 
 export const useWeeklyPlannings = () => {
   const { data, isLoading, error } = useQuery({

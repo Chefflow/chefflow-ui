@@ -2,9 +2,9 @@
 
 import { useQueries } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { RECIPE_KEYS } from "@/hooks/useRecipes/useRecipes";
 import type { IngredientUnit, PlanningSlot, Recipe } from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
+import { RECIPE_KEYS } from "@/lib/query-keys";
 
 export interface AggregatedIngredient {
   ingredientName: string;

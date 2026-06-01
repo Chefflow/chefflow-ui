@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useAuth } from "@/hooks/useAuth/useAuth";
 import {
-  PLANNING_KEYS,
   useAddRecipeToSlot,
   useCreatePlanning,
   useDeleteSlot,
@@ -38,6 +37,7 @@ import type {
   Recipe,
 } from "@/lib/api/interface";
 import { planningClient } from "@/lib/api/planning-client";
+import { PLANNING_KEYS } from "@/lib/query-keys";
 
 const DAY_OF_WEEK: PlanningDayOfWeek[] = [
   "MONDAY",

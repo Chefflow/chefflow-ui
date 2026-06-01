@@ -6,9 +6,10 @@ import { useTranslations } from "next-intl";
 import { useMemo, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { RECIPE_KEYS, useCreateRecipe } from "@/hooks/useRecipes/useRecipes";
+import { useCreateRecipe } from "@/hooks/useRecipes/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
+import { RECIPE_KEYS } from "@/lib/query-keys";
 import {
   createRecipeFormSchema,
   type RecipeFormValues,
