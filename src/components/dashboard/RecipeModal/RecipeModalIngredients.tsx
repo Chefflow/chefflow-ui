@@ -58,7 +58,13 @@ export const RecipeModalIngredients = ({
         <h3 className="text-sm font-semibold">
           {t("ingredients")} <span className="text-destructive">*</span>
         </h3>
-        <Button type="button" variant="outline" size="sm" onClick={onAppend}>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="hover:border-primary hover:text-primary"
+          onClick={onAppend}
+        >
           {t("add")}
         </Button>
       </div>

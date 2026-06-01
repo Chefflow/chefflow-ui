@@ -4,6 +4,7 @@ export interface ApiUser {
   email: string;
   name: string;
   image?: string;
+  slotsPerDay: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -27,6 +28,7 @@ export interface AuthResponse {
 export interface UpdateProfileRequest {
   name?: string;
   image?: string;
+  slotsPerDay?: number;
 }
 
 export interface CsrfTokenResponse {

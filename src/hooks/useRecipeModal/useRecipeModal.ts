@@ -3,12 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { RECIPE_KEYS, useCreateRecipe } from "@/hooks/useRecipes/useRecipes";
+import { useCreateRecipe } from "@/hooks/useRecipes/useRecipes";
 import type { Recipe } from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
+import { RECIPE_KEYS } from "@/lib/query-keys";
 import {
   createRecipeFormSchema,
   type RecipeFormValues,
@@ -27,9 +28,7 @@ export const useRecipeModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<"create" | "edit">("create");
   const [editingRecipe, setEditingRecipe] = useState<Recipe | null>(null);
-  const [onCreatedCallback, setOnCreatedCallback] = useState<
-    ((recipe: Recipe) => void) | null
-  >(null);
+  const onCreatedCallbackRef = useRef<((recipe: Recipe) => void) | null>(null);
 
   const [isEditSubmitting, setIsEditSubmitting] = useState(false);
   const queryClient = useQueryClient();
@@ -78,7 +77,8 @@ export const useRecipeModal = () => {
     form.reset(DEFAULT_VALUES);
     setEditingRecipe(null);
     setMode("create");
-    setOnCreatedCallback(() => onCreated ?? null);
+    onCreatedCallbackRef.current =
+      typeof onCreated === "function" ? onCreated : null;
     setIsOpen(true);
   };
 
@@ -124,7 +124,7 @@ export const useRecipeModal = () => {
     setIsOpen(false);
     form.reset(DEFAULT_VALUES);
     setEditingRecipe(null);
-    setOnCreatedCallback(null);
+    onCreatedCallbackRef.current = null;
   };
 
   const onSubmit = async (data: RecipeFormValues): Promise<void> => {
@@ -196,8 +196,7 @@ export const useRecipeModal = () => {
           onSuccess: (response) => {
             if (!response.error && response.data) {
               const created = response.data;
-              onCreatedCallback?.(created);
-              setOnCreatedCallback(null);
+              onCreatedCallbackRef.current?.(created);
               closeModal();
             }
           },

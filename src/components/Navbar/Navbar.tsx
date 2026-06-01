@@ -1,6 +1,7 @@
 "use client";
 
-import { ChefHat, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import LanguageSelector from "@/components/LanguageSelector/LanguageSelector";
@@ -54,7 +55,13 @@ export function Navbar() {
             href="/"
             className="flex items-center gap-3 transition-opacity hover:opacity-80"
           >
-            <ChefHat className="h-8 w-8 text-primary sm:h-10 sm:w-10" />
+            <Image
+              src="/chefflow.png"
+              alt="ChefFlow"
+              width={40}
+              height={40}
+              className="h-8 w-8 sm:h-10 sm:w-10"
+            />
             <span className="font-serif text-xl font-bold text-foreground sm:text-2xl">
               ChefFlow
             </span>

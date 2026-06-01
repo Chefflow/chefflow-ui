@@ -22,7 +22,8 @@
   "dashboard": {
     "tabs": {
       "recipes": "Recipes",
-      "planning": "Planning"
+      "planning": "Planning",
+      "settings": "Settings"
     },
     "myRecipes": "My Recipes",
     "myRecipesSubtitle": "Organize and manage your culinary creations",
@@ -242,8 +243,16 @@
     "generateShoppingList": "Generate Shopping List",
     "analyzePlanning": "Analyze Planning",
     "addRecipe": "Add recipe",
+    "addAnotherRecipe": "Add another recipe",
     "changeRecipe": "Change recipe",
     "removeRecipe": "Remove recipe",
+    "clearSlot": "Clear slot",
+    "slotFull": "Slot is full ({max} recipes max)",
+    "noAvailableRecipes": "All your recipes are already in this slot",
+    "confirmClearSlotTitle": "Clear all recipes?",
+    "confirmClearSlotMessage": "This will remove all {count} recipes from this slot.",
+    "confirmClearSlotConfirm": "Clear",
+    "confirmClearSlotCancel": "Cancel",
     "selectRecipe": "Select a recipe",
     "searchRecipes": "Search recipes...",
     "noRecipes": "You have no recipes yet",
@@ -316,6 +325,22 @@
   },
   "languageSelector": {
     "ariaLabel": "Select language"
+  },
+  "settings": {
+    "title": "Settings",
+    "planning": {
+      "title": "Planning preferences",
+      "slotsPerDay": "Meals per day",
+      "slotsPerDayHelp": "Applies to weeks you plan from now on. Already-saved weeks and the current week keep their configuration.",
+      "save": "Save",
+      "saved": "Saved",
+      "rangeError": "Must be between 1 and 6"
+    }
+  },
+  "errors": {
+    "slotFull": "Slot is full",
+    "recipeDuplicate": "Recipe is already in this slot",
+    "slotOutOfRange": "This slot is no longer available"
   },
   "privacy": {
     "title": "Privacy Policy",

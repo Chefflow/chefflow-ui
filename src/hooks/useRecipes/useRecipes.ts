@@ -7,11 +7,7 @@ import type {
   UpdateRecipeRequest,
 } from "@/lib/api/interface";
 import { recipeClient } from "@/lib/api/recipe-client";
-
-export const RECIPE_KEYS = {
-  all: ["recipes"] as const,
-  detail: (id: string | number) => ["recipes", id] as const,
-};
+import { PLANNING_KEYS, RECIPE_KEYS } from "@/lib/query-keys";
 
 export const useRecipes = () => {
   const { data, isLoading, error, refetch } = useQuery({
@@ -72,6 +68,7 @@ export const useDeleteRecipe = () => {
     mutationFn: (id: string | number) => recipeClient.deleteRecipe(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: RECIPE_KEYS.all });
+      queryClient.invalidateQueries({ queryKey: PLANNING_KEYS.all });
       toast.success("Recipe deleted");
     },
     onError: () => {

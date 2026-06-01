@@ -22,7 +22,8 @@
   "dashboard": {
     "tabs": {
       "recipes": "Rezepte",
-      "planning": "Planung"
+      "planning": "Planung",
+      "settings": "Einstellungen"
     },
     "myRecipes": "Meine Rezepte",
     "myRecipesSubtitle": "Organisieren und verwalten Sie Ihre kulinarischen Kreationen",
@@ -242,8 +243,16 @@
     "generateShoppingList": "Einkaufsliste Erstellen",
     "analyzePlanning": "Planung Analysieren",
     "addRecipe": "Rezept Hinzufügen",
+    "addAnotherRecipe": "Weiteres Rezept hinzufügen",
     "changeRecipe": "Rezept ändern",
     "removeRecipe": "Rezept entfernen",
+    "clearSlot": "Slot leeren",
+    "slotFull": "Slot voll (max. {max} Rezepte)",
+    "noAvailableRecipes": "Alle Ihre Rezepte sind bereits in diesem Slot",
+    "confirmClearSlotTitle": "Alle Rezepte entfernen?",
+    "confirmClearSlotMessage": "Alle {count} Rezepte werden aus diesem Slot entfernt.",
+    "confirmClearSlotConfirm": "Leeren",
+    "confirmClearSlotCancel": "Abbrechen",
     "selectRecipe": "Rezept auswählen",
     "searchRecipes": "Rezepte suchen...",
     "noRecipes": "Sie haben noch keine Rezepte",
@@ -316,6 +325,22 @@
   },
   "languageSelector": {
     "ariaLabel": "Sprache auswählen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "planning": {
+      "title": "Planungseinstellungen",
+      "slotsPerDay": "Mahlzeiten pro Tag",
+      "slotsPerDayHelp": "Gilt für Wochen, die Sie ab jetzt planen. Bereits gespeicherte Wochen und die aktuelle Woche behalten ihre Konfiguration.",
+      "save": "Speichern",
+      "saved": "Gespeichert",
+      "rangeError": "Muss zwischen 1 und 6 liegen"
+    }
+  },
+  "errors": {
+    "slotFull": "Slot ist voll",
+    "recipeDuplicate": "Rezept ist bereits in diesem Slot",
+    "slotOutOfRange": "Dieser Slot ist nicht mehr verfügbar"
   },
   "privacy": {
     "title": "Datenschutzerklärung",

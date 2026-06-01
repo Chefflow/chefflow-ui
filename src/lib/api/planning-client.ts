@@ -1,7 +1,7 @@
 import { baseClient } from "./base-client";
 import type {
+  AddRecipeToSlotRequest,
   ApiResponse,
-  AssignSlotRequest,
   CreatePlanningRequest,
   PlanningDayOfWeek,
   PlanningSlot,
@@ -35,22 +35,33 @@ class PlanningClient {
     return baseClient.delete<void>(`/weekly-plannings/${id}`);
   }
 
-  async assignSlot(
+  async addRecipeToSlot(
     id: number,
     day: PlanningDayOfWeek,
-    slot: 1 | 2 | 3,
-    data: AssignSlotRequest,
+    slot: number,
+    data: AddRecipeToSlotRequest,
   ): Promise<ApiResponse<PlanningSlot>> {
-    return baseClient.put<PlanningSlot>(
-      `/weekly-plannings/${id}/slots/${day.toLowerCase()}/${slot}`,
+    return baseClient.post<PlanningSlot>(
+      `/weekly-plannings/${id}/slots/${day.toLowerCase()}/${slot}/recipes`,
       data,
+    );
+  }
+
+  async removeRecipeFromSlot(
+    id: number,
+    day: PlanningDayOfWeek,
+    slot: number,
+    recipeId: number,
+  ): Promise<ApiResponse<void>> {
+    return baseClient.delete<void>(
+      `/weekly-plannings/${id}/slots/${day.toLowerCase()}/${slot}/recipes/${recipeId}`,
     );
   }
 
   async deleteSlot(
     id: number,
     day: PlanningDayOfWeek,
-    slot: 1 | 2 | 3,
+    slot: number,
   ): Promise<ApiResponse<void>> {
     return baseClient.delete<void>(
       `/weekly-plannings/${id}/slots/${day.toLowerCase()}/${slot}`,

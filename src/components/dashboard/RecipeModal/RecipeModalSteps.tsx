@@ -33,7 +33,13 @@ export const RecipeModalSteps = ({
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">{t("steps")}</h3>
-        <Button type="button" variant="outline" size="sm" onClick={onAppend}>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="hover:border-primary hover:text-primary"
+          onClick={onAppend}
+        >
           {t("add")}
         </Button>
       </div>

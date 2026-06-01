@@ -13,7 +13,7 @@ export default async function DashboardPage({
   const resolvedSearchParams = await searchParams;
   const tab = resolvedSearchParams?.tab;
 
-  return (
-    <DashboardClient initialTab={tab === "planning" ? "planning" : "recipes"} />
-  );
+  const initialTab = tab === "planning" || tab === "settings" ? tab : "recipes";
+
+  return <DashboardClient initialTab={initialTab} />;
 }
