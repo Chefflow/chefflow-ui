@@ -129,7 +129,9 @@
       "deleting": "Wird gelöscht…"
     },
     "errorLoadingRecipes": "Rezepte konnten nicht geladen werden",
-    "retry": "Erneut versuchen"
+    "retry": "Erneut versuchen",
+    "searchRecipes": "Rezepte suchen…",
+    "noResults": "Keine Rezepte passen zu deiner Suche"
   },
   "home": {
     "hero": {

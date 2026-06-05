@@ -129,7 +129,9 @@
       "deleting": "Eliminazione…"
     },
     "errorLoadingRecipes": "Impossibile caricare le ricette",
-    "retry": "Riprova"
+    "retry": "Riprova",
+    "searchRecipes": "Cerca ricette…",
+    "noResults": "Nessuna ricetta corrisponde alla tua ricerca"
   },
   "home": {
     "hero": {

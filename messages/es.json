@@ -129,7 +129,9 @@
       "deleting": "Eliminando…"
     },
     "errorLoadingRecipes": "Error al cargar las recetas",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "searchRecipes": "Buscar recetas…",
+    "noResults": "Ninguna receta coincide con tu búsqueda"
   },
   "home": {
     "hero": {

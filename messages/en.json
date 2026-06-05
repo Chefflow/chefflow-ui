@@ -129,7 +129,9 @@
       "deleting": "Deleting…"
     },
     "errorLoadingRecipes": "Failed to load recipes",
-    "retry": "Retry"
+    "retry": "Retry",
+    "searchRecipes": "Search recipes…",
+    "noResults": "No recipes match your search"
   },
   "home": {
     "hero": {
